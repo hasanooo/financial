@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Debit\DebitController;
+use App\Http\Controllers\Credit\CreditController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +20,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/dashboard' ,[AdminController::class,'dashboard']);
+Route::get('/debit/index' ,[DebitController::class,'debitIndex'])->name('debit.index');
+Route::get('/credit/index' ,[CreditController::class,'creditIndex'])->name('credit.index');

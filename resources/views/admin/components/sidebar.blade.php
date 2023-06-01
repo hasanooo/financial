@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <!-- SidebarSearch Form -->
+        <!-- SidebarSearch Form
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search"
@@ -29,7 +29,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -43,18 +43,18 @@
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Manage Users
-                            <i class="fas fa-angle-left right"></i>
+                            <i class="fas fa-angle-right right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{route('admin.create')}}" class="nav-link"> --}}
+                            <a href="" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Users</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            {{-- <a href="{{route('admin.index')}}" class="nav-link"> --}}
+                             <a href="" class="nav-link"> 
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Users List</p>
                             </a>
@@ -67,43 +67,24 @@
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Roles
-                            <i class="fas fa-angle-left right"></i>
+                            <i class="fas fa-angle-right right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{ route('role.create') }}" class="nav-link"> --}}
+                                <a href="" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Roles Create</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            {{-- <a href="{{ route('role.dashboard') }}" class="nav-link"> --}}
+                            <a href="" class="nav-link"> 
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Roles List</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-                
-                       
-                        
-                        
-                       
-                        
-                        
-                        
-                        
-                   
-
-                
-              
-
-                
-
-                
-
                 
 
                 <li class="nav-item">
@@ -111,30 +92,30 @@
                         <i class="nav-icon fa fa-balance-scale"></i>
                         <p>
                             Finance & Accounting
-                            <i class="fas fa-angle-left right"></i>
+                            <i class="fas fa-angle-right right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{route('proposal')}}" class="nav-link"> --}}
+                            <a href="" class="nav-link"> 
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Proposal</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            {{-- <a href="{{route('estimate')}}" class="nav-link"> --}}
+                            <a href="" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Estimates</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            {{-- <a href="{{route('invoice')}}" class="nav-link"> --}}
+                            <a href="" class="nav-link"> 
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Invioces</p>
+                                <p>Invoices</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            {{-- <a href="{{route('admin.pages.Finance.Payment.index')}}" class="nav-link"> --}}
+                            <a href="" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Payments</p>
                             </a>
@@ -152,8 +133,72 @@
                             </a>
                         </li>
                         
+                        <!-- Debit -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-arrow-up"></i>
+
+                                <p>
+                                    Debit
+                                    <i class="fas fa-angle-right right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('debit.index')}}" class="nav-link"> 
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Debit Details</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link"> 
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Debit</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="" class="nav-link"> 
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Debit Category</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-arrow-down"></i>
+                                <p>
+                                    Credit
+                                    <i class="fas fa-angle-right right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('credit.index')}}" class="nav-link"> 
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Credit Details</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link"> 
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Credit</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="" class="nav-link"> 
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Credit Category</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
+
 
                 
                 
