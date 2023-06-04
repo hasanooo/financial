@@ -29,7 +29,10 @@ Route::get('/debit/category' ,[DebitController::class,'debitCategory'])->name('d
 //Credit
 Route::get('/credit/index' ,[CreditController::class,'creditIndex'])->name('credit.index');
 Route::get('/credit/create' ,[CreditController::class,'creditCreate'])->name('credit.create');
+Route::post('/credit/create/submit' ,[CreditController::class,'creditCreateSubmit'])->name('credit.create.submit');
 Route::get('/credit/category' ,[CreditController::class,'creditCategory'])->name('credit.category');
+Route::post('/credit/category/Submit' ,[CreditController::class,'creditCategorySubmit'])->name('credit.category.Submit');
+Route::get('/credit/category/delete/{id}', [CreditController::class, 'creditCategoryDelete'])->name('creditcategory.delete');
 
 //Settings
 
@@ -38,6 +41,5 @@ Route::get('/settings/system' ,[SettingController::class,'systemView'])->name('s
 
 
 //Profile
-
 Route::get('/profile/index' ,[ProfileController::class,'profileIndex'])->name('profile.index');
 
