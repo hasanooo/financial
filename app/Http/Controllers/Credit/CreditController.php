@@ -7,8 +7,18 @@ use Illuminate\Http\Request;
 
 class CreditController extends Controller
 {
-    public function creditIndex()
+    protected function creditIndex()
     {
         return view('Admin.Credit.creditindex');
+    }
+
+    protected function creditCreate()
+    {
+        return view('Admin.Credit.createcredit');
+    }
+
+    protected function creditCategory()
+    {
+        return view('Admin.Credit.creditcategory');
     }
 }

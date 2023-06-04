@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Debit\DebitController;
 use App\Http\Controllers\Credit\CreditController;
+use App\Http\Controllers\Settings\SettingController;
+use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +18,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/dashboard' ,[AdminController::class,'dashboard']);
+
+Route::get('/dashboard' ,[AdminController::class,'dashboard'])->name('dashboard');
+
+//Debit
 Route::get('/debit/index' ,[DebitController::class,'debitIndex'])->name('debit.index');
+Route::get('/debit/create' ,[DebitController::class,'debitCreate'])->name('debit.create');
+Route::get('/debit/category' ,[DebitController::class,'debitCategory'])->name('debit.category');
+
+//Credit
 Route::get('/credit/index' ,[CreditController::class,'creditIndex'])->name('credit.index');
+Route::get('/credit/create' ,[CreditController::class,'creditCreate'])->name('credit.create');
+Route::get('/credit/category' ,[CreditController::class,'creditCategory'])->name('credit.category');
+
+//Settings
+
+Route::get('/settings/general' ,[SettingController::class,'generalView'])->name('settings.general');
+Route::get('/settings/system' ,[SettingController::class,'systemView'])->name('settings.system');
+
+
+//Profile
+
+Route::get('/profile/index' ,[ProfileController::class,'profileIndex'])->name('profile.index');
+

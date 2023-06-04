@@ -7,7 +7,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" style="background-color:#114c6f;">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <!-- SidebarSearch Form
+        <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search"
@@ -29,7 +29,7 @@
                     </button>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -43,7 +43,7 @@
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Manage Users
-                            <i class="fas fa-angle-right right"></i>
+                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -54,7 +54,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                             <a href="" class="nav-link"> 
+                            <a href="" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Users List</p>
                             </a>
@@ -67,134 +67,123 @@
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Roles
-                            <i class="fas fa-angle-right right"></i>
+                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                                <a href="" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Roles Create</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link"> 
+                            <a href="" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Roles List</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-balance-scale"></i>
                         <p>
-                            Finance & Accounting
-                            <i class="fas fa-angle-right right"></i>
+                            Finance
+                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link"> 
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Proposal</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Estimates</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link"> 
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Invoices</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Payments</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Credit notes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Expenses</p>
-                            </a>
-                        </li>
-                        
-                        <!-- Debit -->
-                        <li class="nav-item">
                             <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-arrow-up"></i>
-
+                                <i class="nav-icon fa fa-balance-scale"></i>
                                 <p>
                                     Debit
-                                    <i class="fas fa-angle-right right"></i>
+                                    <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                <!-- Add your Debit dropdown menu items here -->
                                 <li class="nav-item">
-                                    <a href="{{route('debit.index')}}" class="nav-link"> 
+                                    <a href="{{route('debit.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Debit Details</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link"> 
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Debit</p>
+                                        <p>Debit Index</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="" class="nav-link"> 
+                                    <a href="{{route('debit.create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Debit Add</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{route('debit.category')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Debit Category</p>
                                     </a>
                                 </li>
+                                
                             </ul>
                         </li>
-
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-arrow-down"></i>
+                                <i class="nav-icon fa fa-balance-scale"></i>
                                 <p>
                                     Credit
-                                    <i class="fas fa-angle-right right"></i>
+                                    <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                <!-- Add your Credit dropdown menu items here -->
+
                                 <li class="nav-item">
-                                    <a href="{{route('credit.index')}}" class="nav-link"> 
+                                    <a href="{{route('credit.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Credit Details</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link"> 
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Credit</p>
+                                        <p>Credit Index</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="" class="nav-link"> 
+                                    <a href="{{route('credit.create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Credit Add</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{route('credit.category')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Credit Category</p>
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Settings
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('settings.general')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>General Settings</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('settings.system')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>System Settings</p>
+                            </a>
                         </li>
                     </ul>
                 </li>
