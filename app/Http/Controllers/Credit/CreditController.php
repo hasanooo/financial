@@ -62,5 +62,26 @@ class CreditController extends Controller
         return back();
     }
 
+    protected function editCreditView($id)
+    {
+        $credit_create = CreditCash::find($id);
+        $credit_category = CCategory::all();
+        return view("Admin.Credit.editcredit",compact('credit_create','credit_category'));
+        
+    }
+
+    protected function editCreditSubmit(Request $req, $id)
+    {
+        $credit_create = CreditCash::find($id);
+        $credit_create->date=$req->date;
+        $credit_create->c_category_id=$req->category;
+        $credit_create->particuler=$req->particuler;
+        $credit_create->cash=$req->cash;
+        $credit_create->update();
+
+        return redirect()->back();
+
+    }
+
     
 }
