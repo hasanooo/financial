@@ -52,12 +52,12 @@
             
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <h5>XYZ Company</h5>
+                    
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <p>For the month of May-2023</p>
+                    <p>For the month of {{date ('F Y')}}</p>
                 </div>
             </div>
 
@@ -119,6 +119,7 @@
                     <tr class="text-center">
                         <th colspan="4">Total</th>
                         <th>{{$totalcash}}</th>
+                        <th></th>
                        
 
                 </tbody>
