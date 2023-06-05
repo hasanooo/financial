@@ -6,7 +6,7 @@ use App\Http\Controllers\Credit\CreditController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Roles\RolesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,5 +43,15 @@ Route::get('/settings/system' ,[SettingController::class,'systemView'])->name('s
 
 //Profile
 Route::get('/profile/create' ,[ProfileController::class,'create'])->name('profile.create');
+Route::post('/profile/create' ,[ProfileController::class,'submit'])->name('profile.submit');
 Route::get('/profile/index' ,[ProfileController::class,'profileIndex'])->name('profile.index');
-
+Route::get('/profile/list' ,[ProfileController::class,'ProfileList'])->name('profile.list');
+Route::get('/profile/edit/{id}' ,[ProfileController::class,'ProfileEdit'])->name('profile.edit');
+Route::post('/profile/edit/{id}' ,[ProfileController::class,'ProfileUpdate'])->name('profile.update');
+//Roles
+Route::get('/role.create', [RolesController::class, 'create'])->name('role.create');
+Route::post('/role.create', [RolesController::class, 'store'])->name('role.store');
+Route::get('/role.index', [RolesController::class, 'index'])->name('role.dashboard');
+Route::get('/admin.roles.edit/{id}', [RolesController::class, 'edit'])->name('admin.roles.edit');
+Route::post('/role.update/{id}', [RolesController::class, 'update'])->name('role.update');
+Route::get('/role.delete/{id}', [RolesController::class, 'destroy'])->name('role.delete');
