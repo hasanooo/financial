@@ -161,6 +161,13 @@
                                     </a>
                                 </li>
                             </ul>
+
+                                <li class="nav-item">
+                                    <a href="{{route('cashbook.index')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cash Book</p>
+                                    </a>
+                                </li>
                         </li>
                     </ul>
                 </li>
