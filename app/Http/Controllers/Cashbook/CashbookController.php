@@ -22,7 +22,10 @@ class CashbookController extends Controller
     public function ThisMonth()
     {
         $startDate = Carbon::now()->startOfMonth();
-        $endDate = Carbon::now()->endOfMonth();                 
+        $endDate = Carbon::now()->endOfMonth(); 
+        
+        $month = Carbon::now();
+        $monthName = $month->format('F');
         // Retrieve data from the database based on the date field
         $debit_data = DebitCash::whereBetween('date', [$startDate, $endDate])->get();
         $credit_data = CreditCash::whereBetween('date', [$startDate, $endDate])->get();
@@ -30,7 +33,7 @@ class CashbookController extends Controller
         $debit_sum = $debit_data->pluck('cash')->sum();
         $credit_sum = $credit_data->pluck('cash')->sum();
 
-        return view("Admin.Cashbook.thismonth",compact('debit_data','credit_data','debit_sum','credit_sum'));       
+        return view("Admin.Cashbook.thismonth",compact('debit_data','credit_data','debit_sum','credit_sum','monthName'));       
     }
     public function SelectMonth(Request $request)
     {
