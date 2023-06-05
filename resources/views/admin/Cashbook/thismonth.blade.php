@@ -16,7 +16,30 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="{{ route('cashbook.thismonth.index') }}" class="btn btn-warning">This Month</a>
+                        <form action="{{ route('cashbook.select.month') }}">
+                        <div class="input-group mb-3">
+                            <select name="month" id="mySelect" class="form-select form-control">
+                                <option value="2023-06-01" selected>This Month</option>
+                                {{-- @foreach ( as ) --}}
+                                <option value="2023-01-01">January</option>
+                                <option value="2023-02-01">February</option>
+                                <option value="2023-03-01">March</option>
+                                <option value="2023-04-01">April</option>
+                                <option value="2023-05-01">May</option>
+                                <option value="2023-06-01">June</option>
+                                <option value="2023-07-01">July</option>
+                                <option value="2023-08-01">August</option>
+                                <option value="2023-09-01">September</option>
+                                <option value="2023-10-01">October</option>
+                                <option value="2023-11-01">November</option>
+                                <option value="2023-12-01">December</option>
+                                {{-- @endforeach --}}
+                            </select>
+                            <button type="submit" class="input-group-text btn btn-sm bg-danger text-light" href=""><i class="fa fa-2x fa-eye text-light"></i></button>
+                            {{-- <button type="submit">save</button> --}}
+                          </div>
+                        </form>
+
                     </div>
 
                     <div class="right col-md-6 d-flex justify-content-end">
@@ -45,6 +68,7 @@
                         </form>
                     </div>
 
+
                 </div>
                 
                 
@@ -57,7 +81,8 @@
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <p>For the month of {{date ('F Y')}}</p>
+                    {{-- <p>For the month of {{date ('F Y')}}</p> --}}
+                    <p>For the month of <strong>{{$monthName}}</strong> {{date ('Y')}}</p>
                 </div>
             </div>
 
@@ -81,28 +106,22 @@
 
                 </thead>
                 <tbody>
-                    @php
-                        $debittotalcash=0;
-                        
-                    @endphp
-                    @foreach ($debit as $key => $d)        
+
+                    @foreach ($debit_data as $key => $d)        
                     <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $d->date }}</td>
                         <td>{{ $d->DCategory->name }}</td>
                         <td>{{ $d->particuler }}</td>
                         <td>
-                            @php
-                             $debittotalcash += $d->cash
-                            @endphp
-                            {{$d->cash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                            {{ $d->cash }} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
                         </td>
                     </tr>
                     @endforeach
                     <tr class="text-center">
                         <th>Total</th>
                         <th colspan="3"></th>
-                        <th>{{$debittotalcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></th>
+                        <th>{{ $debit_sum }}<i class="fa-solid fa-bangladeshi-taka-sign"></i></th>
                         <th></th>
                     </tr>
                     <tr class="text-center">
@@ -115,61 +134,49 @@
                 </tbody>
             </table>
 
-                <table class="table table-bordered table-striped my-3 k_search text-center">
-                    <!-- Second table content -->
+            <table class="table table-bordered table-striped my-3 k_search text-center">
+                <!-- Second table content -->
 
-                    <thead>
-                        <tr  class="text-center">
-                            <th colspan="2"></th>
-                            <th>Credit</th>
-                        </tr>
-                        <tr>
-                            <th>Date</th>
-                            <th>Category</th>
-                            <th>Particular Details</th>
-                            <th>Cash</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $credittotalcash=0;
-                            
-                        @endphp
-                        @foreach($index_credit as $i=>$item)
-                        <tr>
-                            <td>{{$item->date}}</td>
-                            <td>{{$item->Credit_Category->name}}</td>
-                            <td>{{$item->particuler}}</td>
-                            <td>
-                                @php
-                                $credittotalcash += $item->cash
-
-                                @endphp
-                                {{$item->cash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
-                            </td>
-                        </tr>
-                        @endforeach
-                        <tr class="text-center">
-                            <th colspan="3"></th>
-                            <th>{{$credittotalcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></th>
-                            <th></th>
-                        </tr>
-                        @php
-                            $totalremainingcash=0;
-                            $totalremainingcash = $debittotalcash - $credittotalcash
-                        @endphp
-                        <tr class="text-center">
-                            <th colspan="2"></th>
-                            <th>{{$debittotalcash}}-{{$credittotalcash}} = {{$totalremainingcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
-                                
-                            </th>
-                            <th></th>
-                            
-                        </tr>
+                <thead>
+                    <tr  class="text-center">
+                        <th colspan="2"></th>
+                        <th>Credit</th>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Particular Details</th>
+                        <th>Cash</th>
                         
-                    </tbody>
-                </table>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach($credit_data as $key => $c)
+                    <tr>
+                        <td>{{$c->date}}</td>
+                        <td>{{$c->Credit_Category->name}}</td>
+                        <td>{{$c->particuler}}</td>
+                        <td>
+                            {{$c->cash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                        </td>
+                    </tr>
+                    @endforeach
+                    <tr class="text-center">
+                        <th colspan="3"></th>
+                        <th>{{$credit_sum}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></th>
+                        <th></th>
+                    </tr>
+                    <tr class="text-center">
+                        <th colspan="2"></th>
+                        <th>{{$debit_sum}}-{{$credit_sum}} = {{$debit_sum - $credit_sum}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>          
+                        </th>
+                        <th></th>
+                        
+                    </tr>
+                    
+                </tbody>
+            </table>
             </div>
 
         </div>

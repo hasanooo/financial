@@ -1,13 +1,18 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Contact\ContactController;
 use App\Http\Controllers\Debit\DebitController;
 use App\Http\Controllers\Credit\CreditController;
+
 use App\Http\Controllers\Cashbook\CashbookController;
+
+use App\Http\Controllers\Product\ProductController;
+
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Roles\RolesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +26,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/dashboard' ,[AdminController::class,'dashboard'])->name('dashboard');
+//supplier
+Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier.');
+Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
+Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
+//product
+Route::get('/product/category' ,[ProductController::class,'categoryform'])->name('product.category');
+Route::post('/product/category' ,[ProductController::class,'AddCategory'])->name('product.category.submit');
+Route::get('/product' ,[ProductController::class,'productform'])->name('product');
 
 //Debit
 Route::get('/debit/index' ,[DebitController::class,'debitIndex'])->name('debit.index');
@@ -47,6 +60,8 @@ Route::post('/credit/edit/submit/{id}' ,[CreditController::class,'editCreditSubm
 
 //Cashbook
 Route::get('/cashbook/index' ,[CashbookController::class,'cashbookIndex'])->name('cashbook.index');
+Route::get('/cashbook/thismonth/index' ,[CashbookController::class,'ThisMonth'])->name('cashbook.thismonth.index');
+Route::get('/cashbook/selected/month' ,[CashbookController::class,'SelectMonth'])->name('cashbook.select.month');
 
 //Settings
 
@@ -57,5 +72,20 @@ Route::get('/settings/system' ,[SettingController::class,'systemView'])->name('s
 //Profile
 
 Route::get('/profile/create' ,[ProfileController::class,'create'])->name('profile.create');
+
+Route::post('/profile/create' ,[ProfileController::class,'submit'])->name('profile.submit');
 Route::get('/profile/index' ,[ProfileController::class,'profileIndex'])->name('profile.index');
+Route::get('/profile/list' ,[ProfileController::class,'ProfileList'])->name('profile.list');
+Route::get('/profile/edit/{id}' ,[ProfileController::class,'ProfileEdit'])->name('profile.edit');
+Route::post('/profile/edit/{id}' ,[ProfileController::class,'ProfileUpdate'])->name('profile.update');
+//Roles
+Route::get('/role.create', [RolesController::class, 'create'])->name('role.create');
+Route::post('/role.create', [RolesController::class, 'store'])->name('role.store');
+Route::get('/role.index', [RolesController::class, 'index'])->name('role.dashboard');
+Route::get('/admin.roles.edit/{id}', [RolesController::class, 'edit'])->name('admin.roles.edit');
+Route::post('/role.update/{id}', [RolesController::class, 'update'])->name('role.update');
+Route::get('/role.delete/{id}', [RolesController::class, 'destroy'])->name('role.delete');
+
+
+
 
