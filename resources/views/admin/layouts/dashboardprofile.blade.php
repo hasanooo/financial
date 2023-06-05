@@ -46,21 +46,25 @@
  
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-        
+  {{-- <style>
+    *{
+      width: 100%;
+    }
+    </style>         --}}
 
 </head>
 
-<body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class=" ">
 
 
 
     <!-- Navbar -->
-    @include('Admin.components.navbar')
+    @include('Admin.components.navbarprofile')
 
 
     <!-- /.navbar -->
 
-    @include('Admin.components.sidebar')
+    {{-- @include('Admin.components.sidebar') --}}
 
 
     <div class="content-wrapper">
