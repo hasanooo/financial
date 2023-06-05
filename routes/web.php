@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Debit\DebitController;
 use App\Http\Controllers\Credit\CreditController;
+use App\Http\Controllers\Cashbook\CashbookController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,9 @@ Route::post('/credit/create/submit' ,[CreditController::class,'creditCreateSubmi
 Route::get('/credit/category' ,[CreditController::class,'creditCategory'])->name('credit.category');
 Route::post('/credit/category/Submit' ,[CreditController::class,'creditCategorySubmit'])->name('credit.category.Submit');
 Route::get('/credit/category/delete/{id}', [CreditController::class, 'creditCategoryDelete'])->name('creditcategory.delete');
+
+//Cashbook
+Route::get('/cashbook/index' ,[CashbookController::class,'cashbookIndex'])->name('cashbook.index');
 
 //Settings
 

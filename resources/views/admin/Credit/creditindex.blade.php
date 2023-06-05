@@ -120,7 +120,7 @@
                         <th colspan="4">Total</th>
                         <th>{{$totalcash}}</th>
                         <th></th>
-                       
+                    </tr>
 
                 </tbody>
             </table>
