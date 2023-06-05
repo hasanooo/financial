@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CCategory extends Model
 {
     use HasFactory;
+    public function credit()
+    {
+        return $this->hasMany(CreditCash::class);
+    }
 }
