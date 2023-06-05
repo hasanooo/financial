@@ -14,7 +14,7 @@
             <div class="row mb-3">
                 <div class="col-12 d-flex justify-content-end">
                     <!-- Button trigger modal -->
-                    <a href="">
+                    <a href="{{ route('debit.create') }}">
                         <button type="button" class="btn btn-primary">
                             <i class="fa-solid fa-plus"></i> Add
                         </button>
@@ -61,48 +61,60 @@
                     <tr>
                         <th>SL</th>
                         <th>Date</th>
+                        <th>Debit Category</th>
                         <th>Particular Details</th>
                         <th>Cash</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($debit as $key => $d)
+                        
+                    
                     <tr>
-                        <td>1</td>
-                        <td>6/1/2023</td>
-                        <td>Business cash</td>
-                        <td>200000</td>
+                        <td>{{ $key+1 }}</td>
+                        <td>{{ $d->date }}</td>
+                        <td>{{ $d->DCategory->name }}</td>
+                        <td>{{ $d->particuler }}</td>
+                        <td>{{ $d->cash }}$</td>
                         <td>
-                        <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="menu1"
-                                    data-toggle="dropdown">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                        <path
-                                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                    </svg></button>
-                                <ul class="dropdown-menu text-left px-3 " role="menu" aria-labelledby="menu1">
+                            {{-- <a href="javascript:void(0)" data-url="{{route('editcategory.view',$d->id)}}" id="id">
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalEdit">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                </button>
+                            </a> --}}
 
-                                   
-
-                                    <li role="presentation"> <a data-bs-toggle="modal" class="btn btn-sm"
-                                            id="expense_delete">
-                                            <i class="fa-solid fa-trash"></i>Delete </a></li>
-
-                                    <li>
-                                        <a class="btn btn-sm" href=""> <i
-                                                class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                    </li>
-
-                                </ul>
-                            </div>
+                            <a class="btn btn-info btn-sm" href="{{ route('edit.debitcash.view',$d->id) }}">Edit</a>
+                        
+                            <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$d->id}}">delete</a>
                         </td>
                     </tr>
-                    <tr class="text-center">
-                        <th colspan="3">Total</th>
-                        <th>200000</th>
-                       
 
+                     <!-- Modal -->
+                     <div class="modal fade" id="deleteModal{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmation Messege</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <!-- <span aria-hidden="true">&times;</span> -->
+                                </button>
+                                </div>
+                            <div class="modal-body">
+                                Are you sure want to delete this?
+                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <a href="{{ route('delete.debit.cash',$d->id) }}" type="button" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- end modal --}}
+
+                       
+                        @endforeach
                 </tbody>
             </table>
         </div>
