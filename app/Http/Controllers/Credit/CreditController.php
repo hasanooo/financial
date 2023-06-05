@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CCategory;
 use App\Models\CreditCash;
+use Carbon\Carbon;
 class CreditController extends Controller
 {
     protected function creditIndex()
     {
+
         $credit_index=CreditCash::all();
         return view('Admin.Credit.creditindex')
         ->with('index_credit',$credit_index);
