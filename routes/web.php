@@ -46,6 +46,6 @@ Route::get('/settings/system' ,[SettingController::class,'systemView'])->name('s
 
 
 //Profile
-
+Route::get('/profile/create' ,[ProfileController::class,'create'])->name('profile.create');
 Route::get('/profile/index' ,[ProfileController::class,'profileIndex'])->name('profile.index');
 
