@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="modal-body ">
 
-                                    <form action="" method="post" enctype="multipart/form-data"
+                                    <form action="{{ route('debit.category.create') }}" method="POST" enctype="multipart/form-data"
                                     class="row g-3">
                                     {{@csrf_field()}}
 
@@ -63,9 +63,9 @@
                                 </div>
                                 <div class="modal-body ">
 
-                                    <form action="" method="post" enctype="multipart/form-data"
+                                    <form action="{{ route('category.edit.sub') }}" method="post" enctype="multipart/form-data"
                                     class="row g-3">
-                                    {{@csrf_field()}}
+                                    @csrf
 
                                         <input type="hidden" id="id" name="id" />
                                         <div class="col-md-12">
@@ -87,46 +87,14 @@
                         </div>
                     </div>
                     <!-- End -->
-
-                    <!--Delete modal -->
-                    <div class="modal fade" id="exampleModaldelete" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <div class="modal-body text-center d-flex flex-column" style="gap:2rem;">
-                                    <i class="fa-solid fa-trash text-danger" style="font-size:40px;"></i>
-                                    <h5 class="text-danger">Are you sure to remove this Category?</h5>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                    <a class="btn btn-danger" id="delete" href="">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End -->
+                    
                 </div>
 
             </div>
             <div class="row mb-3">
                 <div class="row">
                     <div class="col-6">
-                        <div class="left">
-                            <p class="d-inline">Show</p>
-                            <select class="form-select-sm rounded-0">
-                                <option selected>25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                <option value="200">200</option>
-                                <option value="All">All</option>
-                            </select>
-                            <p class="d-inline">entries</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="right d-flex justify-content-end">
+                        <div class="right d-flex justify-content-start">
                             <form class="d-flex">
                                 <label class="me-1 mt-1">Search:</label>
                                 <input class="form-control me-2 rounded-0" name="search" type="search" id="in">
@@ -161,25 +129,46 @@
                         </tr>
                     </thead>
                     <tbody>
-                     
+                        @foreach ($category as $key => $c)
+                            
+                        
                         <tr>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ $c->name }}</td>
                             <td>
-                              
-                            </td>
-                            <td></td>
-                            <td>
-                            <a href="javascript:void(0)" data-url="" id="id">
+                            <a href="javascript:void(0)" data-url="{{route('editcategory.view',$c->id)}}" id="id">
                                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#exampleModalEdit">
                                         <i class="fa-solid fa-pen-to-square"></i> Edit
                                     </button>
                                 </a>
                             
-                                <button class="btn btn-danger btn-sm" id="category_delete">
-                                    <i class="fa-solid fa-trash"></i> Delete
-                                </button>
+                                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$c->id}}">delete</a>
                             </td>
                         </tr>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteModal{{ $c->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmation Messege</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <!-- <span aria-hidden="true">&times;</span> -->
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure want to delete this?
+                                </div>
+                            <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <a href="{{ route('delete.category.debit',$c->id) }}" type="button" class="btn btn-danger">Delete</a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                        @endforeach
                     
                     </tbody> 
                 </table>   
@@ -196,6 +185,16 @@
 
 <script>
 
+$(document).ready(function() {
+        $('body').on('click', '#id', function(){
+            var urlData = $(this).data('url');
+            $.get(urlData, function(data) {
+            $('#exampleModalEdit').modal('show');
+            $('#id').val(data.id);
+            $('#categoryname').val(data.name);
+        });
+        });
+});    
 
 </script>
 @endsection

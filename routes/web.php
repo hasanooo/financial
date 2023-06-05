@@ -24,7 +24,15 @@ Route::get('/dashboard' ,[AdminController::class,'dashboard'])->name('dashboard'
 //Debit
 Route::get('/debit/index' ,[DebitController::class,'debitIndex'])->name('debit.index');
 Route::get('/debit/create' ,[DebitController::class,'debitCreate'])->name('debit.create');
+Route::post('/debit/create/submit' ,[DebitController::class,'CreateDebit'])->name('dabit.create.submit');
+Route::get('/debit/cash/view/{id}',[DebitController::class,'DebitEditView'])->name('edit.debitcash.view');
+Route::post('/debit/update/submit/{id}',[DebitController::class,'UpdateDebit'])->name('dabit.update.submit');
+Route::get('/debit/delete/{id}',[DebitController::class,'DeleteDebit'])->name('delete.debit.cash');
 Route::get('/debit/category' ,[DebitController::class,'debitCategory'])->name('debit.category');
+Route::post('/debit/category/add' ,[DebitController::class,'CreateCategory'])->name('debit.category.create');
+Route::get('/debit/viewEdit/{id}',[DebitController::class,'CategoryView'])->name('editcategory.view');
+Route::post('/debit/category/edit',[DebitController::class,'EditCategory'])->name('category.edit.sub');
+Route::get('/debit/delete/dcategory/{id}',[DebitController::class,'DeleteCategory'])->name('delete.category.debit');
 
 //Credit
 Route::get('/credit/index' ,[CreditController::class,'creditIndex'])->name('credit.index');
@@ -41,5 +49,8 @@ Route::get('/settings/system' ,[SettingController::class,'systemView'])->name('s
 
 
 //Profile
+
+Route::get('/profile/create' ,[ProfileController::class,'create'])->name('profile.create');
+
 Route::get('/profile/index' ,[ProfileController::class,'profileIndex'])->name('profile.index');
 
