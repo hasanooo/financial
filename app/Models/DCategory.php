@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DCategory extends Model
 {
     use HasFactory;
+    function DebitCash()
+    {
+        return $this->hasMany(DebitCash::class);
+    }
 }
