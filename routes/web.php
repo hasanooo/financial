@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Contact\ContactController;
 use App\Http\Controllers\Debit\DebitController;
 use App\Http\Controllers\Credit\CreditController;
+use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +22,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/dashboard' ,[AdminController::class,'dashboard'])->name('dashboard');
+//supplier
+Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier.');
+Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
+Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
+//product
+Route::get('/product/category' ,[ProductController::class,'categoryform'])->name('product.category');
+Route::post('/product/category' ,[ProductController::class,'AddCategory'])->name('product.category.submit');
+Route::get('/product' ,[ProductController::class,'productform'])->name('product');
 
 //Debit
 Route::get('/debit/index' ,[DebitController::class,'debitIndex'])->name('debit.index');
@@ -53,4 +63,3 @@ Route::get('/settings/system' ,[SettingController::class,'systemView'])->name('s
 Route::get('/profile/create' ,[ProfileController::class,'create'])->name('profile.create');
 
 Route::get('/profile/index' ,[ProfileController::class,'profileIndex'])->name('profile.index');
-
