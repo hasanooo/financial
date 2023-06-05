@@ -45,6 +45,8 @@ Route::get('/credit/category/delete/{id}', [CreditController::class, 'creditCate
 
 //Cashbook
 Route::get('/cashbook/index' ,[CashbookController::class,'cashbookIndex'])->name('cashbook.index');
+Route::get('/cashbook/thismonth/index' ,[CashbookController::class,'ThisMonth'])->name('cashbook.thismonth.index');
+Route::get('/cashbook/selected/month' ,[CashbookController::class,'SelectMonth'])->name('cashbook.select.month');
 
 //Settings
 
