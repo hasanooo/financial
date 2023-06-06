@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row border-top border-bottom" style="background-color: #f5f5f5; padding: 20px 0px">
             <div class="col-12">
-                <h1>Categories <span style="font-size: 12px;color:rgb(75, 95, 75)"> Manage your categories</span></h1>
+                <h3>Categories <span style="font-size: 12px;color:rgb(75, 95, 75)"> Manage your categories</span></h3>
             </div>
         </div>
         <div class="p-3">
@@ -141,33 +141,36 @@
                     </div>
                 </div>
             </div> -->
-            {{-- <table class="table table-bordered table-striped my-3">
+            <table class="table table-bordered table-striped my-3">
                 <thead>
                     <tr>
-                        <th>Category</th>
+                        <th>SL</th>
+                        <th>Category Name</th>
                         <th>Image</th>
                       
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $categories)
+                   
 
-
+                    @foreach($category as $i=>$item)
                     <tr>
-                        <td>{{ $categories->name }}</td>
+                        <td>{{$i+1}}</td>
+                        <td>{{$item->name}}</td>
                         <td>
                             <img style="height: 30px; width: 30px; background: white" class="img"
-                                src="/ProductImage/CategoryImage/{{ $categories->image }}" alt="">
+                                src="/ProductImage/CategoryImage/{{$item->image}}" alt="">
                         </td>
                         
                         <td class="">
-                        <a href="javascript:void(0)"  data-url="{{route('viewCategoryEdit',$categories->id)}}" id="id"><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalEdit" > <i class="fa-solid fa-pen-to-square"></i></button></a>
+                        <a href="javascript:void(0)"  data-url="" id="id"><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalEdit" > <i class="fa-solid fa-pen-to-square"></i></button></a>
                            
                         </td>
                         </td>
                     </tr>
                     @endforeach
+                  
                 </tbody>
             </table>
             
@@ -176,7 +179,7 @@
     </div>
 </div>
 
-<script>
+{{--<script>
      $(document).ready(function(){
         $('body').on('click', '#id', function(){
             var urlData = $(this).data('url');

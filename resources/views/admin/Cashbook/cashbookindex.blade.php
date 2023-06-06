@@ -109,7 +109,7 @@
                         <th>Total</th>
                         <th colspan="3"></th>
                         <th>{{$debittotalcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></th>
-                        <th></th>
+                        
                     </tr>
                     <tr class="text-center">
                         <th colspan="2">Debit Balance</th>
@@ -121,61 +121,61 @@
                 </tbody>
             </table>
 
-            <table class="table table-bordered table-striped my-3 k_search text-center">
-                <!-- Second table content -->
+                <table class="table table-bordered table-striped my-3 k_search text-center">
+                    <!-- Second table content -->
 
-                <thead>
-                    <tr  class="text-center">
-                        <th colspan="2"></th>
-                        <th>Credit</th>
-                    </tr>
-                    <tr>
-                        <th>Date</th>
-                        <th>Category</th>
-                        <th>Particular Details</th>
-                        <th>Cash</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $credittotalcash=0;
-                        
-                    @endphp
-                    @foreach($index_credit as $i=>$item)
-                    <tr>
-                        <td>{{$item->date}}</td>
-                        <td>{{$item->Credit_Category->name}}</td>
-                        <td>{{$item->particuler}}</td>
-                        <td>
-                            @php
-                             $credittotalcash += $item->cash
+                    <thead>
+                        <tr  class="text-center">
+                            <th colspan="2"></th>
+                            <th>Credit</th>
+                        </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Particular Details</th>
+                            <th>Cash</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $credittotalcash=0;
+                            
+                        @endphp
+                        @foreach($index_credit as $i=>$item)
+                        <tr>
+                            <td>{{$item->date}}</td>
+                            <td>{{$item->Credit_Category->name}}</td>
+                            <td>{{$item->particuler}}</td>
+                            <td>
+                                @php
+                                $credittotalcash += $item->cash
 
-                            @endphp
-                            {{$item->cash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
-                        </td>
-                    </tr>
-                    @endforeach
-                    <tr class="text-center">
-                        <th colspan="3"></th>
-                        <th>{{$credittotalcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></th>
-                        <th></th>
-                    </tr>
-                    @php
-                        $totalremainingcash=0;
-                        $totalremainingcash = $debittotalcash - $credittotalcash
-                    @endphp
-                    <tr class="text-center">
-                        <th colspan="2"></th>
-                        <th>{{$debittotalcash}}-{{$credittotalcash}} = {{$totalremainingcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
-                              
-                        </th>
-                        <th></th>
+                                @endphp
+                                {{$item->cash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                            </td>
+                        </tr>
+                        @endforeach
+                        <tr class="text-center">
+                            <th colspan="3"></th>
+                            <th>{{$credittotalcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></th>
+                            <th></th>
+                        </tr>
+                        @php
+                            $totalremainingcash=0;
+                            $totalremainingcash = $debittotalcash - $credittotalcash
+                        @endphp
+                        <tr class="text-center">
+                            <th colspan="2"></th>
+                            <th>{{$debittotalcash}}-{{$credittotalcash}} = {{$totalremainingcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                                
+                            </th>
+                            <th></th>
+                            
+                        </tr>
                         
-                    </tr>
-                    
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
             </div>
 
         </div>
