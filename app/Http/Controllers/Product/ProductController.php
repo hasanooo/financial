@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -47,6 +49,26 @@ class ProductController extends Controller
     }
     function productform()
     {
-        return view('admin.Products.createproduct');
+        $productcategorys=ProductCategory::all();
+        $suppliers=Supplier::all();
+        return view('admin.Products.createproduct')->with('productcategory', $productcategorys)->with('supplier',$suppliers);
+    }
+    function productformsubmit(Request $req)
+    {
+          $product=new Product();
+          $product->name=$req->name;
+          $product->product_category_id=$req->category;
+          $product->supplier_id=$req->supplier;
+          $product->purchase_price=$req->price;
+          $product->description=$req->des;
+          $product->quantity=$req->qty;
+          $product->status=$req->status;
+          $image = $req->image;
+        if ($image) {
+            $image = time() . '.' . $image->getClientOriginalExtension();
+            $req->image->move('Product/Image/', $image);
+            $product->image = $image;
+        }
+        $product->save();
     }
 }
