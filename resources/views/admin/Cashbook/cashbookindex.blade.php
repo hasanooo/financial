@@ -15,8 +15,14 @@
             <div class="col-12 mt-3">
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <a href="{{ route('cashbook.thismonth.index') }}" class="btn btn-warning">This Month</a>
+                    <div class="col-md-2">
+                        <a href="{{ route('cashbook.thismonth.index') }}" class="btn btn-sm btn-warning">This Month</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('cashbook.thiscategory.index') }}" class="btn btn-sm btn-success">Debit Category</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('cashbook.thiscategory.credit') }}" class="btn btn-sm btn-success">Credit Category</a>
                     </div>
 
                     <div class="right col-md-6 d-flex justify-content-end">
