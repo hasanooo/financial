@@ -30,14 +30,16 @@ Route::get('/' ,[ProfileController::class,'Login'])->name('login');
 Route::post('/' ,[ProfileController::class,'LoginSubmit'])->name('profile.loginsubmit');
 Route::post('/changepassword/{id}',[ProfileController::class,'ChangePassword'])->name('changepassword');
 //supplier
-Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier.');
-Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
+Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier');
 Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
 //product
+
+Route::get('/product/Index' ,[ProductController::class,'productIndex'])->name('prodauct.index');
 Route::get('/product/category' ,[ProductController::class,'categoryform'])->name('product.category');
 Route::post('/product/category' ,[ProductController::class,'AddCategory'])->name('product.category.submit');
-Route::get('/product' ,[ProductController::class,'productform']);
-Route::post('/product' ,[ProductController::class,'productformsubmit'])->name('product');
+Route::get('/product/add' ,[ProductController::class,'productform'])->name('product.create');
+Route::post('/product/submit' ,[ProductController::class,'productformsubmit'])->name('product.submit');
+
 
 //Debit
 Route::get('/debit/index' ,[DebitController::class,'debitIndex'])->name('debit.index');
@@ -59,6 +61,8 @@ Route::post('/credit/create/submit' ,[CreditController::class,'creditCreateSubmi
 Route::get('/credit/category' ,[CreditController::class,'creditCategory'])->name('credit.category');
 Route::post('/credit/category/Submit' ,[CreditController::class,'creditCategorySubmit'])->name('credit.category.Submit');
 Route::get('/credit/category/delete/{id}', [CreditController::class, 'creditCategoryDelete'])->name('creditcategory.delete');
+Route::get('/credit/edit/{id}', [CreditController::class, 'editCreditView'])->name('creditview.edit');
+Route::post('/credit/edit/submit/{id}' ,[CreditController::class,'editCreditSubmit'])->name('credit.edit');
 
 //Cashbook
 Route::get('/cashbook/index' ,[CashbookController::class,'cashbookIndex'])->name('cashbook.index');

@@ -10,7 +10,9 @@ class ContactController extends Controller
 {
     function supplierform()
     {
-        return view('admin.Contact.SupplierView');
+        $supplier=Supplier::all();
+        return view('admin.Contact.SupplierView')
+        ->with('supplier',$supplier);
     }
     function supplierformsumbit(Request $req)
     {
