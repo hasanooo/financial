@@ -52,4 +52,41 @@ class CashbookController extends Controller
         return view("Admin.Cashbook.thismonth",compact('debit_data','credit_data','debit_sum','credit_sum','monthName'));       
     }
 
+    public function ThisDebitCategory()
+    {
+        $category = DCategory::where('id',1)->first();
+        $cat = DCategory::all();
+        $d_category = $category->DebitCash;
+        $category_sum = $d_category->pluck('cash')->sum();
+        return view('Admin.Cashbook.debitcategory', compact('category','cat','d_category','category_sum'));
+    }
+
+    public function ThisSelectDebit(Request $request)
+    {
+        $category = DCategory::where('id', $request->cat)->first();
+        $cat = DCategory::all();
+        $d_category = $category->DebitCash;
+        $category_sum = $d_category->pluck('cash')->sum();
+        return view('Admin.Cashbook.debitcategory', compact('category','cat','d_category','category_sum'));
+    }
+
+    // Credit Category view
+    public function ThisCreditCategory()
+    {
+        $category = CCategory::where('id',1)->first();
+        $cat = CCategory::all();
+        $c_category = $category->credit;
+        $category_sum = $c_category->pluck('cash')->sum();
+        return view('Admin.Cashbook.creditcategory', compact('category','cat','c_category','category_sum'));
+    }
+
+    public function ThisSelectCredit(Request $request)
+    {
+        $category = CCategory::where('id', $request->cat)->first();
+        $cat = CCategory::all();
+        $c_category = $category->credit;
+        $category_sum = $c_category->pluck('cash')->sum();
+        return view('Admin.Cashbook.creditcategory', compact('category','cat','c_category','category_sum'));
+    }
+
 }
