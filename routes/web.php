@@ -33,7 +33,8 @@ Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name(
 //product
 Route::get('/product/category' ,[ProductController::class,'categoryform'])->name('product.category');
 Route::post('/product/category' ,[ProductController::class,'AddCategory'])->name('product.category.submit');
-Route::get('/product' ,[ProductController::class,'productform'])->name('product');
+Route::get('/product' ,[ProductController::class,'productform']);
+Route::post('/product' ,[ProductController::class,'productformsubmit'])->name('product');
 
 //Debit
 Route::get('/debit/index' ,[DebitController::class,'debitIndex'])->name('debit.index');
@@ -83,7 +84,3 @@ Route::get('/role.index', [RolesController::class, 'index'])->name('role.dashboa
 Route::get('/admin.roles.edit/{id}', [RolesController::class, 'edit'])->name('admin.roles.edit');
 Route::post('/role.update/{id}', [RolesController::class, 'update'])->name('role.update');
 Route::get('/role.delete/{id}', [RolesController::class, 'destroy'])->name('role.delete');
-
-
-
-
