@@ -8,7 +8,7 @@
 
 
     <!-- Sidebar -->
-    <div class="sidebar" style="background-color:#114c6f;">
+    <div class="sidebar" style="background-color:#011b2b;">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
@@ -41,7 +41,7 @@
                 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             Manage Users
                             <i class="fas fa-angle-left right"></i>
@@ -84,6 +84,25 @@
                                 <p>Roles List</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Contact
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('formsupplier')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Supplier</p>
+                            </a>
+                        </li>
+                        
                     </ul>
                 </li>
 
@@ -174,7 +193,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fas fa-gear"></i>
                         <p>
                             Settings
                             <i class="fas fa-angle-left right"></i>
@@ -191,6 +210,37 @@
                             <a href="{{route('settings.system')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>System Settings</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-p"></i>
+                        <p>
+                            Products
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('prodauct.index')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Product Index</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('product.create')}}" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>Product Add</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('product.category')}}" class="nav-link">
+                                <i class="far fa-list-alt nav-icon"></i>
+                                <p>Product Category</p>
                             </a>
                         </li>
                     </ul>

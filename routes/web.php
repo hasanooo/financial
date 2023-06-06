@@ -27,14 +27,16 @@ use App\Http\Controllers\Roles\RolesController;
 
 Route::get('/dashboard' ,[AdminController::class,'dashboard'])->name('dashboard');
 //supplier
-Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier.');
-Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
+Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier');
 Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
 //product
+
+Route::get('/product/Index' ,[ProductController::class,'productIndex'])->name('prodauct.index');
 Route::get('/product/category' ,[ProductController::class,'categoryform'])->name('product.category');
 Route::post('/product/category' ,[ProductController::class,'AddCategory'])->name('product.category.submit');
-Route::get('/product' ,[ProductController::class,'productform']);
-Route::post('/product' ,[ProductController::class,'productformsubmit'])->name('product');
+Route::get('/product/add' ,[ProductController::class,'productform'])->name('product.create');
+Route::post('/product/submit' ,[ProductController::class,'productformsubmit'])->name('product.submit');
+
 
 //Debit
 Route::get('/debit/index' ,[DebitController::class,'debitIndex'])->name('debit.index');

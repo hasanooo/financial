@@ -103,7 +103,7 @@
                         <th>Total</th>
                         <th colspan="3"></th>
                         <th>{{$debittotalcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></th>
-                        <th></th>
+                        
                     </tr>
                     <tr class="text-center">
                         <th colspan="2">Debit Balance</th>

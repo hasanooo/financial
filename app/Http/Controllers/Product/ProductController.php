@@ -12,7 +12,9 @@ class ProductController extends Controller
 {
     function categoryform()
     {
-        return view('admin.Products.categories');
+        $categories=ProductCategory::all();
+        return view('admin.Products.categories')
+        ->with('category',$categories);
     }
     public function AddCategory(Request $request)
     {
@@ -70,5 +72,14 @@ class ProductController extends Controller
             $product->image = $image;
         }
         $product->save();
+
+        return redirect(route('prodauct.index'));
+    }
+
+    protected function productIndex()
+    {
+        $product=Product::all();
+        return view('Admin.products.productindex')
+        ->with('product',$product);
     }
 }

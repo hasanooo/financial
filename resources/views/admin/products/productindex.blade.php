@@ -38,8 +38,8 @@
                         </div>
                     </div>
 
-                    <!-- Stock Modal Start -->
-                    @include('Admin.products.stock_modal')
+                    
+                   
 
                 </div>
             </div>
@@ -53,7 +53,7 @@
 
                    </div>
             </div>
-            @if ($products->count() > 0)
+           
             <div class="card  table-responsive my-3">
                 <div class="card-body">
                     <table class="table table-bordered  table-head-fixed text-nowrap k_search">
@@ -63,28 +63,28 @@
                                 <th>Image</th>
                                 <th>Product</th>
                                 <th>Category</th>
-                                <th>Unit</th>
-                                <th>Brand</th>
-                              
+                                <th>price</th>
                                 <th>Status</th>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $i=>$item)
+                            @foreach($product as $i=>$item)
                             <tr class="text-center">
-                                <td>{{$i +1}}
-                                    <input type="hidden" value="{{$item->id}}" id="uid">
+                                <td>
+                                    {{-- <input type="hidden" value="{{$item->id}}" id="uid"> --}}
+                                    {{$i+1}}
                                 </td>
-                                <td><img style="width:40px;" src="{{$item->image==null?'ProductImage/products/defaultimage.png':'ProductImage/products/'.$item->image}}" alt=""></td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->product_category->name}}</td>
-                                <td>{{$item->product_unit->short_name}}</td>
-                                <td>{{$item->product_brand->brand_name}}</td>
+                                {{--src="{{$item->image==null?'Product/Image/defaultimage.png':'Product/Image/'.$item->image}}"--}}
+                                <td><img style="width:40px;" src="{{$item->image==null?'/Product/Image/defaultimage.png':'/Product/Image/'.$item->image}}"  alt=""></td>
+                                <td>{{$item -> name}}</td>
+                                <td>{{$item->product_category_id}}</td>
+                                <td>{{$item->purchase_price}}</td>
+                                <td>{{$item->status}}</td>
                               
 
 
-                                <td>{{$item->status}}</td>
+                                
 
                                 <td>
                                     <div class="dropdown">
@@ -93,9 +93,9 @@
                                                 <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                                             </svg></button>
                                         <ul class="dropdown-menu text-left px-3 " role="menu" aria-labelledby="menu1">
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('product.edit',$item->id)}}" class="btn"><i class="fa-solid fa-pen-to-square"></i>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="" class="btn"><i class="fa-solid fa-pen-to-square"></i>
                                                     Edit</a></li>
-                                            <li role="presentation"><a href="{{route('product.view',$item->id)}}" class="btn">
+                                            <li role="presentation"><a href="" class="btn">
                                                     <i class="fa-solid fa-eye"></i>
                                                     View</a></li>
                                             <li role="presentation"><button type="button" id="user_remove" class="btn" data-bs-toggle="modal">
@@ -112,22 +112,23 @@
                                 </td>
                             </tr>
                             @endforeach
+                          
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            @else
-            <h5 class="text-center text-danger mt-5 alert alert-danger">No Product found</h5>
-            @endif
+            
+            
+            
             
             <div class="pagination d-flex justify-content-end">
-            {{ $products->links() }}
+            
             </div>
         </div>
     </div>
 </div>
-<script>
+{{--<script>
     $(document).ready(function() {
         $(document).on('click', '#user_remove', function() {
             var current_row = $(this).closest('tr');
@@ -256,5 +257,5 @@
         }
     });
 });
-</script>
+</script>--}}
 @endsection
