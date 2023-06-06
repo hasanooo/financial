@@ -26,6 +26,9 @@ use App\Http\Controllers\Roles\RolesController;
 
 
 Route::get('/dashboard' ,[AdminController::class,'dashboard'])->name('dashboard');
+Route::get('/' ,[ProfileController::class,'Login'])->name('login');
+Route::post('/' ,[ProfileController::class,'LoginSubmit'])->name('profile.loginsubmit');
+Route::post('/changepassword/{id}',[ProfileController::class,'ChangePassword'])->name('changepassword');
 //supplier
 Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier.');
 Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
@@ -82,6 +85,7 @@ Route::get('/profile/index' ,[ProfileController::class,'profileIndex'])->name('p
 Route::get('/profile/list' ,[ProfileController::class,'ProfileList'])->name('profile.list');
 Route::get('/profile/edit/{id}' ,[ProfileController::class,'ProfileEdit'])->name('profile.edit');
 Route::post('/profile/edit/{id}' ,[ProfileController::class,'ProfileUpdate'])->name('profile.update');
+Route::get('/profile/delete/{id}' ,[ProfileController::class,'destroy'])->name('profile.delete');
 //Roles
 Route::get('/role.create', [RolesController::class, 'create'])->name('role.create');
 Route::post('/role.create', [RolesController::class, 'store'])->name('role.store');
