@@ -69,6 +69,7 @@ Route::post('/cashbook/selected/credit' ,[CashbookController::class,'ThisSelectC
 //Settings
 
 Route::get('/settings/general' ,[SettingController::class,'generalView'])->name('settings.general');
+Route::post('/settings/general/update' ,[SettingController::class,'UpdateSetting'])->name('settings.update');
 Route::get('/settings/system' ,[SettingController::class,'systemView'])->name('settings.system');
 
 

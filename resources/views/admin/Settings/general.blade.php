@@ -29,7 +29,7 @@ General Settings
     <div class="row">
         <div class="col-12">
             <div class="card-body">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <!--First Row -->
                     <div class="form-row mt-3">
@@ -41,7 +41,7 @@ General Settings
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="company_name" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->company_name }}">
                             </div>
                         </div>
 
@@ -52,7 +52,7 @@ General Settings
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="contact_name" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->contact_name }}">
                             </div>
                         </div>
 
@@ -63,7 +63,7 @@ General Settings
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="email" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->email }}">
                             </div>
                         </div>
                         
@@ -78,7 +78,7 @@ General Settings
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="phone" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->phone }}">
                             </div>
                         </div>
 
@@ -89,7 +89,7 @@ General Settings
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="address_1" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->address_1 }}">
                             </div>
                         </div>
 
@@ -100,7 +100,7 @@ General Settings
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="address_2" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->address_2 }}">
                             </div>
                         </div>
                         
@@ -114,7 +114,7 @@ General Settings
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="city" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->city }}">
                             </div>
                         </div>
 
@@ -125,7 +125,7 @@ General Settings
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="state" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->state }}">
                             </div>
                         </div>
 
@@ -136,29 +136,41 @@ General Settings
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="zip" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->zip }}">
                             </div>
                         </div>
                         
                     </div>
 
-                    <div class="form-row mt-3">
-                        <div class="col-8">
-                            
-                            <div class="input-group">
-                    
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    <div class="row">
+                        <div class="form-row mt-1 col-4">
+                            <label for="inputSkills" class="col-form-label">Current Image</label>
+                            <div class="col-sm-10">
+                                <img style="height: 75px; width: auto; background: white" class="img"
+                                src="/SettingImage/{{ $setting->image }}" alt="">
+                            </div>
+                          </div>
+    
+                        
+                            <div class="col-8 mt-5">
+                                
+                                <div class="input-group">
+                        
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                    <input type="file" name="image" class="form-control" style="background-color:whitesmoke;" id="" value="">
                                 </div>
-                                <input type="file" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
                             </div>
-                        </div>
+                            
                         
                     </div>
 
+                    
 
 
-                    <div class="row mt-3">
+
+                    <div class="row mt-1">
                         <div class="col-12 d-flex justify-content-end">
                             <input type="submit"  value="Save"
                             class="btn btn-primary mt-4 pr-4 pl-4" />
