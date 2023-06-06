@@ -28,14 +28,14 @@
                                 </div>
                                 <div class="modal-body ">
 
-                                    <form action="" method="post" enctype="multipart/form-data"
+                                    <form action="{{route('credit.category.Submit')}}" method="post" enctype="multipart/form-data"
                                     class="row g-3">
                                     {{@csrf_field()}}
 
                                 
                                         <div class="col-md-12">
                                             <label for="" class="form-label">Credit Category Name:*</label>
-                                            <input type="text" class="form-control rounded-0" name="categoryname" id="" value=""
+                                            <input type="text" class="form-control rounded-0" name="name" id="" value=""
                                                 placeholder="Category">
 
                                         </div>
@@ -161,12 +161,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                     
+                      @foreach($category_credit as $i=>$item)
                         <tr>
                             <td>
-                              
+                            <input type="hidden" id="eid" value="{{$item->id}}">
+                              {{$i+1}}
                             </td>
-                            <td></td>
+                            <td>{{$item->name}}</td>
                             <td>
                             <a href="javascript:void(0)" data-url="" id="id">
                                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
@@ -180,6 +181,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     
                     </tbody> 
                 </table>   
@@ -195,7 +197,13 @@
 </div>  
 
 <script>
+ $(document).on('click', '#category_delete', function() {
+        var current_row = $(this).closest('tr');
+        let id = current_row.find('#eid').val();
+        $('#exampleModaldelete').modal('show');
+        $('#delete').attr('href', `/credit/category/delete/${id}`);
 
+    });
 
 </script>
 @endsection

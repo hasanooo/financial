@@ -87,46 +87,14 @@
                         </div>
                     </div>
                     <!-- End -->
-
-                    <!--Delete modal -->
-                    {{-- <div class="modal fade" id="exampleModaldelete" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <div class="modal-body text-center d-flex flex-column" style="gap:2rem;">
-                                    <i class="fa-solid fa-trash text-danger" style="font-size:40px;"></i>
-                                    <h5 class="text-danger">Are you sure to remove this Category?</h5>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                    <a class="btn btn-danger" id="delete" href="">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-                    <!-- End -->
+                    
                 </div>
 
             </div>
             <div class="row mb-3">
                 <div class="row">
                     <div class="col-6">
-                        <div class="left">
-                            <p class="d-inline">Show</p>
-                            <select class="form-select-sm rounded-0">
-                                <option selected>25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                <option value="200">200</option>
-                                <option value="All">All</option>
-                            </select>
-                            <p class="d-inline">entries</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="right d-flex justify-content-end">
+                        <div class="right d-flex justify-content-start">
                             <form class="d-flex">
                                 <label class="me-1 mt-1">Search:</label>
                                 <input class="form-control me-2 rounded-0" name="search" type="search" id="in">
