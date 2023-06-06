@@ -1,6 +1,6 @@
 @extends('Admin.layouts.dashboard')
 @section('titel')
-Debit Create
+Edit User
 @endsection
 @section('content')
 
@@ -16,7 +16,7 @@ Debit Create
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Add user</li>
+                    <li class="breadcrumb-item active">Edit user</li>
                 </ol>
             </div>
         </div>
@@ -46,26 +46,26 @@ Debit Create
 
                 <!-- @include('Admin.components.errormessage') -->
 
-                <form action="{{ route('profile.submit') }}" enctype="multipart/form-data" method="POST">
+                <form action="{{ route('profile.update',$user->id)}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="name">Name*</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ old('name') }}">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{$user->name }}">
                             @error('name')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="business_name">Business Name*</label>
-                            <input type="text" value="{{ old('business_name') }}" class="form-control" id="business_name" name="business_name" placeholder="Business Name">
+                            <input type="text" value="{{ $user->business_name  }}" class="form-control" id="business_name" name="business_name" placeholder="Business Name">
                             @error('business_name')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="email">Email*</label>
-                            <input type="text" class="form-control" value="{{ old('email') }}" id="email" name="email" placeholder="Email">
+                            <input type="text" class="form-control" value="{{ $user->email }}" id="email" name="email" placeholder="Email">
                             @error('email')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -76,21 +76,21 @@ Debit Create
                     <div class="form-row">
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="name">Contact Number*</label>
-                            <input type="education" class="form-control" value="{{ old('contact_number') }}" id="contact_number" name="contact_number" placeholder="Contact Number">
+                            <input type="education" class="form-control" value="{{ $user->contact_no }}" id="contact_number" name="contact_number" placeholder="Contact Number">
                             @error('contact_number')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="email">Address*</label>
-                            <input type="text" class="form-control" value="{{ old('address') }}" id="address" name="address" placeholder="Address">
+                            <input type="text" class="form-control" value="{{ $user->address  }}" id="address" name="address" placeholder="Address">
                             @error('address')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="education">Education*</label>
-                            <input type="text" class="form-control" value="{{ old('education') }}" id="education" name="education" placeholder="Education">
+                            <input type="text" class="form-control" value="{{$user->education}}" id="education" name="education" placeholder="Education">
                             @error('education')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -99,7 +99,7 @@ Debit Create
                     <div class="form-row">
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="notes">Notes*</label>
-                            <input type="text" class="form-control" id="notes" value="{{ old('notes') }}" name="notes" placeholder="Notes">
+                            <input type="text" class="form-control" id="notes" value="{{ $user->notes }}" name="notes" placeholder="Notes">
                             @error('notes')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -134,7 +134,9 @@ Debit Create
                             <label for="password">Assign Roles</label>
                             <select name="roles[]" id="roles" class="form-control select2" multiple>
                                 @foreach ($roles as $role)
-                                <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
+                                    {{ $role->name }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
