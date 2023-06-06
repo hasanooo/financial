@@ -48,13 +48,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('profile.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Users</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('profile.list')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Users List</p>
                             </a>
@@ -72,13 +72,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('role.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Roles Create</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('role.dashboard')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Roles List</p>
                             </a>
