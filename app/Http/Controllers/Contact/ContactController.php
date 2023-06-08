@@ -17,6 +17,7 @@ class ContactController extends Controller
     function supplierformsumbit(Request $req)
     {
         $supplier=new Supplier();
+        $supplier->contact_id=$req->contact_id;
         $supplier->name=$req->name;
         $supplier->business_name=$req->name;
         $supplier->city=$req->city;
