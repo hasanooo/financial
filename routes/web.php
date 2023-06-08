@@ -53,7 +53,7 @@ Route::post('/salesubmit',[SaleController::class,'saleformsubmit'])->name('sale.
 Route::get('/saleform/product' ,[SaleController::class, 'productforpartial'])->name('sale.productpartial');
 Route::get('/salelist' ,[SaleController::class, 'salelist'])->name('sale.list');
 //Tax
-Route::get('/taxhome' ,[TaxController::class, 'taxhome']);
+Route::get('/taxhome' ,[TaxController::class, 'taxhome'])->name('taxhome');
 
 Route::post('/taxformsubmit' ,[TaxController::class, 'formsubmit'])->name('tax.formsubmit');
 
