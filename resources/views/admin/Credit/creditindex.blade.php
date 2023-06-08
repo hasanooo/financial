@@ -52,12 +52,12 @@
             
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <h5>XYZ Company</h5>
+                    
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <p>For the month of May-2023</p>
+                    <p>For the month of {{date ('F Y')}}</p>
                 </div>
             </div>
 
@@ -66,17 +66,29 @@
                     <tr>
                         <th>SL</th>
                         <th>Date</th>
+                        <th>Category</th>
                         <th>Particular Details</th>
                         <th>Cash</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+
+                    @php
+                        $totalcash=0;
+                    @endphp
+                    @foreach($index_credit as $i=>$item)
                     <tr>
-                        <td>1</td>
-                        <td>6/1/2023</td>
-                        <td>Business cash</td>
-                        <td>200000</td>
+                        <td>{{$i+1}}</td>
+                        <td>{{$item->date}}</td>
+                        <td>{{$item->Credit_Category->name}}</td>
+                        <td>{{$item->particuler}}</td>
+                        <td>
+                            @php
+                             $totalcash += $item->cash
+                            @endphp
+                            {{$item->cash}}
+                        </td>
                         <td>
                         <div class="dropdown">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1"
@@ -95,7 +107,7 @@
                                             <i class="fa-solid fa-trash"></i>Delete </a></li>
 
                                     <li>
-                                        <a class="btn btn-sm" href=""> <i
+                                        <a class="btn btn-sm" href="{{route('creditview.edit',$item->id)}}"> <i
                                                 class="fa-solid fa-pen-to-square"></i> Edit</a>
                                     </li>
 
@@ -103,10 +115,12 @@
                             </div>
                         </td>
                     </tr>
+                    @endforeach
                     <tr class="text-center">
-                        <th colspan="3">Total</th>
-                        <th>200000</th>
-                       
+                        <th colspan="4">Total</th>
+                        <th>{{$totalcash}}</th>
+                        <th></th>
+                    </tr>
 
                 </tbody>
             </table>

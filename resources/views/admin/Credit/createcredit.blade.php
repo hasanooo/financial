@@ -29,7 +29,7 @@ Credit Create
     <div class="row">
         <div class="col-12">
             <div class="card-body">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{route('credit.create.submit')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <!--First Row -->
                     <div class="form-row">
@@ -42,7 +42,7 @@ Credit Create
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
-                                    <input type="date" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                    <input type="date" name="date" class="form-control" style="background-color:whitesmoke;" id="" value="">
                                 </div>
                                
                             </div>
@@ -53,8 +53,11 @@ Credit Create
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-list"></i></span>
                                     </div>
-                                    <select id="" name="" class="form-control rounded-0" style="background-color:whitesmoke;">
+                                    <select id="" name="category" class="form-control rounded-0" style="background-color:whitesmoke;">
                                         <option value="">Please Select</option>
+                                        @foreach($category_credit as $category)
+                                         <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
                                         
                                     </select>
                                   
@@ -76,7 +79,7 @@ Credit Create
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="particuler" class="form-control" style="background-color:whitesmoke;" id="" value="">
                             </div>
                         
                         </div>
@@ -86,7 +89,7 @@ Credit Create
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                                 </div>
-                                <input type="number" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="number" name="cash" class="form-control" style="background-color:whitesmoke;" id="" value="">
                             </div>
                         
                         </div>

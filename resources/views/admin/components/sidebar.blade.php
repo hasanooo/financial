@@ -1,13 +1,14 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="" class="brand-link">
+    <a href="" class="brand-link" style="text-decoration: none;">
         <img src="{{ asset('Admin/dist/img/AdminLogo.jpg') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Bengal Software</span>
+        <span class="brand-text font-weight-bold">Bengal Software</span>
     </a>
 
+
     <!-- Sidebar -->
-    <div class="sidebar" style="background-color:#114c6f;">
+    <div class="sidebar" style="background-color:#011b2b;">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
@@ -40,7 +41,7 @@
                 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             Manage Users
                             <i class="fas fa-angle-left right"></i>
@@ -48,13 +49,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('profile.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Users</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('profile.list')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Users List</p>
                             </a>
@@ -72,17 +73,42 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('role.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Roles Create</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('role.dashboard')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Roles List</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Contact
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('formsupplier')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Supplier</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('customer.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customers</p>
+                            </a>
+                        </li>
+                        
                     </ul>
                 </li>
 
@@ -160,13 +186,20 @@
                                     </a>
                                 </li>
                             </ul>
+
+                                <li class="nav-item">
+                                    <a href="{{route('cashbook.index')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cash Book</p>
+                                    </a>
+                                </li>
                         </li>
                     </ul>
                 </li>
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fas fa-gear"></i>
                         <p>
                             Settings
                             <i class="fas fa-angle-left right"></i>
@@ -183,6 +216,86 @@
                             <a href="{{route('settings.system')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>System Settings</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-p"></i>
+                        <p>
+                            Products
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('prodauct.index')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Product Index</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('product.create')}}" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>Product Add</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('product.category')}}" class="nav-link">
+                                <i class="far fa-list-alt nav-icon"></i>
+                                <p>Product Category</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-print"></i>
+                        <p>
+                            Reports
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Purchase Reoprts</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-e"></i>
+                        <p>
+                            EMI
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>New EMI sale</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>EMI sale list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>EMI collection</p>
                             </a>
                         </li>
                     </ul>
