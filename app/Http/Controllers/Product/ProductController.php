@@ -82,4 +82,19 @@ class ProductController extends Controller
         return view('Admin.products.productindex')
         ->with('product',$product);
     }
+
+    public function ProductView($id)
+    {
+        $product = Product::find($id);
+
+        return view('Admin.products.productview',compact('product'));
+
+    }
+
+    public function ProductReport()
+    {
+        $product=Product::all();
+        return view('Admin.products.productreport')
+        ->with('product',$product);
+    }
 }
