@@ -55,7 +55,7 @@
           <tr>
             <th>Serial</th>
             <th>Product Name</th>
-            <th>Supplier Name</th>
+            
             <th>Quantity</th>
             <th>Purchase Price</th>
             <th>Description</th>
@@ -68,8 +68,8 @@
             <tr>
               <td>1</td>
               <td>{{ $product->name }}</td>
-              <td>{{ $product->Supplier->name }}</td>
-              <td>{{ $product->quantity }}</td>
+             
+              <td>{{ $product->stock }}</td>
               <td>{{ $product->purchase_price }}</td>
               <td>{{ $product->description }}</td>
             {{-- <td>{{ $invoice->total_amount }}</td> --}}
