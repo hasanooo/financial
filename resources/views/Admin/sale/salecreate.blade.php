@@ -1,4 +1,4 @@
-@extends('Admin.layouts.dashboard')
+@extends('admin.layouts.dashboard')
 @section('titel')
     Add Sales
 @endsection
@@ -41,7 +41,7 @@
     <section class="content">
         <div class="row">
 
-            <form action="{{ route('addsell') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('sale.submit')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="col-12">
                     <div class="card-body">
@@ -49,10 +49,10 @@
                             <div class="form-group col-md-3 col-sm-12 ">
                                 <i class="fa fa-user"></i>
                                 <label for="">Customer:*</label>
-                                <select name="supplier" id="k" class="form-control @error('supplier') is-invalid @enderror">
+                                <select name="customer" id="k" class="form-control @error('supplier') is-invalid @enderror">
                                     <option value="">Please Select</option>
-                                    @foreach ($c as $cc)
-                                        <option value="{{ $cc->id }}">{{ $cc->name }}</option>
+                                    @foreach ($customer as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('supplier')
@@ -61,49 +61,12 @@
                             </div>
 
 
-                            <div class="form-group col-md-3 col-sm-12 customer_partial_page">
-                                <label for="category">Customer Group:*</label>
-                                <select name="customergroup" id="customergroup" class="form-control ">
-                                    <option value="0">Default Customer group</option>
-                                    <option value="catfood"></option>
-
-
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-3 col-sm-12">
-                                <label for="">Business Location*</label>
-                                <select name="location" id="" class="form-control @error('location') is-invalid @enderror">
-                                    <option value="">Please Select</option>
-                                    <option value="Bd Pet Care">Bd Pet Care</option>
-                                </select>
-                                @error('location')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-
-                            <div class="form-group col-md-3 col-sm-12">
-                                <label for="">Date: *</label>
-                                <input type="date" name="date" id="" class="form-control">
-                                @error('date')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
                         </div>
                         <!--First Row End-->
 
                         <!--Second Row -->
                         <div class="form-row">
-                            <div class="form-group col-md-3 col-sm-12">
-                                <label for="">PayTerm*</label>
-                                <select name="payterm" id="" class="form-control">
-                                    <option value="0">Select PayTerm</option>
-                                    <option value="Months">Months</option>
-                                    <option value="Days">Days</option>
-                                </select>
-                                </select>
-                            </div>
+                            
                             <div class="form-group col-md-3 col-sm-12">
                                 <label for="">Status*</label>
                                 <select name="status" id="" class="form-control @error('status') is-invalid @enderror">
@@ -132,8 +95,8 @@
                                     <label for="">Product:*</label>
                                     <select name="pro" id="mySelect" class="form-control">
                                         <option value="1">Please Select</option>
-                                        @foreach ($p as $pp)
-                                            <option value="{{ $pp->id }}">{{ $pp->name }}</option>
+                                        @foreach ($product as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -143,47 +106,21 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="container">
-                                                <table class=" table-responsive-sm table col-md-12">
-                                                    <thead>
-
-                                                        <tr class="text-center alert alert-light">
-                                                            <th colspan="3">
-                                                                Product Name
-                                                            </th>
-                                                            <th>
-                                                                Brand
-                                                            </th>
-
-                                                            <th>
-                                                                Variation
-                                                            </th>
-
-                                                            <th>
-                                                                Discount
-                                                            </th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="s parent">
-
-                                                    </tbody>
-
-
-                                                </table>
+                                                
                                                 <table class=" table-responsive-sm table col-md-12">
                                                     <thead>
                                                         <tr text-center>
                                                             <td colspan="2">Product Name</td>
-                                                            <td>Brand</td>
+                                                           
                                                             <td>Quantity</td>
-                                                            <td>Variation</td>
+                                                            
                                                             <td>Price</td>
                                                             <td>Tax(%)</td>
                                                             <td>Total Amount</td>
 
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="parent_child">
+                                                    <tbody class="parent">
 
                                                     </tbody>
                                                 </table>
@@ -200,18 +137,15 @@
 
 
                                                 <tbody>
-                                                    <tr>
-                                                        <td>
+                                                   
                                                             <label for="">Total Amount:</label>
-                                                            <input type="text" class="ta" id="at"
+                                                            <input type="text" hidden class="ta" id="at"
                                                                 name="total_amount" readonly>
                                                                 @error('total_amount')
                                                                     <span class="text-danger">{{$message}}</span>
                                                                 @enderror
                                                                
                                                                
-                                                        </td>
-                                                    </tr>
                                                     <tr>
                                                         <td>
 
@@ -330,14 +264,7 @@
                                          @enderror
                                     </div>
 
-                                    <div class="form-group col-md-3 col-sm-12">
-
-                                        <label for="">Credit Limit:</label>
-                                        <input type="number" class="form-control" value="">
-                                        
-                                        
-                                    </div>
-
+                                    
 
 
                                 </div>
@@ -369,8 +296,8 @@
             </form>
         </div>
     </section>
-    <script>
-        $(document).ready(function() {
+   <script>
+     $(document).ready(function() {
             $('#k').select2();
             $('#mySelect').select2();
             $(document).on('change', '#mySelect', function(e) {
@@ -378,37 +305,15 @@
                 var c_group_id = $('#customergroup').val();
 
                 $.ajax({
-                    url: "{{ route('addsellpartial') }}",
+                    url: "{{route('sale.productpartial')}}",
                     method: 'GET',
                     data: {
                         q: q
                     },
                     success: function(res) {
                         if (res != null) {
-                            $('.parent').html(res);
-                            
-                            var current_row = $('.llll').closest('tr');
-                            var vari_id = current_row.find('.kkkkkk').val();
-                            var vid = current_row.find('#variationid').val();
-                            
-                           // alert(c_group_id);
-                            console.log(vari_id);
-                            if (vari_id == 0) {
-                                $.ajax({
-                                    url: "{{ route('addsellpartialsingle') }}",
-                                    method: 'GET',
-                                    data: {
-                                        vari_id: vari_id,
-                                        c_group_id: c_group_id,
-                                        vid: vid
-                                    },
-                                    success: function(res) {
-                                        if (res != null) {
-                                            $('.parent_child').append(res);
-                                        }
-                                    }
-                                })
-                            }
+                            $('.parent').append(res);
+                             
                         }
                     }
                 })
@@ -426,7 +331,7 @@
                // alert(q);
                 $.ajax({
 
-                    url: "{{ route('salecustomerpartisal') }}",
+                    url: "",
                     method: 'GET',
                     data: {
                         q: q
@@ -461,7 +366,7 @@
                // alert(vid);
                 $.ajax({
 
-                    url: "{{ route('addselltotal') }}",
+                    url: "",
                     method: 'GET',
                     data: {
                         q: q,
@@ -506,5 +411,6 @@
             });
            
         });
-    </script>
+   </script>
+    
 @endsection
