@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class SellingPayment extends Model
 {
     use HasFactory;
-    public function customer_invoice()
+    function payment_invoice()
     {
-        return $this->hasMany(SellingInvoice::class);
+        return $this->belongsTo(SellingPayment::class,'sell_invoice_id');
     }
-    
 }

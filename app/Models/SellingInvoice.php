@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class Customer extends Model
+use App\Models\Customer;
+class SellingInvoice extends Model
 {
     use HasFactory;
-    public function customer_invoice()
+    function invoice_customer()
     {
-        return $this->hasMany(SellingInvoice::class);
+        return $this->belongsTo(Customer::class,'customer_id');
     }
-    
+   
 }

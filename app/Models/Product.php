@@ -13,10 +13,18 @@ class Product extends Model
         return $this->belongsTo(Supplier::class);
     }
 
+
     public function category()
     {
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
 
 
+
+
+    function product_tax()
+    {
+        return $this->belongsTo(Tax::class);
+    }
 }
+
