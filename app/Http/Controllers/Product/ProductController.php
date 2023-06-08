@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Supplier;
+use App\Models\Tax;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -52,19 +53,34 @@ class ProductController extends Controller
     function productform()
     {
         $productcategorys=ProductCategory::all();
-        $suppliers=Supplier::all();
-        return view('admin.Products.createproduct')->with('productcategory', $productcategorys)->with('supplier',$suppliers);
+        $taxs=Tax::all();
+        return view('admin.Products.createproduct')->with('productcategory', $productcategorys)->with('tax', $taxs);
     }
     function productformsubmit(Request $req)
     {
           $product=new Product();
           $product->name=$req->name;
           $product->product_category_id=$req->category;
-          $product->supplier_id=$req->supplier;
+          if($req->tax=="Please Select")
+          {
+            $product->tax_id=null;
+          }
+          else{
+            $product->tax_id=$req->tax;
+          }
+          
           $product->purchase_price=$req->price;
           $product->description=$req->des;
-          $product->quantity=$req->qty;
-          $product->status=$req->status;
+          if($req->status=="Please Select")
+          {
+            $product->status=null;
+          }
+          else{
+            $product->status=$req->status;
+          }
+          
+          
+          $product->selling_price=$req->sellprice;
           $image = $req->image;
         if ($image) {
             $image = time() . '.' . $image->getClientOriginalExtension();

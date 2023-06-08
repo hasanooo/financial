@@ -47,66 +47,75 @@
 
                     @include('Admin.components.errormessage')
 
-                    <form action="{{route('product.submit')}}" method="POST" enctype="multipart/form-data">
+
+
+                    <form action="{{ route('product.submit') }}" method="POST" enctype="multipart/form-data">
+
                         @csrf
                         <div class="form-row">
-                            <div class="form-group col-md-4 col-sm-12">
-                                <label for="category">Supplier*</label>
-                                <select name="supplier" id="category" class="form-control">
-                                    <option>Please Select</option>
-                                    @foreach ($supplier as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
-                                </select>
-                            </div>
+
                             <div class="form-group col-md-4 col-sm-12">
                                 <label for="name">Product Name*</label>
                                 <input type="text" class="form-control" id="name" value="{{ old('name') }}"
                                     name="name" placeholder="name">
                             </div>
                             <div class="form-group col-md-4 col-sm-12">
-                                <label for="name">Product Quantity*</label>
-                                <input type="number" class="form-control" id="name" value="{{ old('name') }}"
-                                    name="qty" placeholder="Quantity">
-                            </div>
-
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-4 col-sm-12">
                                 <label for="category">Category*</label>
                                 <select name="category" id="category" class="form-control">
                                     <option>Please Select</option>
                                     @foreach ($productcategory as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label for="name">Product Purchase Price*</label>
+                                <input type="text" class="form-control" id="name" value="{{ old('name') }}"
+                                    name="price" placeholder="PurchasePrice">
+                            </div>
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label for="name">Product Selling Price*</label>
+                                <input type="text" class="form-control" id="name" value="{{ old('name') }}"
+                                    name="sellprice" placeholder="SellingPrice">
+                            </div>
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label for="category">Status*</label>
+                                <select name="status" id="category" class="form-control">
+                                    <option>Please Select</option>
+
+                                    <option value="pending">pendding</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label for="category">Tax*</label>
+                                <select name="tax" id="category" class="form-control">
+                                    <option>Please Select</option>
+                                    @foreach ($tax as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name   }} - {{$item->percentage}} %</option>
+                                    @endforeach
                                 </select>
                             </div>
 
+
+                        </div>
+
+                        <div class="form-row">
+                           
                             <div class="form-group col-md-4 col-sm-12">
                                 <label for="image">Primary Image*</label>
                                 <input accept="image/*" value="{{ old('image') }}" type="file" class="form-control"
                                     id="image" name="image">
                             </div>
-                            <div class="form-group col-md-4 col-sm-12">
-                                <label for="name">Product Purchase Price*</label>
-                                <input type="text" class="form-control" id="name" value="{{ old('name') }}"
-                                    name="price" placeholder="Price">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            {{-- <div class="form-group col-md-4 col-sm-12"> --}}
-                                <label for="category">Status*</label>
-                                <select name="status" id="category" class="form-control">
-                                    <option>Please Select</option>
-                                    
-                                <option value="pending">pendding</option>
-                               
-                                </select>
-                            {{-- </div> --}}
-
+    
+                              
                             
                         </div>
+                        
+                            {{-- </div> --}}
+                            
+
+
                         <div class="form-row">
 
 
