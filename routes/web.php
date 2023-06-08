@@ -6,6 +6,13 @@ use App\Http\Controllers\Debit\DebitController;
 use App\Http\Controllers\Credit\CreditController;
 use App\Http\Controllers\Cashbook\CashbookController;
 
+use App\Http\Controllers\Customer\CustomerController;
+use App\Http\Controllers\EMI\EMIController;
+
+
+use App\Http\Controllers\Purchase\PurchaseController;
+
+
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
@@ -36,6 +43,8 @@ Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name(
 
 // Customer
 Route::get('/customer/index', [CustomerController::class,'Index'])->name('customer.index');
+Route::get('/customer/edit/page/{id}', [CustomerController::class,'UpdatePage'])->name('customer.update.page');
+Route::post('/customer/edit/{id}', [CustomerController::class,'Update'])->name('customer.update');
 Route::post('/supplier/add' ,[CustomerController::class,'Add'])->name('customer.add');
 //product
 
@@ -47,13 +56,20 @@ Route::post('/product/submit' ,[ProductController::class,'productformsubmit'])->
 Route::get('/product/view/invoice/{id}' ,[ProductController::class, 'ProductView'])->name('product.view');
 Route::get('/product/view/reports' ,[ProductController::class, 'ProductReport'])->name('prodauct.purchase.reports');
 // Route::get('/product/edit/{id}' ,[ProductController::class, 'ProductEditform'])->name('product.edit.form');
+
 //sale
 Route::get('/saleform' ,[SaleController::class, 'saleform'])->name('sale.form');
 Route::post('/salesubmit',[SaleController::class,'saleformsubmit'])->name('sale.submit');
 Route::get('/saleform/product' ,[SaleController::class, 'productforpartial'])->name('sale.productpartial');
 Route::get('/salelist' ,[SaleController::class, 'salelist'])->name('sale.list');
+
 //Tax
 Route::get('/taxhome' ,[TaxController::class, 'taxhome'])->name('taxhome');
+
+// EMI Sale
+Route::get('/emi/index',[EMIController::class,'Index'])->name('emi.index');
+Route::get('/emi/sale/index',[EMIController::class,'SaleIndex'])->name('emi.sale.index');
+
 
 Route::post('/taxformsubmit' ,[TaxController::class, 'formsubmit'])->name('tax.formsubmit');
 
@@ -113,3 +129,25 @@ Route::get('/role.index', [RolesController::class, 'index'])->name('role.dashboa
 Route::get('/admin.roles.edit/{id}', [RolesController::class, 'edit'])->name('admin.roles.edit');
 Route::post('/role.update/{id}', [RolesController::class, 'update'])->name('role.update');
 Route::get('/role.delete/{id}', [RolesController::class, 'destroy'])->name('role.delete');
+
+
+//Purchase
+Route::get('/Purchase/Index',[PurchaseController::class,'PurchaseIndex'])->name('purchase.index');
+Route::get('/Purchase/Add',[PurchaseController::class,'PurchaseAdd'])->name('purchase.add');
+Route::get('/Purchase/Edit/{id}',[PurchaseController::class,'PurchaseEdit'])->name('purchase.edit');
+Route::post('/Purchase/Add/Sub',[PurchaseController::class,'PurchaseAddSub'])->name('purchaseaddsub');
+Route::get('/partialPurchaseadd', [PurchaseController::class, 'purchaseSearch'])->name('addpurchasepartial');
+Route::post('/Purchase/Eproductdit/Sub',[PurchaseController::class,'PurchaseEditSub'])->name('purchasesubedit');
+Route::get('/Purchase/delete/{id}', [PurchaseController::class, 'Purchasedelete'])->name('purchase.delete');
+Route::get('/Purchase/dueEdit/{id}',[PurchaseController::class,'viewEditDue'])->name('purchasedue.edit');
+Route::post('/Purchase/due/makepayment',[PurchaseController::class,'totalpayment'])->name('purmakepayment');
+Route::post('/Purchase/due/submakepayment',[PurchaseController::class,'makepayment'])->name('submakepayment');
+Route::get('/Purchase/item',[PurchaseController::class,'purchase_item_partial'])->name('admin.purchase_item');
+Route::get('/Purchase/partialmodal',[PurchaseController::class,'purchase_modal_partial'])->name('purchase.partialmodal');
+Route::get('/purchase/return/{id}',[PurchaseController::class,'PurchaseReturn'])->name('purchase.return');
+Route::post('/purchase/return/{id}',[PurchaseController::class,'PurchaseReturnSubmit'])->name('purchase.return');
+Route::get('/return/list',[PurchaseController::class,'ReturnList'])->name('return.list');
+Route::get('/return/add_to_cash',[PurchaseController::class,'AddToCash'])->name('add_to_cash');
+Route::get('/return/product/{id}',[PurchaseController::class,'ReturnList'])->name('return.product');
+
+Route::get('/purchase/search',[PurchaseController::class,'purchase_search'])->name('purchase.search');
