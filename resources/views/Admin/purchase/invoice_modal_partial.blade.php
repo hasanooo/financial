@@ -31,35 +31,23 @@
                     <div class="">
                         <table class="table table-borderd-white">
                             <thead>
-                                <tr class="bg-success text-white">
+                                <tr class="text-white" style="background-color:#0d5e8b;">
                                     <th scope="col">#</th>
                                     <th scope="col">Product</th>
-                                    <th scope="col">Variations</th>
-                                    <th scope="col">Lot</th>
                                     <th scope="col">Quantity</th>
                                     <th>Return Quantity</th>
-                                    <th scope="col">Unit Price<small>(before)</small></th>
-                                    <th scope="col">Increment(%)</th>
-                                    <th scope="col">Discount</th>
-                                    <th scope="col">Unit Price<small>(current)</small></th>
+                                    <th scope="col">Purchase Price</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($invoice->purchase_invoice_purchase as $i=>$item)
+                               @foreach ($invoice->purchase_invoice_purchase as $i=>$item)
                                 <tr class="table-secondary">
                                     <th scope="row">{{$i+1}}</th>
-                                    <td>{{$item->purchase_product_price->productprice_product->name}}</td>
-                                    <td>
-                                        @if($item->purchase_product_price->variation_value_id !=0)
-                                            {{$item->purchase_product_price->productprice_variation_value->value_name}}
-                                        @else
-                                        <span>Single</span>
-                                        @endif
-                                    </td>
-                                    <td>{{$item->lot}}</td>
+                                    <td>{{$item->purchase_product->name}}</td>
                                     <td>{{$item->purchase_qtn}}</td>
 
-                                    <td> 
+                                    {{--<td> 
                                         @if ($invoice->purchase_invoice_purchase_return != null)
                                             @php
                                                 $total_return_qty = 0;
@@ -73,15 +61,9 @@
                                             @endforeach
                                             {{ $total_return_qty }}
                                         @endif
-                                    </td>
-
-
-                                    
-
-                                    <td> <i class="fa-solid fa-bangladeshi-taka-sign"></i>{{$item->prev_unit_cost}}</td>
-                                    <td>{{$item->inc_unit_cost}}%</td>
-                                    <td>{{$item->purchase_discount}}%</td>
-                                    <td>{{$item->current_unit_cost}}</td>
+                                    </td>--}}
+                                    <td></td>
+                                    <td>{{$item->purchase_product->purchase_price}}</td>
 
                                 </tr>
                                 @endforeach
@@ -101,7 +83,7 @@
                     <div class="">
                         <table class="table table-borderd">
                             <thead>
-                                <tr class="bg-success text-white">
+                                <tr class="text-white" style="background-color:#0d5e8b;">
                                     <th scope="col">#</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Amount</th>

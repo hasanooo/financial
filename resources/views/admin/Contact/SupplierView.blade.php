@@ -478,6 +478,7 @@
                 <thead>
                     <tr>
                         <th>SL</th>
+                        <th>Contact ID</th>
                         <th>Business Name</th>
                         <th>Name</th>
                         <th>Contact No.</th>
@@ -495,6 +496,7 @@
                     <tr>
                         {{csrf_field()}}
                         <td>{{$i+1}}</td>
+                        <td>{{$item->contact_id}}</td>
                         <td>{{$item->business_name}}</td>
 
                         {{--<input type="hidden" id="did" value="{{$s->id}}">--}}
@@ -568,7 +570,22 @@
         </div>
     </div>
 </div> 
+<script>
+    $(document).ready(function() {
+        $('#supplier_name').on('input', function() {
+            var supplier_name = $(this).val();
+            var uniqueId = generateUniqueId(supplier_name);
+            $('#c_id').val(uniqueId);
+        });
+    });
 
+    function generateUniqueId(name) {
+        var cleanName = name.replace(/\s+/g, '').toLowerCase();
+        var randomNum = Math.floor(Math.random() * 900) + 100;
+        var uniqueId = cleanName + randomNum;
+        return uniqueId;
+    }
+</script>
 
 
 @endsection
