@@ -103,10 +103,10 @@ Debit Create
     var myLineChart = new Chart(ctxL, {
         type: 'line',
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: ["January", "February", "March", "April", "May", "June", "July","August","September"],
             datasets: [{
                     label: "Sales",
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    data: [65, 5900000000000, 80, 81, 56000009990000, 55, 4000000000000,3450000000000],
                     backgroundColor: [
                         'rgba(105, 0, 132, .2)',
                     ],
@@ -117,7 +117,7 @@ Debit Create
                 },
                 {
                     label: "Purchase",
-                    data: [28, 48, 40, 19, 86, 27, 90],
+                    data: [28, 480000000000, 40, 9000000000000, 86000000000, 27, 9000000000000],
                     backgroundColor: [
                         'rgba(0, 137, 132, .2)',
                     ],
