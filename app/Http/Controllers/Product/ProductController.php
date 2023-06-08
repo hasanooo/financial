@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     function categoryform()
     {
-        return view('admin.Products.categories');
+        $categories=ProductCategory::all();
+        return view('admin.Products.categories')
+        ->with('category',$categories);
     }
     public function AddCategory(Request $request)
     {
@@ -47,6 +51,50 @@ class ProductController extends Controller
     }
     function productform()
     {
-        return view('admin.Products.createproduct');
+        $productcategorys=ProductCategory::all();
+        $suppliers=Supplier::all();
+        return view('admin.Products.createproduct')->with('productcategory', $productcategorys)->with('supplier',$suppliers);
+    }
+    function productformsubmit(Request $req)
+    {
+          $product=new Product();
+          $product->name=$req->name;
+          $product->product_category_id=$req->category;
+          $product->supplier_id=$req->supplier;
+          $product->purchase_price=$req->price;
+          $product->description=$req->des;
+          $product->quantity=$req->qty;
+          $product->status=$req->status;
+          $image = $req->image;
+        if ($image) {
+            $image = time() . '.' . $image->getClientOriginalExtension();
+            $req->image->move('Product/Image/', $image);
+            $product->image = $image;
+        }
+        $product->save();
+
+        return redirect(route('prodauct.index'));
+    }
+
+    protected function productIndex()
+    {
+        $product=Product::all();
+        return view('Admin.products.productindex')
+        ->with('product',$product);
+    }
+
+    public function ProductView($id)
+    {
+        $product = Product::find($id);
+
+        return view('Admin.products.productview',compact('product'));
+
+    }
+
+    public function ProductReport()
+    {
+        $product=Product::all();
+        return view('Admin.products.productreport')
+        ->with('product',$product);
     }
 }

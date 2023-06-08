@@ -16,10 +16,11 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="{{ route('cashbook.select.month') }}">
+                        <form action="{{ route('cashbook.select.month') }}" method="POST">
+                            @csrf
                         <div class="input-group mb-3">
                             <select name="month" id="mySelect" class="form-select form-control">
-                                <option value="2023-06-01" selected>This Month</option>
+                                <option value="{{ date("Y-m-d") }}" selected>This Month</option>
                                 {{-- @foreach ( as ) --}}
                                 <option value="2023-01-01">January</option>
                                 <option value="2023-02-01">February</option>
