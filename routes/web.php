@@ -11,6 +11,8 @@ use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Roles\RolesController;
+use App\Http\Controllers\Tax\TaxController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,8 +45,12 @@ Route::get('/product/add' ,[ProductController::class,'productform'])->name('prod
 Route::post('/product/submit' ,[ProductController::class,'productformsubmit'])->name('product.submit');
 Route::get('/product/view/invoice/{id}' ,[ProductController::class, 'ProductView'])->name('product.view');
 Route::get('/product/view/reports' ,[ProductController::class, 'ProductReport'])->name('prodauct.purchase.reports');
+// Route::get('/product/edit/{id}' ,[ProductController::class, 'ProductEditform'])->name('product.edit.form');
 
+//Tax
+Route::get('/taxhome' ,[TaxController::class, 'taxhome']);
 
+Route::post('/taxformsubmit' ,[TaxController::class, 'formsubmit'])->name('tax.formsubmit');
 
 //Debit
 Route::get('/debit/index' ,[DebitController::class,'debitIndex'])->name('debit.index');
