@@ -133,7 +133,7 @@ $(document).ready(function() {
         var current_row = $(this).closest('tr');
         let uid = current_row.find('#uid').val();
         $('#exampleModal').modal('show');
-        $('#con-del').attr("href", "admin.delete/" + uid);
+        $('#con-del').attr("href", "/profile/delete/" + uid);
     })
 });
 </script>
