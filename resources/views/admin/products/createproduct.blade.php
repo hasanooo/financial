@@ -47,16 +47,16 @@
 
                     @include('Admin.components.errormessage')
 
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('product.submit')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-4 col-sm-12">
                                 <label for="category">Supplier*</label>
-                                <select name="category" id="category" class="form-control">
+                                <select name="supplier" id="category" class="form-control">
                                     <option>Please Select</option>
-                                    {{-- @foreach ($category as $item)
+                                    @foreach ($supplier as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach --}}
+                                @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-4 col-sm-12">
@@ -77,9 +77,9 @@
                                 <label for="category">Category*</label>
                                 <select name="category" id="category" class="form-control">
                                     <option>Please Select</option>
-                                    {{-- @foreach ($category as $item)
+                                    @foreach ($productcategory as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach --}}
+                                @endforeach
                                 </select>
                             </div>
 
@@ -97,11 +97,11 @@
                         <div class="form-row">
                             {{-- <div class="form-group col-md-4 col-sm-12"> --}}
                                 <label for="category">Status*</label>
-                                <select name="category" id="category" class="form-control">
+                                <select name="status" id="category" class="form-control">
                                     <option>Please Select</option>
-                                    {{-- @foreach ($category as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach --}}
+                                    
+                                <option value="pending">pendding</option>
+                               
                                 </select>
                             {{-- </div> --}}
 

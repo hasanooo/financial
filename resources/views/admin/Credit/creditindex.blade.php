@@ -107,7 +107,7 @@
                                             <i class="fa-solid fa-trash"></i>Delete </a></li>
 
                                     <li>
-                                        <a class="btn btn-sm" href=""> <i
+                                        <a class="btn btn-sm" href="{{route('creditview.edit',$item->id)}}"> <i
                                                 class="fa-solid fa-pen-to-square"></i> Edit</a>
                                     </li>
 

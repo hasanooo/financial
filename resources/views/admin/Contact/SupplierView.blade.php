@@ -7,8 +7,8 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col-12">
-                <h1>Suppliers Info <span style="font-size: 12px;color:rgb(75, 95, 75)"> View Suppliers
-                        Information</span></h1>
+                <h3>Suppliers Info <span style="font-size: 12px;color:rgb(75, 95, 75)"> View Suppliers
+                        Information</span></h3>
             </div>
         </div>
         <div class="card bg-light p-3">
@@ -432,7 +432,7 @@
 
             </div>
 
-            {{-- <div class="row">
+            <div class="row">
                 <div class="col-6">
                     <div class="left">
                         <p class="d-inline">Show</p>
@@ -478,34 +478,32 @@
                 <thead>
                     <tr>
                         <th>SL</th>
-                        <th>Contact ID</th>
-
                         <th>Business Name</th>
                         <th>Name</th>
                         <th>Contact No.</th>
-                        <th>Total Purchase Due</th>
+                        {{--<th>Total Purchase Due</th>
                         <th>Total Purchase Return Amount</th>
-                        <th>Make Payment</th>
+                        <th>Make Payment</th>--}}
+                        <th>Email</th>
+                        <th>Address</th>
+                        
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($ss as $i=> $s)
+                    @foreach($supplier as $i=>$item)
                     <tr>
                         {{csrf_field()}}
                         <td>{{$i+1}}</td>
-                        <td>
-                            <input type="hidden" id="did" value="{{$s->id}}">
-                            {{$s->contact_id}}
-                        </td>
+                        <td>{{$item->business_name}}</td>
 
+                        {{--<input type="hidden" id="did" value="{{$s->id}}">--}}
 
+                        <td>{{$item->name}}</td>
+                        <td>{{$item->mobile}}</td>
+                        
 
-                        <td>{{$s->business_name}}</td>
-                        <td>{{$s->name}}</td>
-                        <td>{{$s->mobile}}</td>
-
-                        @php
+                        {{--@php
 
                             $total_due = 0;
                             if ($s->supplier_invoices) {
@@ -516,11 +514,11 @@
                                     $total_due += $remaining_balance;
                                 }
                             }
-                        @endphp
+                        @endphp--}}
 
-                        <td id="d_amount_{{$s->supplier_invoices}}" class="{{$total_due<0?'text-danger':'text-primary'}}">{{ $total_due }}</td>
-
-                        @php
+                        {{--<td id="d_amount_{{$s->supplier_invoices}}" class="{{$total_due<0?'text-danger':'text-primary'}}">{{ $total_due }}</td>--}}
+                       <td>{{$item->email}}</td>
+                       {{-- @php
 
                             $totalreturn = 0;
                             if ($s->supplier_invoices) {
@@ -529,28 +527,28 @@
                                     $totalreturn += $return;
                                 }
                             }
-                        @endphp
+                        @endphp--}}
 
-                        <td>{{$totalreturn}}</td>
+                        <td>{{$item->landmark}}</td>
+                        {{--<td>
+                            <a href="" class="btn btn-sm btn-warning">Purchase History</a>
+                        </td>--}}
                         <td>
-                            <a href="{{route('purchase.history',$s->id)}}" class="btn btn-sm btn-warning">Purchase History</a>
-                        </td>
-                        <td>
 
 
-                            <a href="javascript:void(0)" data-url="{{route('viewSupplierEdit',$s->id)}}" id="id">
+                            <a href="javascript:void(0)" data-url="" id="id">
                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#exampleModalEdit">
-                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                    <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
                             </a>
-                            <a href="{{route('supplier.View',$s->id)}}">
+                            <a href="">
                                 <button class="btn btn-primary btn-sm">
-                                    <i class="fa-sharp fa-solid fa-eye"></i> View
+                                    <i class="fa-sharp fa-solid fa-eye"></i>
                                 </button>
                             </a>
                             <button class="btn btn-danger btn-sm" id="supplier_delete">
-                                <i class="fa-solid fa-trash"></i> Delete
+                                <i class="fa-solid fa-trash"></i> 
                             </button>
                        
                         </td>
@@ -565,11 +563,11 @@
                 <p>Showing 1 to 2 of 2 entries</p>
             </div>
             <div class="pagination d-flex justify-content-end">
-            {{ $ss->links() }}
+            
             </div>
         </div>
     </div>
-</div> --}}
+</div> 
 
 
 
