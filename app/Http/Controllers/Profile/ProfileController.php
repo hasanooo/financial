@@ -94,8 +94,8 @@ class ProfileController extends Controller
                 'business_name' => 'required|string|max:255',
                 'contact_number' => 'required|string|max:20',
                 'address' => 'required|string|max:255',
-                'education' => 'required|string|max:255',
-                'notes' => 'required|string|max:255',
+                'education' => 'string|max:255',
+                'notes' => 'string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
                 // 'password' => 'required|string|min:8|confirmed',
                 // 'password_confirmation' => 'required|string|min:8',
@@ -132,5 +132,68 @@ class ProfileController extends Controller
 
         session()->flash('success', 'User has been updated !!');
         return back();
+    }
+    public function destroy($id)
+    {
+        // if (is_null($this->user) || !$this->user->can('user.delete')) {
+        //     abort('403', 'Unauthorized access');
+        // }
+        $user = User::find($id);
+        if (!is_null($user)) {
+            $user->delete();
+        }
+
+        session()->flash('success', 'User has been deleted !!');
+        return back();
+    }
+    public function Login()
+    {
+        return view('Admin.Login.login');
+    }
+    public function LoginSubmit(Request $request)
+    {
+        // Validate Login Data
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Attempt to login
+        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Redirect to dashboard
+            session()->flash('success', 'Successully Logged in !');
+            return redirect(route('dashboard'));
+        } else {
+            session()->flash('error', 'Invalid email and password');
+            return back();
+        }
+    }
+    public function ChangePassword(Request $request, $id)
+    {
+        $request->validate(
+            [
+                'oldpassword' => 'required',
+                'newpassword' => 'required|min:8|different:oldpassword',
+                'confirmpassword' => 'required|same:newpassword',
+
+            ],
+            [
+                'oldpassword.required' => 'The old password field is required.',
+                'newpassword.required' => 'The new password field is required.',
+                'newpassword.min' => 'The new password must be at least 8 characters long.',
+                'newpassword.different' => 'The new password must be different from the old password.',
+                'confirmpassword.required' => 'The confirm password field is required.',
+                'confirmpassword.same' => 'The confirm password must match the new password.',
+            ]
+        );
+        $user = User::where('id', $id)->first();
+        $isMatched = Hash::check($request->oldpassword, $user->password);
+        if ($isMatched) {
+            $user->password = Hash::make($request->confirmpassword);
+            $user->save();
+            return back()->with("msg", "Password successfuly updated");
+        } else {
+            return back()->with('msg', "The old password is wrong");
+        }
     }
 }
