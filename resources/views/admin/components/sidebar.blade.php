@@ -252,6 +252,37 @@
                     </ul>
                 </li>
 
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>
+                            Purchases
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('purchase.index')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Purchase List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('purchase.add')}}" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>Add Purchase</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="fas fa-exchange nav-icon"></i>
+                                <p>Purchase Return</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">

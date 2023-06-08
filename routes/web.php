@@ -9,6 +9,8 @@ use App\Http\Controllers\Cashbook\CashbookController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\Product\ProductController;
 
+use App\Http\Controllers\Purchase\PurchaseController;
+
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -104,3 +106,25 @@ Route::get('/role.index', [RolesController::class, 'index'])->name('role.dashboa
 Route::get('/admin.roles.edit/{id}', [RolesController::class, 'edit'])->name('admin.roles.edit');
 Route::post('/role.update/{id}', [RolesController::class, 'update'])->name('role.update');
 Route::get('/role.delete/{id}', [RolesController::class, 'destroy'])->name('role.delete');
+
+
+//Purchase
+Route::get('/Purchase/Index',[PurchaseController::class,'PurchaseIndex'])->name('purchase.index');
+Route::get('/Purchase/Add',[PurchaseController::class,'PurchaseAdd'])->name('purchase.add');
+Route::get('/Purchase/Edit/{id}',[PurchaseController::class,'PurchaseEdit'])->name('purchase.edit');
+Route::post('/Purchase/Add/Sub',[PurchaseController::class,'PurchaseAddSub'])->name('purchaseaddsub');
+Route::get('/partialPurchaseadd', [PurchaseController::class, 'purchaseSearch'])->name('addpurchasepartial');
+Route::post('/Purchase/Eproductdit/Sub',[PurchaseController::class,'PurchaseEditSub'])->name('purchasesubedit');
+Route::get('/Purchase/delete/{id}', [PurchaseController::class, 'Purchasedelete'])->name('purchase.delete');
+Route::get('/Purchase/dueEdit/{id}',[PurchaseController::class,'viewEditDue'])->name('purchasedue.edit');
+Route::post('/Purchase/due/makepayment',[PurchaseController::class,'totalpayment'])->name('purmakepayment');
+Route::post('/Purchase/due/submakepayment',[PurchaseController::class,'makepayment'])->name('submakepayment');
+Route::get('/Purchase/item',[PurchaseController::class,'purchase_item_partial'])->name('admin.purchase_item');
+Route::get('/Purchase/partialmodal',[PurchaseController::class,'purchase_modal_partial'])->name('purchase.partialmodal');
+Route::get('/purchase/return/{id}',[PurchaseController::class,'PurchaseReturn'])->name('purchase.return');
+Route::post('/purchase/return/{id}',[PurchaseController::class,'PurchaseReturnSubmit'])->name('purchase.return');
+Route::get('/return/list',[PurchaseController::class,'ReturnList'])->name('return.list');
+Route::get('/return/add_to_cash',[PurchaseController::class,'AddToCash'])->name('add_to_cash');
+Route::get('/return/product/{id}',[PurchaseController::class,'ReturnList'])->name('return.product');
+
+Route::get('/purchase/search',[PurchaseController::class,'purchase_search'])->name('purchase.search');
