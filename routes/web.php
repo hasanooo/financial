@@ -6,6 +6,11 @@ use App\Http\Controllers\Debit\DebitController;
 use App\Http\Controllers\Credit\CreditController;
 use App\Http\Controllers\Cashbook\CashbookController;
 
+use App\Http\Controllers\Customer\CustomerController;
+use App\Http\Controllers\EMI\EMIController;
+use App\Http\Controllers\Product\ProductController;
+
+
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
@@ -35,6 +40,8 @@ Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name(
 
 // Customer
 Route::get('/customer/index', [CustomerController::class,'Index'])->name('customer.index');
+Route::get('/customer/edit/page/{id}', [CustomerController::class,'UpdatePage'])->name('customer.update.page');
+Route::post('/customer/edit/{id}', [CustomerController::class,'Update'])->name('customer.update');
 Route::post('/supplier/add' ,[CustomerController::class,'Add'])->name('customer.add');
 //product
 
@@ -47,8 +54,14 @@ Route::get('/product/view/invoice/{id}' ,[ProductController::class, 'ProductView
 Route::get('/product/view/reports' ,[ProductController::class, 'ProductReport'])->name('prodauct.purchase.reports');
 // Route::get('/product/edit/{id}' ,[ProductController::class, 'ProductEditform'])->name('product.edit.form');
 
+
 //Tax
 Route::get('/taxhome' ,[TaxController::class, 'taxhome']);
+
+// EMI Sale
+Route::get('/emi/index',[EMIController::class,'Index'])->name('emi.index');
+Route::get('/emi/sale/index',[EMIController::class,'SaleIndex'])->name('emi.sale.index');
+
 
 Route::post('/taxformsubmit' ,[TaxController::class, 'formsubmit'])->name('tax.formsubmit');
 
