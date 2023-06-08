@@ -11,6 +11,7 @@ use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Roles\RolesController;
+use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Tax\TaxController;
 
 /*
@@ -46,7 +47,11 @@ Route::post('/product/submit' ,[ProductController::class,'productformsubmit'])->
 Route::get('/product/view/invoice/{id}' ,[ProductController::class, 'ProductView'])->name('product.view');
 Route::get('/product/view/reports' ,[ProductController::class, 'ProductReport'])->name('prodauct.purchase.reports');
 // Route::get('/product/edit/{id}' ,[ProductController::class, 'ProductEditform'])->name('product.edit.form');
-
+//sale
+Route::get('/saleform' ,[SaleController::class, 'saleform'])->name('sale.form');
+Route::post('/salesubmit',[SaleController::class,'saleformsubmit'])->name('sale.submit');
+Route::get('/saleform/product' ,[SaleController::class, 'productforpartial'])->name('sale.productpartial');
+Route::get('/salelist' ,[SaleController::class, 'salelist'])->name('sale.list');
 //Tax
 Route::get('/taxhome' ,[TaxController::class, 'taxhome']);
 

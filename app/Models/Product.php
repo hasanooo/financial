@@ -12,4 +12,8 @@ class Product extends Model
     {
         return $this->belongsTo(Supplier::class);
     }
+    function product_tax()
+    {
+        return $this->belongsTo(Tax::class);
+    }
 }
