@@ -4,11 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Contact\ContactController;
 use App\Http\Controllers\Debit\DebitController;
 use App\Http\Controllers\Credit\CreditController;
-
 use App\Http\Controllers\Cashbook\CashbookController;
-use App\Http\Controllers\Customer\CustomerController;
-use App\Http\Controllers\Product\ProductController;
 
+use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
