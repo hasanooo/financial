@@ -10,8 +10,6 @@ use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\EMI\EMIController;
 use App\Http\Controllers\Product\ProductController;
 
-
-use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +59,7 @@ Route::get('/taxhome' ,[TaxController::class, 'taxhome']);
 // EMI Sale
 Route::get('/emi/index',[EMIController::class,'Index'])->name('emi.index');
 Route::get('/emi/sale/index',[EMIController::class,'SaleIndex'])->name('emi.sale.index');
+Route::get('/emi/sale/select',[EMIController::class,'ProductSearch'])->name('sale.emi.select');
 
 
 Route::post('/taxformsubmit' ,[TaxController::class, 'formsubmit'])->name('tax.formsubmit');
