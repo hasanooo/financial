@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class SellInvoice extends Model
 {
+    function invoice_customer()
+    {
+        return $this->belongsTo(Customer::class,'customer_id');
+    }
+    public function invoice_payment()
+    {
+        return $this->hasMany(SellingPayment::class);
+    }
     use HasFactory;
 }
