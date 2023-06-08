@@ -95,7 +95,7 @@
                                         <ul class="dropdown-menu text-left px-3 " role="menu" aria-labelledby="menu1">
                                             <li role="presentation"><a role="menuitem" tabindex="-1" href="" class="btn"><i class="fa-solid fa-pen-to-square"></i>
                                                     Edit</a></li>
-                                            <li role="presentation"><a href="" class="btn">
+                                            <li role="presentation"><a href="{{ route('product.view', $item->id) }}" class="btn">
                                                     <i class="fa-solid fa-eye"></i>
                                                     View</a></li>
                                             <li role="presentation"><button type="button" id="user_remove" class="btn" data-bs-toggle="modal">
