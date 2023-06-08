@@ -6,7 +6,7 @@ use App\Http\Controllers\Debit\DebitController;
 use App\Http\Controllers\Credit\CreditController;
 
 use App\Http\Controllers\Cashbook\CashbookController;
-
+use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\Product\ProductController;
 
 use App\Http\Controllers\Settings\SettingController;
@@ -32,6 +32,10 @@ Route::post('/changepassword/{id}',[ProfileController::class,'ChangePassword'])-
 //supplier
 Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier');
 Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
+
+// Customer
+Route::get('/customer/index', [CustomerController::class,'Index'])->name('customer.index');
+Route::post('/supplier/add' ,[CustomerController::class,'Add'])->name('customer.add');
 //product
 
 Route::get('/product/Index' ,[ProductController::class,'productIndex'])->name('prodauct.index');
@@ -39,6 +43,9 @@ Route::get('/product/category' ,[ProductController::class,'categoryform'])->name
 Route::post('/product/category' ,[ProductController::class,'AddCategory'])->name('product.category.submit');
 Route::get('/product/add' ,[ProductController::class,'productform'])->name('product.create');
 Route::post('/product/submit' ,[ProductController::class,'productformsubmit'])->name('product.submit');
+Route::get('/product/view/invoice/{id}' ,[ProductController::class, 'ProductView'])->name('product.view');
+Route::get('/product/view/reports' ,[ProductController::class, 'ProductReport'])->name('prodauct.purchase.reports');
+
 
 
 //Debit

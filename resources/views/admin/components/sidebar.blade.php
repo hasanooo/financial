@@ -102,6 +102,12 @@
                                 <p>Supplier</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('customer.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customers</p>
+                            </a>
+                        </li>
                         
                     </ul>
                 </li>
@@ -241,6 +247,55 @@
                             <a href="{{route('product.category')}}" class="nav-link">
                                 <i class="far fa-list-alt nav-icon"></i>
                                 <p>Product Category</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-print"></i>
+                        <p>
+                            Reports
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Purchase Reoprts</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-e"></i>
+                        <p>
+                            EMI
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>New EMI sale</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>EMI sale list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>EMI collection</p>
                             </a>
                         </li>
                     </ul>
