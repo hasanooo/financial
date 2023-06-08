@@ -287,7 +287,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                            <a href="{{route('emi.index')}}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>EMI sale list</p>
                             </a>
