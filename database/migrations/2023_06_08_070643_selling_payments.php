@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EMI;
 use App\Models\SellInvoice;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('selling_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(SellInvoice::class);
-            $table->string('amount_paid');
+            $table->foreignIdFor(SellInvoice::class)->nullable();
+            $table->foreignIdFor(EMI::class)->nullable();
+            $table->string('amount_paid')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('payment_account')->nullable();
             $table->string('payment_note')->nullable();
