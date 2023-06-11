@@ -188,7 +188,7 @@
 
                     @include('Admin.components.errormessage')
 
-                    <form action="" method="post"
+                    <form action="{{ route('sale.emi.sub') }}" method="post"
                                         enctype="multipart/form-data" id="create-post-form" class="row g-4 col-12">
                                         {{@csrf_field()}}
                                         <div class="row">
@@ -199,7 +199,7 @@
                                                     <label>Customer:</label>
                                                     <div class="input-group mb-3">
                                                         <a class="input-group-text btn bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Add</a>
-                                                        <select name="hospital_customer_id" id="mySelectD" class="form-control">
+                                                        <select name="customer" id="mySelectD" class="form-control">
                                                             {{-- <option value="0" selected>Walking Customer</option> --}}
                                                             @foreach ($customer as $c )
                                                             <option value="{{$c->id}}">{{$c->name}}</option>
@@ -423,7 +423,7 @@
                             $('#emi_quantity').on('change', function() {
                                 var qnt = parseInt($(this).val());
 
-                                alert(qnt);
+                                // alert(qnt);
                                 var due = parseFloat($('#due').val());
                                 // alert(due);
                                 var rate = parseFloat($('#emi_rate').val());
