@@ -55,6 +55,7 @@ class EMIController extends Controller
         $sale->duration = $request->duration;
         $sale->emi_quantity = $request->emi_quantity;
         $sale->emi_amount = $request->emi_amount;
+        $sale->with_profit = $request->emi_total;
         $sale->type = 'cash';
         $sale->save();
 
