@@ -16,7 +16,7 @@ class SaleController extends Controller
     {
         $products=Product::all();
         $customers=Customer::all();
-        return view('admin.sale.salecreate')->with('product',$products)->with('customer',$customers);
+        return view('Admin.sale.salecreate')->with('product',$products)->with('customer',$customers);
     }
     function saleformsubmit(Request $req)
     {
@@ -74,13 +74,68 @@ class SaleController extends Controller
     {
         
         $products=Product::where('id',$req->q)->first();
-        return view('admin.sale.productpartial')->with('product',$products);
+        return view('Admin.sale.productpartial')->with('product',$products);
     }
     function salelist()
     {
         $invoices=SellInvoice::all();
         
         
-        return view('admin.sale.salelist')->with('invoice',$invoices);
+        return view('Admin.sale.salelist')->with('invoice',$invoices);
+    }
+    function saleedit(Request $req)
+    {
+        $invoice=SellInvoice::where('id',$req->id)->first();
+        return view('Admin.sale.saleedit')->with('yy',$invoice);
+    }
+    function saleeditformsubmit(Request $req)
+    {
+        $invoice=SellInvoice::where('id',$req->invoice_id)->first();
+        $invoice->total_amount=$req->total_amount;
+        $invoice->customer_id=$req->customer;
+        $invoice->shipping_details=$req->shdetails;
+        $invoice->sellnote=$req->sellnote;
+        $invoice->shipping_charge=$req->shcharge;
+        $invoice->status=$req->status;
+        $invoice->save();
+        foreach ($req->pname as $m => $mitem) {
+            //echo $req->variname[$m];
+   
+            $qty = 0;
+   
+            $sale = SellingProduct::where('id',$req->sale_id[$m])->first();
+   
+   
+            $sale->qty = $req->quantity[$m];
+           
+               $product = Product::where('id', $sale->product_id)->first();
+               //return $ppp;
+               
+               $qty = $product->qty - $sale->quantity;
+               $product->stock = $qty;
+               $product->save();
+               // return $req->variname[$m];
+           
+             $sale->product_id=$product->id;
+           
+               
+               //return $req->variname[$m];
+   
+            
+   
+            $sale->sell_invoice_id = $invoice->id;
+            $sale->save();
+         }
+          $payment = SellingPayment::where('sell_invoice_id',$req->invoice_id)->first();
+   
+         $payment->payment_method = $req->paymethod;
+         $payment->amount_paid = $req->amount;
+         $payment->payment_account = $req->payacc;
+         $payment->payment_note   = $req->paynote;
+         $payment->sell_invoice_id = $invoice->id;
+         $payment->save();
+         return redirect()->back();
+   
+        
     }
 }

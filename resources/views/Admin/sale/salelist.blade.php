@@ -241,15 +241,16 @@
                                             {{ $total_paid }}
                                         </td>
                                         @php
-                                            $return = 0;
+                                            // $return = 0;
                                             $total_paid = $y->invoice_payment->pluck('amount_paid')->sum();
                                             // if ($y->sale_invoice_sale_return != null) {
                                             //     $return = $y->sale_invoice_sale_return->pluck('return_price')->sum();
                                             // }
-                                            $paid = $t - $total_paid - $return;
+                                            $covertint=(int)$t;
+                                            $paid =$covertint - $total_paid ;
                                             
                                         @endphp
-                                        <td>{{ $return }}</td>
+                                        <td>0</td>
                                         <td>{{ $paid }}</td>
                                         <td>
                                             @if ($paid == 0)
@@ -277,7 +278,7 @@
                                                     aria-labelledby="menu1">
 
                                                     <li role="presentation"><a role="menuitem"
-                                                            href="" class="btn"><i
+                                                            href="{{route('sale.edit.form',$y->id)}}" class="btn"><i
                                                                 class="fa-solid fa-pen-to-square"></i>
                                                             Edit</a></li>
 
