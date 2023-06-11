@@ -335,7 +335,7 @@
                                                             <span class="input-group-text col-12">EMI Amount</span>
                                                         </div>
                                                         <input type="text" id="emi_amount" name="emi_amount" class="form-control rounded-1"
-                                                            value="0">   
+                                                            value="0" readonly>   
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
