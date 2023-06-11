@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('duration')->nullable();
             $table->string('emi_quantity')->nullable();
             $table->string('emi_amount')->nullable();
+            $table->string('with_profit')->nullable();
             $table->string('type')->nullable();
             $table->string('bank')->nullable();
             $table->timestamps();
