@@ -332,6 +332,17 @@
                                                     <div class="input-group">
                                                     
                                                         <div class="input-group-prepend col-6">
+                                                            <span class="input-group-text col-12">Sub Total</span>
+                                                        </div>
+                                                        <input type="text" id="emi_total" name="emi_total" class="form-control rounded-1"
+                                                            value="0" readonly>   
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                   
+                                                    <div class="input-group">
+                                                    
+                                                        <div class="input-group-prepend col-6">
                                                             <span class="input-group-text col-12">EMI Amount</span>
                                                         </div>
                                                         <input type="text" id="emi_amount" name="emi_amount" class="form-control rounded-1"
@@ -391,6 +402,7 @@
                             // $('.passistant').html(res);
                             jQuery('#price').val(res.price);
                             jQuery('#total').val(res.price);
+                            jQuery('#payable_amount').val(res.price); 
 
 
                             
@@ -403,6 +415,7 @@
                                 var sum = sell_price - discount_cost;
                                 $('#total').val(sum);
                                 $('#payable_amount').val(sum);
+                                $('#due').val(sum);
                                 // jQuery('#pay_amount').val(sum);
                             });
 
@@ -431,6 +444,7 @@
                                 var due_sum = due + per;
                                 var amount =(due_sum / qnt);
                                 $('#emi_amount').val(amount);
+                                $('#emi_total').val(due_sum);
 
                                 buttonp.removeAttribute('disabled');
                             });

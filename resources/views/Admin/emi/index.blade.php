@@ -47,6 +47,7 @@
                         {{-- <th>EMI Due</th> --}}
                         <th>EMI Rate</th>
                         <th>EMI Quantity</th>
+                        <th>Due with EMI</th>
                         <th>Per EMI Amount</th>
                         <th>Action</th>
                     </tr>
@@ -66,6 +67,7 @@
                         <td>{{ $item->paid_amount }}</td>
                         <td>{{ $item->emi_rate }}</td>
                         <td>{{ $item->emi_quantity }}</td>
+                        <td>{{ $item->with_profit }}</td>
                         <td>{{ $item->emi_amount }}</td>
                         
                         <td>
