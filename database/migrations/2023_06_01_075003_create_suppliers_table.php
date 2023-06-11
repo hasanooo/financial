@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
+            $table->string('contact_id')->nullable();
             $table->string('name')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
