@@ -27,7 +27,7 @@
                     <div class="right d-flex justify-content-start">
                         <form class="d-flex">
                             <label class="me-1 mt-1">Search:</label>
-                            <input class="form-control me-2 rounded-0" name="search" type="search" id="in" placeholder="Name or Mobile No. or Id No.">
+                            <input class="form-control me-2 rounded-0" name="search" type="search" id="in" placeholder="Searh Invoice.">
                         </form>
                     </div>
                 </div>
@@ -40,11 +40,12 @@
                         <th>Invoice</th>
                         <th>Date</th>
                         <th>Customer</th>
+                        <th>Discount</th>
                         <th>Payable Amount</th>
                         <th>Paid Amount</th>
-                        <th>Due</th>
-                        <th>EMI Due</th>
-                        <th>EMI Paid</th>
+                        {{-- <th>Due</th> --}}
+                        {{-- <th>EMI Due</th> --}}
+                        <th>EMI Rate</th>
                         <th>EMI Quantity</th>
                         <th>Per EMI Amount</th>
                         <th>Action</th>
@@ -56,17 +57,17 @@
                         {{csrf_field()}}
                         <td>{{$i+1}}</td>
                         {{-- <td></td> --}}
+                        <td>{{ $item->invoice }}</td>
+                        <td>{{ $item->date }}</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ $item->discount }}</td>
+                        <td>{{ $item->total_price }}</td>
                         {{-- <td>{{$item->address}}</td> --}}
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ $item->paid_amount }}</td>
+                        <td>{{ $item->emi_rate }}</td>
+                        <td>{{ $item->emi_quantity }}</td>
+                        <td>{{ $item->emi_amount }}</td>
+                        
                         <td>
 
 
