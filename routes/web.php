@@ -69,6 +69,7 @@ Route::get('/taxhome' ,[TaxController::class, 'taxhome'])->name('taxhome');
 Route::get('/emi/index',[EMIController::class,'Index'])->name('emi.index');
 Route::get('/emi/sale/index',[EMIController::class,'SaleIndex'])->name('emi.sale.index');
 Route::get('/emi/sale/select',[EMIController::class,'ProductSearch'])->name('sale.emi.select');
+Route::post('/emi/sale/submit',[EMIController::class,'SaleSub'])->name('sale.emi.sub');
 
 
 Route::post('/taxformsubmit' ,[TaxController::class, 'formsubmit'])->name('tax.formsubmit');
