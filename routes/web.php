@@ -13,6 +13,7 @@ use App\Http\Controllers\EMI\EMIController;
 use App\Http\Controllers\Purchase\PurchaseController;
 
 use App\Http\Controllers\Settings\SettingController;
+use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Roles\RolesController;

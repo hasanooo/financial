@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col-12">
-                <h3>Suppliers Info <span style="font-size: 12px;color:rgb(75, 95, 75)"> View Suppliers
+                <h3>EMI Sale List <span style="font-size: 12px;color:rgb(75, 95, 75)"> View EMI
                         Information</span></h3>
             </div>
         </div>
