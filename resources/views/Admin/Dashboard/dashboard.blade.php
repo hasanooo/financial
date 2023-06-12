@@ -1,6 +1,6 @@
 @extends('Admin.layouts.dashboard')
 @section('titel')
-Debit Create
+Home
 @endsection
 @section('content')
 

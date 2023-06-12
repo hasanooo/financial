@@ -27,4 +27,6 @@ class Purchase extends Model
         return $this->belongsTo(PurchaseInvoice::class, 'purchase_invoice_id');
     }
 
+    
+
 }
