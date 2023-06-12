@@ -14,7 +14,7 @@
 
                     <div class="col-12 d-flex justify-content-end">
 
-                        <a href=""><button type="button" class="btn btn-primary">
+                        <a href="{{route('sale.form')}}"><button type="button" class="btn btn-primary">
                                 <i class="fa-solid fa-plus"></i> Add
                             </button></a>
 
@@ -308,7 +308,7 @@
                                                     </li>
 
                                                     <li role="presentation"><a role="menuitem"
-                                                            href="" class="btn"><i
+                                                            href="{{ route('salereturn', $y->id) }}" class="btn"><i
                                                                 class="fa-solid fa-pen-to-square"></i>
                                                             Sale Return</a></li>
 
