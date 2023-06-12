@@ -188,7 +188,7 @@
 
                     @include('Admin.components.errormessage')
 
-                    <form action="" method="post"
+                    <form action="{{ route('sale.emi.sub') }}" method="post"
                                         enctype="multipart/form-data" id="create-post-form" class="row g-4 col-12">
                                         {{@csrf_field()}}
                                         <div class="row">
@@ -199,7 +199,7 @@
                                                     <label>Customer:</label>
                                                     <div class="input-group mb-3">
                                                         <a class="input-group-text btn bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Add</a>
-                                                        <select name="hospital_customer_id" id="mySelectD" class="form-control">
+                                                        <select name="customer" id="mySelectD" class="form-control">
                                                             {{-- <option value="0" selected>Walking Customer</option> --}}
                                                             @foreach ($customer as $c )
                                                             <option value="{{$c->id}}">{{$c->name}}</option>
@@ -229,7 +229,8 @@
                                                         <tbody class="passistant">
                                                             <tr>
                                                                 <td class="text-center">
-                                                                    <select name="product" id="product_id" class="form-control">
+                                                                    <select name="product" id="mySelect" class="form-control">
+                                                                    <option value="0">Select Product</option>
                                                                     @foreach ($product as $p )
                                                                     <option value="{{$p->id}}">{{$p->name}}</option>
                                                                     @endforeach
@@ -244,7 +245,7 @@
                                                     </table>
 
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-success rounded-1">Save Payment</button>
+                                                        <button type="submit" id="buttonp" class="btn btn-success rounded-1" disabled>Save Payment</button>
                                                     </div>
                                             </div>
 
@@ -255,7 +256,7 @@
                                                         <div class="input-group-prepend col-6">
                                                             <span class="input-group-text col-12">Discount</span>
                                                         </div>
-                                                        <input type="number" name="discount" class="form-control rounded-1"
+                                                        <input type="number" name="discount" id="discount" class="form-control rounded-1"
                                                             value="0">
                                                           
                                                     </div>
@@ -268,7 +269,7 @@
                                                             <span class="input-group-text col-12">Payable Amount</span>
                                                         </div>
                                                         <input type="number" id="payable_amount" name="payable_amount" class="form-control rounded-1"
-                                                            value="0">   
+                                                            value="0" readonly>   
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -301,7 +302,7 @@
                                                             <span class="input-group-text col-12">EMI Rate</span>
                                                         </div>
                                                         <input type="number" name="emi_rate" class="form-control rounded-1"
-                                                            value="0" min="0">   
+                                                            value="0" id="emi_rate" min="0">   
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -322,8 +323,19 @@
                                                         <div class="input-group-prepend col-6">
                                                             <span class="input-group-text col-12">EMI Quantity</span>
                                                         </div>
-                                                        <input type="number" name="emi_quantity" class="form-control rounded-1"
-                                                            value="0">   
+                                                        <input type="number" id="emi_quantity" name="emi_quantity" class="form-control rounded-1"
+                                                            value="0" min="0">   
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                   
+                                                    <div class="input-group">
+                                                    
+                                                        <div class="input-group-prepend col-6">
+                                                            <span class="input-group-text col-12">Sub Total</span>
+                                                        </div>
+                                                        <input type="text" id="emi_total" name="emi_total" class="form-control rounded-1"
+                                                            value="0" readonly>   
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -334,7 +346,7 @@
                                                             <span class="input-group-text col-12">EMI Amount</span>
                                                         </div>
                                                         <input type="text" id="emi_amount" name="emi_amount" class="form-control rounded-1"
-                                                            value="0">   
+                                                            value="0" readonly>   
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -368,4 +380,99 @@
         </div>
         </div>
     </section>
+
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // $('#mySelect').select2();
+            $(document).on('change', '#mySelect', function() {
+                var q = $(this).val();
+        // alert(q);
+                $.ajax({
+                    url: "{{route('sale.emi.select')}}",
+                    method: 'GET',
+                    data: {
+                        q: q
+                    },
+                    success: function(res) {
+                        if (res != null) {
+        
+                            // $('.passistant').html(res);
+                            jQuery('#price').val(res.price);
+                            jQuery('#total').val(res.price);
+                            jQuery('#payable_amount').val(res.price); 
+                            jQuery('#due').val(res.price); 
+
+
+                            
+                            // var sum = sell_price - discount_cost;
+                            // var sum = 0;
+    
+                            $('#discount').on('change', function() {
+                                var discount_cost = parseFloat($(this).val());
+                                var sell_price = parseFloat($('#price').val());
+                                var sum = sell_price - discount_cost;
+                                $('#total').val(sum);
+                                $('#payable_amount').val(sum);
+                                $('#due').val(sum);
+                                // jQuery('#pay_amount').val(sum);
+                            });
+
+                            jQuery('#total').val(sum);
+                            $('#payable_amount').val(sum); 
+                        }
+                    }
+                });
+            });
+
+            $('#receive_amount').on('change', function() {
+                                var receive = parseFloat($(this).val());
+                                var p_price = parseFloat($('#payable_amount').val());
+                                var sum_due = p_price - receive;
+                                $('#due').val(sum_due);
+                            });
+
+                            $('#emi_quantity').on('change', function() {
+                                var qnt = parseInt($(this).val());
+
+                                // alert(qnt);
+                                var due = parseFloat($('#due').val());
+                                // alert(due);
+                                var rate = parseFloat($('#emi_rate').val());
+                                var per = (due*rate)/100;
+                                var due_sum = due + per;
+                                var amount =(due_sum / qnt);
+                                $('#emi_amount').val(amount);
+                                $('#emi_total').val(due_sum);
+
+                                buttonp.removeAttribute('disabled');
+                            });
+
+
+    //     $(document).on('keyup', '#exampleModal', function() {
+    //     let service_name = $('#service_name').val();
+    //     let pay_amount = $('#p_price').val();
+    //     let due_amount = $('#s_price').val();
+    //     if (service_name==''){
+    //         $('#alert1_msg').text('Service name is empty!');
+    //         $('#payment_submit').attr('disabled', true);
+    //     }
+    //     else if (parseFloat(pay_amount) > parseFloat(due_amount)) {
+    //         $('#alert_msg').text('Your sell price is smaller than purchase price!');
+    //         $('#payment_submit').attr('disabled', true);
+    //     } else {
+    //         $('#alert_msg').text('');
+    //         $('#alert1_msg').text('');
+    //         $('#payment_submit').attr('disabled', false);
+    //     }
+
+    // });
+
+        });
+        
+        
+        </script>
+
 @endsection
