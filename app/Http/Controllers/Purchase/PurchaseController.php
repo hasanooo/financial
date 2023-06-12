@@ -127,7 +127,7 @@ class PurchaseController extends Controller
                 if ($purchase) {
                     $product = Product::where('id', $req->product_id[$i])->first();
                     $update_qty = array(
-                        'stock' => $req->p_qty[$i] + $product->qty,
+                        'stock' => $req->p_qty[$i] + $product->stock,
                     );
                     Product::where('id', $product_id[$i])->update($update_qty);
                 }
