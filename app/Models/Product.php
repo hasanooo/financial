@@ -20,7 +20,10 @@ class Product extends Model
     }
 
 
-
+    public function  purchase_returns()
+    {
+        return $this->hasMany(PurchaseReturn::class);
+    }
 
     function product_tax()
     {
