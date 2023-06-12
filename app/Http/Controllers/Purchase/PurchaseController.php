@@ -124,7 +124,13 @@ class PurchaseController extends Controller
                     'purchase_qtn' => $req->p_qty[$i],
                 );
                 $purchase = Purchase::create($data);
-                
+                if ($purchase) {
+                    $product = Product::where('id', $req->product_id[$i])->first();
+                    $update_qty = array(
+                        'stock' => $req->p_qty[$i] + $product->qty,
+                    );
+                    Product::where('id', $product_id[$i])->update($update_qty);
+                }
             }
 
             $p_payment = new PurchasePayment();
