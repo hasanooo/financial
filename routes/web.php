@@ -61,7 +61,9 @@ Route::get('/saleform' ,[SaleController::class, 'saleform'])->name('sale.form');
 Route::post('/salesubmit',[SaleController::class,'saleformsubmit'])->name('sale.submit');
 Route::get('/saleform/product' ,[SaleController::class, 'productforpartial'])->name('sale.productpartial');
 Route::get('/salelist' ,[SaleController::class, 'salelist'])->name('sale.list');
-
+Route::get('/saleeditform/{id}' ,[SaleController::class, 'saleedit'])->name('sale.edit.form');
+Route::post('/saleeditformsubmit' ,[SaleController::class, 'saleeditformsubmit'])->name('sale.edit.form.submit');
+Route::get('/saleview/{id}' ,[SaleController::class, 'saleview'])->name('sale.view');
 //Tax
 Route::get('/taxhome' ,[TaxController::class, 'taxhome'])->name('taxhome');
 
