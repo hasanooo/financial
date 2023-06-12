@@ -97,7 +97,7 @@
                                              </div>
                                              <input type="number" name="phone" class="form-control rounded-0 " value="{{old('contact_id')}}" placeholder="Contact ID." id="c_id">
                                          </div>
-                                         @error('contact_id')
+                                         @error('phone')
                                              <span class="text-danger">{{$message}}</span><br>
                                          @enderror  
                                      </div>
@@ -115,7 +115,7 @@
                                                  value="" placeholder="City">
                                                
                                          </div>
-                                         @error('email')
+                                         @error('city')
                                              <span class="text-danger">{{$message}}</span><br>
                                          @enderror
                                      </div>
@@ -186,7 +186,7 @@
 
                 <div class="card-body">
 
-                    @include('Admin.components.errormessage')
+                    {{-- @include('Admin.components.errormessage') --}}
 
                     <form action="{{ route('sale.emi.sub') }}" method="post"
                                         enctype="multipart/form-data" id="create-post-form" class="row g-4 col-12">
@@ -197,22 +197,29 @@
                                            
                                                 <div class="col-md-6">
                                                     <label>Customer:</label>
-                                                    <div class="input-group mb-3">
+                                                    <div class="input-group mb-1">
                                                         <a class="input-group-text btn bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Add</a>
                                                         <select name="customer" id="mySelectD" class="form-control">
-                                                            {{-- <option value="0" selected>Walking Customer</option> --}}
+                                                            <option value="" selected>Select Customer</option>
                                                             @foreach ($customer as $c )
                                                             <option value="{{$c->id}}">{{$c->name}}</option>
                                                             @endforeach
                                                         </select>
+                                                       
                                                       </div>
+                                                      @error('customer')
+                                                      <span class="text-danger">{{$message}}</span><br>
+                                                      @enderror
                                                   </div>
                                                   
                                                   <div class="col-md-6 justify-content-end">
                                                     <label>Date:</label>
-                                                    <div class="input-group mb-3">
+                                                    <div class="input-group mb-1">
                                                         <input class="form-control" type="date" name="date">
-                                                      </div>
+                                                    </div>
+                                                    @error('date')
+                                                        <span class="text-danger">{{$message}}</span><br>
+                                                        @enderror
                                                   </div>
 
                                                     <table class="col-12">
@@ -230,18 +237,21 @@
                                                             <tr>
                                                                 <td class="text-center">
                                                                     <select name="product" id="mySelect" class="form-control">
-                                                                    <option value="0">Select Product</option>
+                                                                    <option value="">Select Product</option>
                                                                     @foreach ($product as $p )
                                                                     <option value="{{$p->id}}">{{$p->name}}</option>
                                                                     @endforeach
                                                                     </select>
                                                                 </td>  
-                                                                <td class="text-center"><input type="number" value="1" class="text-center form-control" name="quantity" id="qnt" min="1"></td>
+                                                                <td class="text-center"><input type="number" value="1" class="text-center form-control" name="quantity" id="qnt" min="1" readonly></td>
                                                                 <td class="text-center"><input type="number" value="0" class="text-center form-control" name="price" id="price" readonly></td>
                                                                 <td class="text-center"><input type="number" value="0" class="text-center form-control" name="tax" id="tax" readonly></td>
                                                                 <td class="text-center"><input type="number" value="0" class="text-center form-control" name="total" id="total" readonly></td>
                                                             </tr>
                                                         </tbody>
+                                                        @error('product')
+                                                        <span class="text-danger">{{$message}}</span><br>
+                                                        @enderror
                                                     </table>
 
                                                     <div class="modal-footer">
@@ -260,6 +270,9 @@
                                                             value="0">
                                                           
                                                     </div>
+                                                    @error('discount')
+                                                        <span class="text-danger">{{$message}}</span><br>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="col-12">
@@ -279,9 +292,12 @@
                                                         <div class="input-group-prepend col-6">
                                                             <span class="input-group-text col-12">Receive Amount</i></span>
                                                         </div>
-                                                        <input type="text" id="receive_amount" name="receive_amount" class="form-control rounded-1"
+                                                        <input type="number" id="receive_amount" name="receive_amount" class="form-control rounded-1"
                                                             value="0">   
                                                     </div>
+                                                    @error('receive_amount')
+                                                        <span class="text-danger">{{$message}}</span><br>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-12">
                                                     
@@ -304,6 +320,9 @@
                                                         <input type="number" name="emi_rate" class="form-control rounded-1"
                                                             value="0" id="emi_rate" min="0">   
                                                     </div>
+                                                    @error('emi_rate')
+                                                        <span class="text-danger">{{$message}}</span><br>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-12">
                                                     
@@ -326,6 +345,9 @@
                                                         <input type="number" id="emi_quantity" name="emi_quantity" class="form-control rounded-1"
                                                             value="0" min="0">   
                                                     </div>
+                                                    @error('emi_quantity')
+                                                        <span class="text-danger">{{$message}}</span><br>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-12">
                                                    
@@ -450,25 +472,6 @@
                                 buttonp.removeAttribute('disabled');
                             });
 
-
-    //     $(document).on('keyup', '#exampleModal', function() {
-    //     let service_name = $('#service_name').val();
-    //     let pay_amount = $('#p_price').val();
-    //     let due_amount = $('#s_price').val();
-    //     if (service_name==''){
-    //         $('#alert1_msg').text('Service name is empty!');
-    //         $('#payment_submit').attr('disabled', true);
-    //     }
-    //     else if (parseFloat(pay_amount) > parseFloat(due_amount)) {
-    //         $('#alert_msg').text('Your sell price is smaller than purchase price!');
-    //         $('#payment_submit').attr('disabled', true);
-    //     } else {
-    //         $('#alert_msg').text('');
-    //         $('#alert1_msg').text('');
-    //         $('#payment_submit').attr('disabled', false);
-    //     }
-
-    // });
 
         });
         

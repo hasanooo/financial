@@ -12,5 +12,9 @@ class Customer extends Model
     {
         return $this->hasMany(SellingInvoice::class);
     }
+    public function EMI()
+    {
+        return $this->hasOne(EMI::class);
+    }
     
 }

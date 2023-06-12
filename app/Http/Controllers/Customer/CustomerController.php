@@ -15,6 +15,18 @@ class CustomerController extends Controller
     }
     public function Add(Request $request)
     {
+
+        $request->validate([
+            'name'=>'required|string|max:255',
+            'phone'=>'required|numeric',
+            'city'=>'required|string|max:255',
+        ], [
+            'name.required' => 'Please enter customer name!',
+            'phone.required' => 'Please provide contact number!',
+            'city.required' => 'Please provide customer city!',
+
+        ]);
+
         $customer = new Customer();
         $customer->name=$request->name;
         $customer->email=$request->email;
