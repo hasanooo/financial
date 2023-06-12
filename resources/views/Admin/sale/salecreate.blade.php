@@ -1,4 +1,4 @@
-@extends('admin.layouts.dashboard')
+@extends('Admin.layouts.dashboard')
 @section('titel')
     Add Sales
 @endsection
@@ -139,7 +139,7 @@
                                                 <tbody>
                                                    
                                                             <label for="">Total Amount:</label>
-                                                            <input type="text" hidden class="ta" id="at"
+                                                            <input type="text"  class="ta" id="at"
                                                                 name="total_amount" readonly>
                                                                 @error('total_amount')
                                                                     <span class="text-danger">{{$message}}</span>

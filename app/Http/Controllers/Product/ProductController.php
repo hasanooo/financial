@@ -14,7 +14,7 @@ class ProductController extends Controller
     function categoryform()
     {
         $categories=ProductCategory::all();
-        return view('admin.Products.categories')
+        return view('Admin.products.categories')
         ->with('category',$categories);
     }
     public function AddCategory(Request $request)
@@ -54,7 +54,7 @@ class ProductController extends Controller
     {
         $productcategorys=ProductCategory::all();
         $taxs=Tax::all();
-        return view('admin.Products.createproduct')->with('productcategory', $productcategorys)->with('tax', $taxs);
+        return view('Admin.products.createproduct')->with('productcategory', $productcategorys)->with('tax', $taxs);
     }
     function productformsubmit(Request $req)
     {
