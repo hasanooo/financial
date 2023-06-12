@@ -124,7 +124,6 @@
                     <tr>
 
                         <th>Invoice</th>
-                        <th>Reference</th>
                         <th>Supplier</th>
                         <th>Purchase Amount</th>
                         <th>Purchase Paid</th>
@@ -151,7 +150,6 @@
 
                             <button id="modal_view" class="btn btn-sm">{{$p->invoice}}</button>
                         </td>
-                        <td>{{ $p->ref }}</td>
                         <td>{{ $p->purchase_invoice_supplier->name}}</td>
                         <td>{{$p->payable_amount}} </td>
                         <td>{{ $p->purchase_invoice_purchase_payment->pluck('amount_paid')->sum() }}</td>
@@ -197,13 +195,13 @@
                                         <path
                                             d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                                     </svg></button>
-                                <ul class="dropdown-menu text-left px-3 " role="menu" aria-labelledby="menu1">
+                                <ul class="dropdown-menu text-left px-6 " role="menu" aria-labelledby="menu1">
 
-                                    <!-- <li role="presentation"> <a data-bs-toggle="modal" class="btn btn-sm"
+                                    <li role="presentation"> <a data-bs-toggle="modal" class="btn btn-sm"
                                             id="purchase_delete">
-                                            <i class="fa-solid fa-trash"></i>Delete </a></li>
+                                            <i class="fa-solid fa-trash"></i> Delete </a></li>
 
-                                    <li> -->
+                                    <li>
                                         <a class="btn btn-sm" href="{{route('purchase.edit',$p->id)}}"> <i
                                                 class="fa-solid fa-pen-to-square"></i> Edit</a>
                                     </li>
@@ -216,7 +214,7 @@
 
                                         @endif
                                         <a href="{{route('purchase.return',$p->id)}}" class="btn btn-sm"><i
-                                                class="fa-solid fa-pen-to-square"></i>Return</a>
+                                                class="fa-solid fa-pen-to-square"></i> Return</a>
                                     </li>
                                    
                                     @if ($p->purchase_invoice_purchase_return->count()>0)
@@ -237,7 +235,7 @@
 
                     <tr class="text-center">
                         <th>Total</th>
-                        <th colspan="2"></th>
+                        <th colspan="1"></th>
                         <th>{{$totalpurchase}}</th>
                         <th>{{$totalpaid}}</th>
                         <th>{{$totalreturn}}</th>
