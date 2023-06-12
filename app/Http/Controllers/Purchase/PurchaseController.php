@@ -349,26 +349,27 @@ class PurchaseController extends Controller
         $p_price = $req->purchase_id;
         foreach ($p_price as $i => $item) {
             if ($req->return_qty[$i]) {
-                $price = Purchase::where('id', $p_price[$i])->first();
-                $update_qty = array(
-                    'purchase_qtn' => $price->purchase_qtn - $req->return_qty[$i],
-                );
-                $updated_qty = Purchase::where('id', $p_price[$i])->update($update_qty);
+                $purchase = Purchase::where('id', $item)->first();
+                $update_qty = [
+                    'purchase_qtn' => $purchase->purchase_qtn - $req->return_qty[$i],
+                ];
+                $updated_qty = Purchase::where('id', $item)->update($update_qty);
                 if ($updated_qty) {
                     $p_return = new PurchaseReturn();
                     $p_return->purchase_invoice_id = $id;
-                    $p_return->product_id = $p_price[$i];
+                    $p_return->product_id = $req->product_id[$i];
                     $p_return->return_qty = $req->return_qty[$i];
                     $p_return->return_price = $req->retutn_price[$i];
 
-                    if ($p_return) {
-                        $p_return->save();
+                    if ($p_return->save()) {
+                        // Success
                     }
                 }
             }
         }
         return back();
     }
+
 
     protected function ReturnList($id)
     {

@@ -52,32 +52,12 @@
                                     <td>{{$item->purchase_qtn}}</td>
                                     <td>
 
-                                       
-                                   @php
-                                  $retutn= $item->purchase_purchase_invoice->purchase_invoice_purchase_return->where('product_id',$item->product_id)->where('purchase_invoice_id',$item->purchase_invoice_id)
-                                  ->pluck('return_qty')->sum();
-                                   @endphp
+                                        @php
+                                            $return= $item->purchase_purchase_invoice->purchase_invoice_purchase_return->where('product_id',$item->product_id)->where('purchase_invoice_id',$item->purchase_invoice_id)
+                                            ->pluck('return_qty')->sum();
+                                        @endphp
                                    
-                                        {{$retutn}}
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                        <!-- @if ($invoice->purchase_invoice_purchase_return->count() > 0)
-                                            @php
-                                                $total_return_qty = 0;
-                                            @endphp
-                                            @foreach ($invoice->purchase_invoice_purchase_return as $inp)
-                                               
-                                                    $total_return_qty = $inp->return_qty;
-                                                    {{$inp->return_qty}}
-                                                
-                                            @endforeach
-                                            {{ $total_return_qty }}
-                                            
-                                        @endif -->
+                                        {{$return}}
 
                                     </td>
                                 
@@ -89,12 +69,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-
-
-                                <!-- @if ($item->purchase_product->id == $inp->product_id)
-                                                    $total_return_qty += $inp->return_qty;
-                                                @endif -->
-
 
                             </tbody>
 
