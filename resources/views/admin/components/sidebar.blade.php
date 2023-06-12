@@ -360,7 +360,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('collect.index') }}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>EMI collection</p>
                             </a>
