@@ -344,40 +344,40 @@ class PurchaseController extends Controller
         return view('Admin.purchase.purchase_return', compact('invoice'));
     }
 
-    // protected function PurchaseReturnSubmit(Request $req, $id)
-    // {
-    //     $p_price = $req->p_price_id;
-    //     foreach ($p_price as $i => $item) {
-    //         if ($req->return_qty[$i]) {
-    //             $price = ProductPrice::where('id', $p_price[$i])->first();
-    //             $update_qty = array(
-    //                 'qty' => $price->qty - $req->return_qty[$i],
-    //             );
-    //             $updated_qty = ProductPrice::where('id', $p_price[$i])->update($update_qty);
-    //             if ($updated_qty) {
-    //                 $p_return = new PurchaseReturn();
-    //                 $p_return->purchase_invoice_id = $id;
-    //                 $p_return->product_price_id = $p_price[$i];
-    //                 $p_return->return_qty = $req->return_qty[$i];
-    //                 $p_return->return_price = $req->retutn_price[$i];
+    protected function PurchaseReturnSubmit(Request $req, $id)
+    {
+        $p_price = $req->purchase_id;
+        foreach ($p_price as $i => $item) {
+            if ($req->return_qty[$i]) {
+                $price = Purchase::where('id', $p_price[$i])->first();
+                $update_qty = array(
+                    'purchase_qtn' => $price->purchase_qtn - $req->return_qty[$i],
+                );
+                $updated_qty = Purchase::where('id', $p_price[$i])->update($update_qty);
+                if ($updated_qty) {
+                    $p_return = new PurchaseReturn();
+                    $p_return->purchase_invoice_id = $id;
+                    $p_return->product_id = $p_price[$i];
+                    $p_return->return_qty = $req->return_qty[$i];
+                    $p_return->return_price = $req->retutn_price[$i];
 
-    //                 if ($p_return) {
-    //                     $p_return->save();
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return back();
-    // }
+                    if ($p_return) {
+                        $p_return->save();
+                    }
+                }
+            }
+        }
+        return back();
+    }
 
-    // protected function ReturnList($id)
-    // {
-    //     if (is_null($this->user) || !$this->user->can('purchase.view')) {
-    //         abort('403', 'Unauthorized access');
-    //     }
-    //     $return = PurchaseReturn::where('purchase_invoice_id', $id)->get();
-    //     return view('Admin.purchase.purchase_return_list', compact('return'));
-    // }
+    protected function ReturnList($id)
+    {
+        // if (is_null($this->user) || !$this->user->can('purchase.view')) {
+        //     abort('403', 'Unauthorized access');
+        // }
+        $return = PurchaseReturn::where('purchase_invoice_id', $id)->get();
+        return view('Admin.purchase.purchase_return_list', compact('return'));
+    }
     protected function AddToCash(Request $req)
     {
         // if (is_null($this->user) || !$this->user->can('purchase.view')) {

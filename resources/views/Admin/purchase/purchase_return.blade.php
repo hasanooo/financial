@@ -22,10 +22,9 @@
                 <div class="col-12">
                     <table class="table">
                         <thead>
-                            <tr class="bg-success text-center">
+                            <tr class="text-white" style="background-color:#0d5e8b;">
                                 <th>#</th>
                                 <th>Product Name</th>
-                                <th>Variations</th>
                                 <th>Unit Price</th>
                                 <th>Purchase Quantity</th>
                                 <th>Availabe Stock</th>
@@ -39,26 +38,28 @@
                                 <td>
                                     {{$i+1}}
                                     <input type="hidden" name="purchase_id[]" value="{{$item->id}}">
-                                    <input type="hidden" name="p_price_id[]" value="{{$item->purchase_product_price->id}}">
+                                    {{--<input type="hidden" name="product_id[]" value="{{$item->purchase_product->id}}">--}}
                                 </td>
-                                <td>{{$item->purchase_product_price->productprice_product->name}}</td>
-                                <td>
+                                <td>{{$item->purchase_product->name}}</td>
+                                {{--<td>
                                     @if($item->purchase_product_price->variation_value_id !=0)
                                     {{$item->purchase_product_price->productprice_variation_value->value_name}}
                                     @else
                                     <span>Single</span>
                                     @endif
-                                </td>
-                                <td id="unit_price">{{$item->current_unit_cost}}</td>
+                                </td>--}}
+                                
+                                <td id="unit_price">{{$item->purchase_product->purchase_price}}</td>
                                 <td>{{$item->purchase_qtn}}</td>
-                                <td id="stock">{{$item->purchase_product_price->qty}}</td>
+                                <td></td>
+                                {{--<td id="stock">{{$item->purchase_product_price->qty}}</td>--}}
                                 <td><input id="return_qty" name="return_qty[]" type="number" class="form-control"></td>
                                 <td><input type="number" id="retutn_price" name="retutn_price[]" class="form-control line-total" readonly></td>
                             </tr>
 
                             @endforeach
                             <tr>
-                                <td colspan="7">Total</td>
+                                <td colspan="6">Total</td>
                                 <td><input type="number" name="total_deduction" id="total_deduction" class="form-control"></td>
                             </tr>
                         </tbody>
