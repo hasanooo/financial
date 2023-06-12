@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\SellingReturn;
 
 class SellInvoice extends Model
 {
+
+    use HasFactory;
+
     function invoice_customer()
     {
         return $this->belongsTo(Customer::class,'customer_id');
@@ -19,5 +23,9 @@ class SellInvoice extends Model
     {
         return $this->hasMany(SellingProduct::class);
     }
-    use HasFactory;
+
+    public function sale_invoice_sale_return()
+    {
+        return $this->hasMany(SellingReturn::class);
+    }
 }
