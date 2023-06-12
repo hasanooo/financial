@@ -188,7 +188,7 @@
 
                     @include('Admin.components.errormessage')
 
-                    <form action="" method="post"
+                    <form action="{{ route('sale.emi.sub') }}" method="post"
                                         enctype="multipart/form-data" id="create-post-form" class="row g-4 col-12">
                                         {{@csrf_field()}}
                                         <div class="row">
@@ -199,7 +199,7 @@
                                                     <label>Customer:</label>
                                                     <div class="input-group mb-3">
                                                         <a class="input-group-text btn bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Add</a>
-                                                        <select name="hospital_customer_id" id="mySelectD" class="form-control">
+                                                        <select name="customer" id="mySelectD" class="form-control">
                                                             {{-- <option value="0" selected>Walking Customer</option> --}}
                                                             @foreach ($customer as $c )
                                                             <option value="{{$c->id}}">{{$c->name}}</option>
@@ -332,10 +332,21 @@
                                                     <div class="input-group">
                                                     
                                                         <div class="input-group-prepend col-6">
+                                                            <span class="input-group-text col-12">Sub Total</span>
+                                                        </div>
+                                                        <input type="text" id="emi_total" name="emi_total" class="form-control rounded-1"
+                                                            value="0" readonly>   
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                   
+                                                    <div class="input-group">
+                                                    
+                                                        <div class="input-group-prepend col-6">
                                                             <span class="input-group-text col-12">EMI Amount</span>
                                                         </div>
                                                         <input type="text" id="emi_amount" name="emi_amount" class="form-control rounded-1"
-                                                            value="0">   
+                                                            value="0" readonly>   
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -391,6 +402,8 @@
                             // $('.passistant').html(res);
                             jQuery('#price').val(res.price);
                             jQuery('#total').val(res.price);
+                            jQuery('#payable_amount').val(res.price); 
+                            jQuery('#due').val(res.price); 
 
 
                             
@@ -403,6 +416,7 @@
                                 var sum = sell_price - discount_cost;
                                 $('#total').val(sum);
                                 $('#payable_amount').val(sum);
+                                $('#due').val(sum);
                                 // jQuery('#pay_amount').val(sum);
                             });
 
@@ -423,7 +437,7 @@
                             $('#emi_quantity').on('change', function() {
                                 var qnt = parseInt($(this).val());
 
-                                alert(qnt);
+                                // alert(qnt);
                                 var due = parseFloat($('#due').val());
                                 // alert(due);
                                 var rate = parseFloat($('#emi_rate').val());
@@ -431,9 +445,30 @@
                                 var due_sum = due + per;
                                 var amount =(due_sum / qnt);
                                 $('#emi_amount').val(amount);
+                                $('#emi_total').val(due_sum);
 
                                 buttonp.removeAttribute('disabled');
                             });
+
+
+    //     $(document).on('keyup', '#exampleModal', function() {
+    //     let service_name = $('#service_name').val();
+    //     let pay_amount = $('#p_price').val();
+    //     let due_amount = $('#s_price').val();
+    //     if (service_name==''){
+    //         $('#alert1_msg').text('Service name is empty!');
+    //         $('#payment_submit').attr('disabled', true);
+    //     }
+    //     else if (parseFloat(pay_amount) > parseFloat(due_amount)) {
+    //         $('#alert_msg').text('Your sell price is smaller than purchase price!');
+    //         $('#payment_submit').attr('disabled', true);
+    //     } else {
+    //         $('#alert_msg').text('');
+    //         $('#alert1_msg').text('');
+    //         $('#payment_submit').attr('disabled', false);
+    //     }
+
+    // });
 
         });
         

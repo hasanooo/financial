@@ -305,6 +305,12 @@
                                 <p>Purchase Reoprts</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('emi.index')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>EMI Sale Reoprts</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
