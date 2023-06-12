@@ -49,13 +49,13 @@
                             <div class="form-group col-md-3 col-sm-12 ">
                                 <i class="fa fa-user"></i>
                                 <label for="">Customer:*</label>
-                                <select name="customer" id="k" class="form-control @error('supplier') is-invalid @enderror">
+                                <select name="customer" id="k" class="form-control @error('customer') is-invalid @enderror">
                                     <option value="">Please Select</option>
                                     @foreach ($customer as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('supplier')
+                                @error('customer')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
