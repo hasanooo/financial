@@ -138,4 +138,9 @@ class SaleController extends Controller
    
         
     }
+    function saleview(Request $req)
+    {
+        $invoice=SellInvoice::where('id',$req->id)->first();
+        return view('Admin.sale.saleview')->with('in_id',$invoice);
+    }
 }

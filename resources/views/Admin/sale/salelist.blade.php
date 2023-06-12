@@ -214,7 +214,7 @@
                                     <tr class="text-center">
                                         
                                         <td>
-                                            <a href="javascript:void(0)" data-url=""
+                                            <a href="javascript:void(0)" data-url="{{route('sale.view',$y->id)}}"
                                                 id="p_id">
                                                 <button type="button" class="btn" data-bs-toggle="modal"
                                                     data-bs-target="#ViewModal">
@@ -351,7 +351,7 @@
 
 
 
-                    $('#exampleModalEdit').modal('show');
+                    $('#ViewModal').modal('show');
                     $('.modal-content ').html(data);
 
 
