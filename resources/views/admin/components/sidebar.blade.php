@@ -289,7 +289,31 @@
                     </ul>
                 </li>
 
-
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tags"></i>
+                        <p>
+                            Sale
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('sale.list')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p> sale Index</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('sale.form')}}" class="nav-link">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p> sale Add</p>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-print"></i>
@@ -343,30 +367,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-e"></i>
-                        <p>
-                            Sale
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('sale.list')}}" class="nav-link">
-                                <i class="fas fa-plus nav-icon"></i>
-                                <p> sale Index</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('sale.form')}}" class="nav-link">
-                                <i class="fas fa-list nav-icon"></i>
-                                <p> sale Add</p>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </li>
+                
 
 
                 

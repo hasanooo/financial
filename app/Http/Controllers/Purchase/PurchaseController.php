@@ -75,38 +75,38 @@ class PurchaseController extends Controller
 
     function PurchaseAddSub(Request $req)
     {
-        // $req->validate(
-        //     [
-        //         'suplier_id' => 'required|numeric',
-        //         // 'reference_number' => 'required',
-        //         'pdate' => 'required|date',
-        //         // 'purchase_status' => 'required',
-        //         // 'location' => 'required',
-        //         'purchase_price' => 'required|numeric|min:0',
-        //         'product_price_id.*' => 'required|numeric',
-        //         'p_qty.*' => 'required|numeric|min:1',
-        //         'current_unit_cost.*' => 'required|numeric|min:0',
-        //         'increment_cost.*' => 'required|numeric|min:0',
-        //         'discount.*' => 'required|numeric|min:0',
-        //         'per_unit_cost.*' => 'required|numeric|min:0',
-        //         'total_amount_paid' => 'required|numeric|min:0',
-        //         'payment_method' => 'required',
-        //         // 'payment_note' => 'required',
-        //     ],
+        $req->validate(
+            [
+                'supplier_id' => 'required',
+              
+                'pdate' => 'required|date',
+                // 'purchase_status' => 'required',
+                // 'location' => 'required',
+                'purchase_price' => 'required|numeric|min:0',
+                'product_price_id.*' => 'required|numeric',
+                'p_qty.*' => 'required|numeric|min:1',
+                'current_unit_cost.*' => 'required|numeric|min:0',
+                'increment_cost.*' => 'required|numeric|min:0',
+                'discount.*' => 'required|numeric|min:0',
+                'per_unit_cost.*' => 'required|numeric|min:0',
+                'total_amount_paid' => 'required|numeric|min:0',
+                'payment_method' => 'required',
+                // 'payment_note' => 'required',
+            ],
 
-        //     [
-        //         'suplier_id.required' => 'Please select a Supplier name !',
-        //         'reference_number.required' => 'Please provide a reference number!',
-        //         'purchase_status.required' => 'Please provide a purchase status!',
-        //         'pdate.required' => 'Please Select date!',
-        //         'location.required' => 'Please provide a location!',
-        //         'purchase_price.required' => 'Please show the total purchase!',
-        //         'total_amount_paid.required' => 'Please make a payment!',
-        //         'payment_method.required' => 'Please provide a location!',
-        //         'payment_note.required' => 'Please write a note!',
-        //     ]
+            [
+                'supplier_id.required' => 'Please select a Supplier name !',
+                'reference_number.required' => 'Please provide a reference number!',
+                'purchase_status.required' => 'Please provide a purchase status!',
+                'pdate.required' => 'Please Select date!',
+                'location.required' => 'Please provide a location!',
+                'purchase_price.required' => 'Please show the total purchase!',
+                'total_amount_paid.required' => 'Please make a payment!',
+                'payment_method.required' => 'Please provide a location!',
+                'payment_note.required' => 'Please write a note!',
+            ]
 
-        // );
+        );
         $p_invoice = new PurchaseInvoice();
         $random_number = rand(1, 1000);
         $random_string = Str::random(4);
@@ -124,7 +124,13 @@ class PurchaseController extends Controller
                     'purchase_qtn' => $req->p_qty[$i],
                 );
                 $purchase = Purchase::create($data);
-                
+                if ($purchase) {
+                    $product = Product::where('id', $req->product_id[$i])->first();
+                    $update_qty = array(
+                        'stock' => $req->p_qty[$i] + $product->stock,
+                    );
+                    Product::where('id', $product_id[$i])->update($update_qty);
+                }
             }
 
             $p_payment = new PurchasePayment();
@@ -344,40 +350,41 @@ class PurchaseController extends Controller
         return view('Admin.purchase.purchase_return', compact('invoice'));
     }
 
-    // protected function PurchaseReturnSubmit(Request $req, $id)
-    // {
-    //     $p_price = $req->p_price_id;
-    //     foreach ($p_price as $i => $item) {
-    //         if ($req->return_qty[$i]) {
-    //             $price = ProductPrice::where('id', $p_price[$i])->first();
-    //             $update_qty = array(
-    //                 'qty' => $price->qty - $req->return_qty[$i],
-    //             );
-    //             $updated_qty = ProductPrice::where('id', $p_price[$i])->update($update_qty);
-    //             if ($updated_qty) {
-    //                 $p_return = new PurchaseReturn();
-    //                 $p_return->purchase_invoice_id = $id;
-    //                 $p_return->product_price_id = $p_price[$i];
-    //                 $p_return->return_qty = $req->return_qty[$i];
-    //                 $p_return->return_price = $req->retutn_price[$i];
+    protected function PurchaseReturnSubmit(Request $req, $id)
+    {
+        $p_price = $req->purchase_id;
+        foreach ($p_price as $i => $item) {
+            if ($req->return_qty[$i]) {
+                $purchase = Purchase::where('id', $item)->first();
+                $update_qty = [
+                    'purchase_qtn' => $purchase->purchase_qtn - $req->return_qty[$i],
+                ];
+                $updated_qty = Purchase::where('id', $item)->update($update_qty);
+                if ($updated_qty) {
+                    $p_return = new PurchaseReturn();
+                    $p_return->purchase_invoice_id = $id;
+                    $p_return->product_id = $req->product_id[$i];
+                    $p_return->return_qty = $req->return_qty[$i];
+                    $p_return->return_price = $req->retutn_price[$i];
 
-    //                 if ($p_return) {
-    //                     $p_return->save();
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return back();
-    // }
+                    if ($p_return->save()) {
+                        // Success
+                    }
+                }
+            }
+        }
+        return back();
+    }
 
-    // protected function ReturnList($id)
-    // {
-    //     if (is_null($this->user) || !$this->user->can('purchase.view')) {
-    //         abort('403', 'Unauthorized access');
-    //     }
-    //     $return = PurchaseReturn::where('purchase_invoice_id', $id)->get();
-    //     return view('Admin.purchase.purchase_return_list', compact('return'));
-    // }
+
+    protected function ReturnList($id)
+    {
+        // if (is_null($this->user) || !$this->user->can('purchase.view')) {
+        //     abort('403', 'Unauthorized access');
+        // }
+        $return = PurchaseReturn::where('purchase_invoice_id', $id)->get();
+        return view('Admin.purchase.purchase_return_list', compact('return'));
+    }
     protected function AddToCash(Request $req)
     {
         // if (is_null($this->user) || !$this->user->can('purchase.view')) {

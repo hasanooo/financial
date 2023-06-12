@@ -37,7 +37,7 @@ Add Purchases
                             <label for="">Supplier:*</label>
                             <select name="supplier_id" id="k" class="form-control @error('suplier_id') is-invalid @enderror">
 
-                                <option value="">Please Select</option>
+                                <option>Please Select</option>
                                 @foreach($ss as $s)
                                 <option value="{{$s->id}}">{{$s->name}}</option>
                                 @endforeach

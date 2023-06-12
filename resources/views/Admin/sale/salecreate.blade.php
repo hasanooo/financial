@@ -1,4 +1,4 @@
-@extends('admin.layouts.dashboard')
+@extends('Admin.layouts.dashboard')
 @section('titel')
     Add Sales
 @endsection
@@ -46,28 +46,21 @@
                 <div class="col-12">
                     <div class="card-body">
                         <div class="form-row">
-                            <div class="form-group col-md-3 col-sm-12 ">
+                            <div class="form-group col-md-4 col-sm-12 ">
                                 <i class="fa fa-user"></i>
                                 <label for="">Customer:*</label>
-                                <select name="customer" id="k" class="form-control @error('supplier') is-invalid @enderror">
+                                <select name="customer" id="k" class="form-control @error('customer') is-invalid @enderror">
                                     <option value="">Please Select</option>
                                     @foreach ($customer as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('supplier')
+                                @error('customer')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
-
-                        </div>
-                        <!--First Row End-->
-
-                        <!--Second Row -->
-                        <div class="form-row">
-                            
-                            <div class="form-group col-md-3 col-sm-12">
+                            <div class="form-group col-md-4 col-sm-12">
                                 <label for="">Status*</label>
                                 <select name="status" id="" class="form-control @error('status') is-invalid @enderror">
                                     <option value="0">Select Status</option>
@@ -79,7 +72,12 @@
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
+
+
                         </div>
+                        <!--First Row End-->
+
+                       
 
                     </div>
                     <!--Second Row End-->
@@ -139,7 +137,7 @@
                                                 <tbody>
                                                    
                                                             <label for="">Total Amount:</label>
-                                                            <input type="text" hidden class="ta" id="at"
+                                                            <input type="text"  class="ta" id="at"
                                                                 name="total_amount" readonly>
                                                                 @error('total_amount')
                                                                     <span class="text-danger">{{$message}}</span>

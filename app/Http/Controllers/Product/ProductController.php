@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Product;
 
-use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\ProductCategory;
-use App\Models\Supplier;
 use App\Models\Tax;
+use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
     function categoryform()
     {
         $categories=ProductCategory::all();
-        return view('admin.Products.categories')
+        return view('Admin.products.categories')
         ->with('category',$categories);
     }
     public function AddCategory(Request $request)
@@ -54,10 +54,14 @@ class ProductController extends Controller
     {
         $productcategorys=ProductCategory::all();
         $taxs=Tax::all();
-        return view('admin.Products.createproduct')->with('productcategory', $productcategorys)->with('tax', $taxs);
+        return view('Admin.products.createproduct')->with('productcategory', $productcategorys)->with('tax', $taxs);
     }
     function productformsubmit(Request $req)
     {
+        $req->validate([
+            'category' => 'required|exists:product_categories,id',
+           
+         ]);
           $product=new Product();
           $product->name=$req->name;
           $product->product_category_id=$req->category;

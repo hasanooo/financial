@@ -1,4 +1,4 @@
-@extends('admin.layouts.dashboard')
+@extends('Admin.layouts.dashboard')
 
 @section('content')
     <div class="section">
@@ -14,7 +14,7 @@
 
                     <div class="col-12 d-flex justify-content-end">
 
-                        <a href=""><button type="button" class="btn btn-primary">
+                        <a href="{{route('sale.form')}}"><button type="button" class="btn btn-primary">
                                 <i class="fa-solid fa-plus"></i> Add
                             </button></a>
 
@@ -214,7 +214,7 @@
                                     <tr class="text-center">
                                         
                                         <td>
-                                            <a href="javascript:void(0)" data-url=""
+                                            <a href="javascript:void(0)" data-url="{{route('sale.view',$y->id)}}"
                                                 id="p_id">
                                                 <button type="button" class="btn" data-bs-toggle="modal"
                                                     data-bs-target="#ViewModal">
@@ -241,15 +241,16 @@
                                             {{ $total_paid }}
                                         </td>
                                         @php
-                                            $return = 0;
+                                            // $return = 0;
                                             $total_paid = $y->invoice_payment->pluck('amount_paid')->sum();
                                             // if ($y->sale_invoice_sale_return != null) {
                                             //     $return = $y->sale_invoice_sale_return->pluck('return_price')->sum();
                                             // }
-                                            $paid = $t - $total_paid - $return;
+                                            $covertint=(int)$t;
+                                            $paid =$covertint - $total_paid ;
                                             
                                         @endphp
-                                        <td>{{ $return }}</td>
+                                        <td>0</td>
                                         <td>{{ $paid }}</td>
                                         <td>
                                             @if ($paid == 0)
@@ -277,7 +278,7 @@
                                                     aria-labelledby="menu1">
 
                                                     <li role="presentation"><a role="menuitem"
-                                                            href="" class="btn"><i
+                                                            href="{{route('sale.edit.form',$y->id)}}" class="btn"><i
                                                                 class="fa-solid fa-pen-to-square"></i>
                                                             Edit</a></li>
 
@@ -307,7 +308,7 @@
                                                     </li>
 
                                                     <li role="presentation"><a role="menuitem"
-                                                            href="" class="btn"><i
+                                                            href="{{ route('salereturn', $y->id) }}" class="btn"><i
                                                                 class="fa-solid fa-pen-to-square"></i>
                                                             Sale Return</a></li>
 
@@ -350,7 +351,7 @@
 
 
 
-                    $('#exampleModalEdit').modal('show');
+                    $('#ViewModal').modal('show');
                     $('.modal-content ').html(data);
 
 
