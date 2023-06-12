@@ -31,6 +31,11 @@ class DebitController extends Controller
 
     public function CreateCategory(Request $request)
     {
+        $request->validate([  
+            'categoryname'=>'required|string',
+        ], [
+            'categoryname.required' => 'Please enter category name!',
+        ]);
         $category = new DCategory();
 
         $category->name = $request->categoryname;
@@ -44,6 +49,11 @@ class DebitController extends Controller
     }
     public function EditCategory(Request $request)
     {
+        $request->validate([  
+            'categoryname'=>'required|string',
+        ], [
+            'categoryname.required' => 'Please enter category name!',
+        ]);
         $category=DCategory::where('id',$request->id)->first();
         $category->name = $request->categoryname;
         $category->update();
@@ -62,6 +72,17 @@ class DebitController extends Controller
 
     public function CreateDebit(Request $request)
     {
+
+        $request->validate([  
+            'date'=>'required|date',
+            'cash'=>'required|numeric',
+            'd_category_id'=>'required|numeric',
+        ], [
+            'date.required' => 'Please select any date!',
+            'cash.required' => 'Enter valid cash!',
+            'd_category_id.required' => 'You do not select any Debit Category!',
+        ]);
+
         $debit = new DebitCash();
         $debit->d_category_id = $request->d_category_id;
         $debit->date = $request->date;

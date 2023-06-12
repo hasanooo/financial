@@ -58,6 +58,17 @@ class ProductController extends Controller
     }
     function productformsubmit(Request $req)
     {
+
+
+
+        $req->validate([
+            'category' => 'required',
+            'tax' => 'required',
+         ], [
+            'tax.required' => 'Please select a customer!',
+            'category.required' => 'Please select a customer!',
+           
+         ]);
           $product=new Product();
           $product->name=$req->name;
           $product->product_category_id=$req->category;

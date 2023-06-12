@@ -78,7 +78,7 @@
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
                             </a>
-                            <a href="">
+                            <a href="{{ route('print.report', $item->id) }}">
                                 <button class="btn btn-primary btn-sm">
                                     <i class="fa-sharp fa-solid fa-print"></i>
                                 </button>

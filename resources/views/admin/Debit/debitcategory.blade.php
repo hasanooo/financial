@@ -39,6 +39,9 @@
                                                 placeholder="Category">
 
                                         </div>
+                                        @error('categoryname')
+                                        <span class="text-danger">{{$message}}</span><br>
+                                        @enderror
 
                                         <div class="modal-footer">
                                             <button type="submit" id="" class="btn btn-primary rounded-0">Save</button>
@@ -74,6 +77,9 @@
                                                 placeholder="Category">
 
                                         </div>
+                                        @error('categoryname')
+                                        <span class="text-danger">{{$message}}</span><br>
+                                        @enderror
 
                                         <div class="modal-footer">
                                             <button type="submit" id="" class="btn btn-primary rounded-0">Save</button>
