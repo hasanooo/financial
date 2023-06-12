@@ -11,7 +11,7 @@
         </div>
         <table id="return_table" class="table table-bordered table-striped my-3">
             <thead>
-                <tr class="text-center bg-success">
+                <tr class="text-center text-white" style="background-color:#0d5e8b;">
 
                     <th>Invoice</th>
                     <th>Reference</th>
