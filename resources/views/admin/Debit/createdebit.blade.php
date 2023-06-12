@@ -44,6 +44,9 @@ Debit Create
                                     </div>
                                     <input type="date" name="date" class="form-control" style="background-color:whitesmoke;" id="" value="">
                                 </div>
+                                @error('date')
+                                    <span class="text-danger">{{$message}}</span><br>
+                                @enderror
                                
                             </div>
 
@@ -57,12 +60,12 @@ Debit Create
                                         <option value="">Please Select Debit Category</option>
                                         @foreach ($d_category as $c)
                                         <option value="{{ $c->id }}">{{ $c->name }}</option>
-                                        @endforeach
-                                        
+                                        @endforeach 
                                     </select>
-                                  
-
                                 </div>
+                                @error('d_category_id')
+                                    <span class="text-danger">{{$message}}</span><br>
+                                @enderror
                             </div>
                         
                     </div>
@@ -87,6 +90,9 @@ Debit Create
                                 </div>
                                 <input type="number" name="cash" class="form-control" style="background-color:whitesmoke;" id="" value="">
                             </div>
+                            @error('cash')
+                                <span class="text-danger">{{$message}}</span><br>
+                            @enderror
                         
                         </div>
                     </div>

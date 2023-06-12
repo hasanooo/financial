@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class EMI extends Model
 {
     use HasFactory;
+    public function Selling()
+    {
+        return $this->hasMany(SellingPayment::class);
+    }
+    public function Customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }

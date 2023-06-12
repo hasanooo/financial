@@ -61,12 +61,16 @@
                             </div>
                             <div class="form-group col-md-4 col-sm-12">
                                 <label for="category">Category*</label>
-                                <select name="category" id="category" class="form-control">
+                                <select name="category" id="category"
+                                    class="form-control  @error('category') is-invalid @enderror">
                                     <option>Please Select</option>
                                     @foreach ($productcategory as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('category')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group col-md-4 col-sm-12">
                                 <label for="name">Product Purchase Price*</label>
@@ -89,31 +93,36 @@
                             </div>
                             <div class="form-group col-md-4 col-sm-12">
                                 <label for="category">Tax*</label>
-                                <select name="tax" id="category" class="form-control">
+                                <select name="tax" id="category"
+                                    class="form-control @error('tax') is-invalid @enderror">
                                     <option>Please Select</option>
                                     @foreach ($tax as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name   }} - {{$item->percentage}} %</option>
+                                        <option value="{{ $item->id }}">{{ $item->name }} - {{ $item->percentage }} %
+                                        </option>
                                     @endforeach
                                 </select>
+                                @error('tax')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
 
                         </div>
 
                         <div class="form-row">
-                           
+
                             <div class="form-group col-md-4 col-sm-12">
                                 <label for="image">Primary Image*</label>
                                 <input accept="image/*" value="{{ old('image') }}" type="file" class="form-control"
                                     id="image" name="image">
                             </div>
-    
-                              
-                            
+
+
+
                         </div>
-                        
-                            {{-- </div> --}}
-                            
+
+                        {{-- </div> --}}
+
 
 
                         <div class="form-row">

@@ -73,7 +73,7 @@
                                                     </div>
                                                     <input type="number" name="phone" class="form-control rounded-0 " value="{{old('contact_id')}}" placeholder="Contact ID." id="c_id">
                                                 </div>
-                                                @error('contact_id')
+                                                @error('phone')
                                                     <span class="text-danger">{{$message}}</span><br>
                                                 @enderror  
                                             </div>
@@ -91,7 +91,7 @@
                                                         value="" placeholder="City">
                                                       
                                                 </div>
-                                                @error('email')
+                                                @error('city')
                                                     <span class="text-danger">{{$message}}</span><br>
                                                 @enderror
                                             </div>

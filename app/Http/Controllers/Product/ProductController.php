@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Product;
 
-use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\ProductCategory;
-use App\Models\Supplier;
 use App\Models\Tax;
+use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -58,6 +58,10 @@ class ProductController extends Controller
     }
     function productformsubmit(Request $req)
     {
+        $req->validate([
+            'category' => 'required|exists:product_categories,id',
+           
+         ]);
           $product=new Product();
           $product->name=$req->name;
           $product->product_category_id=$req->category;
