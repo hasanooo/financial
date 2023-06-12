@@ -58,6 +58,21 @@ class EMIController extends Controller
 
     public function SaleSub(Request $request)
     {
+
+        $request->validate([  
+            'date'=>'required|date',
+            'customer'=>'required|numeric',
+            'product'=>'required|numeric',
+            'discount'=>'required|numeric',
+            'receive_amount'=>'required|numeric',
+            'emi_rate'=>'required|numeric',
+            'emi_quantity'=>'required|numeric',
+        ], [
+            'date.required' => 'Please select any date!',
+            'customer.required' => 'Please select customer first!',
+            'product.required' => 'You do not select any product!',
+        ]);
+
         $sale = new EMI();
         $random_number = rand(1, 1000);
         $random_string = Str::random(4);
@@ -103,6 +118,15 @@ class EMIController extends Controller
 
     public function CollectSub(Request $req)
     {
+
+        $req->validate([  
+            'amount'=>'required|numeric',
+            'emi_id'=>'required|numeric',
+        ], [
+            'amount.required' => 'Please provide EMI payable amount!',
+            'emi_id.required' => 'Please select payable invoice!',
+        ]);
+
         $payment = new SellingPayment();
         $payment->e_m_i_id = $req->emi_id;
         $payment->amount_paid = $req->amount;

@@ -54,12 +54,16 @@
                                                 <label class="control-label col-4"><b>Invoice</b></label>
                                                 <div class="col-md-8">
                                                     <select name="emi_id" id="mySelect" class="form-control">
-                                                        <option value="0">Select Invoice</option>
+                                                        <option value="">Select Invoice</option>
                                                         @foreach ($invoice as $i )
                                                         <option value="{{$i->id}}">{{$i->invoice}}</option>
                                                         @endforeach
                                                     </select>
+                                                    @error('emi_id')
+                                                    <span class="text-danger">{{$message}}</span><br>
+                                                    @enderror
                                                 </div>
+                                                
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-4">Customer</label>
@@ -83,7 +87,7 @@
                                             <div class="form-group row">
                                                 <label class="control-label col-md-4">Last EMI collection date</label>
                                                 <div class="col-md-8">
-                                                    <span id="last-emi-collection-date"><input type="text" class="form-control" name="last_date" id="last-date" value=""></span>
+                                                    <span id="last-emi-collection-date"><input type="text" class="form-control" name="last_date" id="last-date" value="N/A" readonly></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -99,6 +103,9 @@
                                                 <div class="col-md-8 ">
                                                     <input type="number" name="amount" id="dateField" required="" class="form-control dateField" placeholder="">
                                                 </div>
+                                                @error('amount')
+                                                    <span class="text-danger">{{$message}}</span><br>
+                                                @enderror
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-4">Payment Method</label>
