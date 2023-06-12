@@ -305,6 +305,12 @@
                                 <p>Purchase Reoprts</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('emi.index')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>EMI Sale Reoprts</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -318,7 +324,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                            <a href="{{route('emi.sale.index')}}" class="nav-link">
                                 <i class="fas fa-plus nav-icon"></i>
                                 <p>New EMI sale</p>
                             </a>
@@ -330,7 +336,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>EMI collection</p>
                             </a>
