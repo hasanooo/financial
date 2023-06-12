@@ -20,11 +20,14 @@
                     <p> <span style="font-weight: bold;"> Address: {{$invoice->purchase_invoice_supplier->city}}</span>
                     </p>
                 </div>
-                <div class="col-4" style="text-align: end;">
+                
+            </div>
+            <div class="row">
+                <div class="col-4">
                     <p> <span style="font-weight: bold;"> Date:</span>
                         {{$invoice->purchase_date}}</p>
                 </div>
-            </div>
+            </div>    
             <div class="row">
                 <div class="col-12">
                     <p>Products:</p>
@@ -41,34 +44,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               @foreach ($invoice->purchase_invoice_purchase as $i=>$item)
+                            @foreach ($invoice->purchase_invoice_purchase as $i => $item)
                                 <tr class="table-secondary">
                                     <th scope="row">{{$i+1}}</th>
+                        
                                     <td>{{$item->purchase_product->name}}</td>
                                     <td>{{$item->purchase_qtn}}</td>
+                                    <td>
 
-                                    {{--<td> 
-                                        @if ($invoice->purchase_invoice_purchase_return != null)
-                                            @php
-                                                $total_return_qty = 0;
-                                            @endphp
-                                            @foreach ($invoice->purchase_invoice_purchase_return as $inp)
-                                                @if ($item->purchase_product_price->id == $inp->product_price_id)
-                                                    @php
-                                                        $total_return_qty += $inp->return_qty;
-                                                    @endphp
-                                                @endif
-                                            @endforeach
-                                            {{ $total_return_qty }}
-                                        @endif
-                                    </td>--}}
-                                    <td></td>
-                                    <td>{{$item->purchase_product->purchase_price}}</td>
+                                        @php
+                                            $return= $item->purchase_purchase_invoice->purchase_invoice_purchase_return->where('product_id',$item->product_id)->where('purchase_invoice_id',$item->purchase_invoice_id)
+                                            ->pluck('return_qty')->sum();
+                                        @endphp
+                                   
+                                        {{$return}}
 
+                                    </td>
+                                
+                                    <td>
+                                        @php
+                                            $total = $item->purchase_qtn * $item->purchase_product->purchase_price;
+                                        @endphp
+                                        {{$total}}
+                                    </td>
                                 </tr>
-                                @endforeach
-
-
+                            @endforeach
 
                             </tbody>
 
@@ -86,7 +86,7 @@
                                 <tr class="text-white" style="background-color:#0d5e8b;">
                                     <th scope="col">#</th>
                                     <th scope="col">Date</th>
-                                    <th scope="col">Amount</th>
+                                    <th scope="col">Amount Paid</th>
                                     <th scope="col">Payment mode</th>
                                     <th scope="col">Payment note</th>
 
@@ -115,7 +115,7 @@
                         <table class="table table-secondary">
                             <tbody>
                                 <tr>
-                                    <th>Toatl:</th>
+                                    <th>Total:</th>
                                     <td></td>
                                     <td style="text-align:end"> <i class="fa-solid fa-bangladeshi-taka-sign"></i>
                                         {{$invoice->payable_amount}}</td>
@@ -131,7 +131,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Toatl Paid:</th>
+                                    <th>Total Paid:</th>
                                     <td></td>
                                     <td style="text-align:end"><i class="fa-solid fa-bangladeshi-taka-sign"></i>
                                         {{ $invoice->purchase_invoice_purchase_payment->pluck('amount_paid')->sum() }}

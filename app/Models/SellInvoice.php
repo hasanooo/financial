@@ -15,5 +15,9 @@ class SellInvoice extends Model
     {
         return $this->hasMany(SellingPayment::class);
     }
+    public function invoice_sale()
+    {
+        return $this->hasMany(SellingProduct::class);
+    }
     use HasFactory;
 }

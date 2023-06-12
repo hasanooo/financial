@@ -403,6 +403,7 @@
                             jQuery('#price').val(res.price);
                             jQuery('#total').val(res.price);
                             jQuery('#payable_amount').val(res.price); 
+                            jQuery('#due').val(res.price); 
 
 
                             
@@ -448,6 +449,26 @@
 
                                 buttonp.removeAttribute('disabled');
                             });
+
+
+    //     $(document).on('keyup', '#exampleModal', function() {
+    //     let service_name = $('#service_name').val();
+    //     let pay_amount = $('#p_price').val();
+    //     let due_amount = $('#s_price').val();
+    //     if (service_name==''){
+    //         $('#alert1_msg').text('Service name is empty!');
+    //         $('#payment_submit').attr('disabled', true);
+    //     }
+    //     else if (parseFloat(pay_amount) > parseFloat(due_amount)) {
+    //         $('#alert_msg').text('Your sell price is smaller than purchase price!');
+    //         $('#payment_submit').attr('disabled', true);
+    //     } else {
+    //         $('#alert_msg').text('');
+    //         $('#alert1_msg').text('');
+    //         $('#payment_submit').attr('disabled', false);
+    //     }
+
+    // });
 
         });
         
