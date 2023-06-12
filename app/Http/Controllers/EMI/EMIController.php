@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\SellingPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class EMIController extends Controller
 {
@@ -33,6 +34,25 @@ class EMIController extends Controller
         // return view('Admin.Hospital.assistantpartial')->with('v', $t);
         return response()->json([
             'price' => $doctor->selling_price,
+        ]);
+    }
+    function InvoiceSelect(Request $req)
+    {
+        $inv = EMI::where('id', $req->q)->first();
+        $paid = $inv->Selling->pluck('amount_paid')->sum();
+        $sum = ($inv->with_profit) + ($inv->paid_amount);
+        $due = $sum - $paid ;
+        $customer = $inv->Customer;
+        $name= $customer->name;
+        $l = $inv->Selling()->latest()->first();
+        $last_date = $l->created_at;
+        $format = Carbon::parse($last_date)->format('Y-m-d');
+        // return view('Admin.Hospital.assistantpartial')->with('v', $t);
+        return response()->json([
+            'emi' => $inv->emi_amount,
+            'due' => $due,
+            'last' => $format,
+            'customer' => $name,
         ]);
     }
 
@@ -74,4 +94,23 @@ class EMIController extends Controller
         return redirect()->route('emi.index');
         
     }
+    public function CollectIndex()
+    {
+        $invoice = EMI::all();
+
+        return view('Admin.emi.collect',compact('invoice'));
+    }
+
+    public function CollectSub(Request $req)
+    {
+        $payment = new SellingPayment();
+        $payment->e_m_i_id = $req->emi_id;
+        $payment->amount_paid = $req->amount;
+        $payment->payment_method = 'cash';
+        $payment->payment_account = "none";
+        $payment->payment_note = 'none';
+        $payment->save();
+        return redirect()->back();
+    }
+    
 }

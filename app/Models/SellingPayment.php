@@ -12,4 +12,9 @@ class SellingPayment extends Model
     {
         return $this->belongsTo(SellingPayment::class,'sell_invoice_id');
     }
+
+    public function EMI()
+    {
+        return $this->belongsTo(EMI::class);
+    }
 }
