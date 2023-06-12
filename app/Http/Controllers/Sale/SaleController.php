@@ -20,6 +20,16 @@ class SaleController extends Controller
     }
     function saleformsubmit(Request $req)
     {
+
+        $req->validate([
+            'customer' => 'required|numeric',
+            
+         ], [
+            'customer.required' => 'Please select a customer!',
+           
+         ]);
+
+        
         $invoice= new SellInvoice();
         $b = rand(1, 1000);
         $sss = Str::random(4);
