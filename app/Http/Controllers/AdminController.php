@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\SellInvoice;
 use App\Models\PurchaseInvoice;
 use App\Models\EMI;
+use App\Models\SellingPayment;
 
 class AdminController extends Controller
 {
@@ -50,6 +51,10 @@ class AdminController extends Controller
             ->sum('payable_amount');
         $monthlyIncome = $current_month_sell - $current_month_purchase;
 
+        $total_EMI = EMI::sum('emi_amount');
+        $total_paid = EMI::sum('paid_amount');
+        $sum = SellingPayment::whereNotNull('e_m_i_id')->sum('amount_paid');
+        $rec_amount = ($total_EMI + $total_paid) - $sum;
         $sales = [];
         $purchases = [];
         $months = ["January", "February", "March", "April", "May", "June", "July", "August", "September"];
@@ -74,7 +79,8 @@ class AdminController extends Controller
             'current_month_sell',
             'current_month_purchase',
             'todaysIncome',
-            'monthlyIncome'
+            'monthlyIncome',
+            'rec_amount'
 
         ));
     }

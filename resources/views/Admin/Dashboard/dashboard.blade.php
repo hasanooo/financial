@@ -86,7 +86,7 @@ Home
                     <div class="info px-3 bg-light" style="padding-top: 5px !important; padding-left: 5px !important;">
                         <h5 style="margin-top: 0 !important; padding-top: 0!important;">Liabilities</h5>
                         <p style="padding-top: 0 !important; font-size: 12px !important;"><b>Payable Due: 0.00 TK</b></p>
-                        <p style="padding-top: 0 !important; margin-top: -5px !important; font-size: 12px !important;"><b>Receivable Due: 5,561,856.60 TK</b></p>
+                        <p style="padding-top: 0 !important; margin-top: -5px !important; font-size: 12px !important;"><b>Receivable Due: {{round($rec_amount)}} TK</b></p>
                     </div>
                 </div>
             </div>
