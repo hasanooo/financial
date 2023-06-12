@@ -112,5 +112,16 @@ class EMIController extends Controller
         $payment->save();
         return redirect()->back();
     }
+
+    public function printReport($id){
+        $invoice=EMI::find($id);
+        // $invoice=ServiceSale::find($id);
+        $customer=$invoice->Customer;
+        $payments=$invoice->Selling;
+        $totalpayment = $payments->pluck('amount_paid')->sum();
+        $total = ($invoice->with_profit) + ($invoice->paid_amount);
+        $services = $invoice->MultiService;
+        return view('Admin.emi.invoice_pdf', compact('invoice','customer','total','payments','totalpayment'));
+    }
     
 }
