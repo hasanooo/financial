@@ -19,7 +19,7 @@
                     <h6>Supplier: {{$invoice->purchase_invoice_supplier->name}}</h6>
                     <h6>Business Location: BD Pet Care</h6>
                 </div>
-                <div class="col-12">
+                <div class="col-12 table-responsive">
                     <table class="table">
                         <thead>
                             <tr class="text-white" style="background-color:#0d5e8b;">
