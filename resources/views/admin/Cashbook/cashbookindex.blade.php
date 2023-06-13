@@ -15,13 +15,13 @@
             <div class="col-12 mt-3">
 
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-2">
                         <a href="{{ route('cashbook.thismonth.index') }}" class="btn btn-sm btn-warning">This Month</a>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-2">
                         <a href="{{ route('cashbook.thiscategory.index') }}" class="btn btn-sm btn-success">Debit Category</a>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-2">
                         <a href="{{ route('cashbook.thiscategory.credit') }}" class="btn btn-sm btn-success">Credit Category</a>
                     </div>
 
@@ -67,60 +67,63 @@
                 </div>
             </div>
 
-            <div style="display: flex;">
-            <table class="table table-bordered table-striped my-3 k_search text-center">
-                <!-- First table content -->
-                <thead>
-                    <tr class="text-center">
-                        <th colspan="2"></th>
-                        <th>Debit</th>
-                    </tr>
-                    <tr>
-                        <th>SL</th>
-                        <th>Date</th>
-                        <th>Debit Category</th>
-                        <th>Particular Details</th>
-                        <th>Cash</th>
-                        <th></th>
-                       
-                    </tr>
-
-                </thead>
-                <tbody>
-                    @php
-                        $debittotalcash=0;
-                        
-                    @endphp
-                    @foreach ($debit as $key => $d)        
-                    <tr>
-                        <td>{{ $key+1 }}</td>
-                        <td>{{ $d->date }}</td>
-                        <td>{{ $d->DCategory->name }}</td>
-                        <td>{{ $d->particuler }}</td>
-                        <td>
+            <div class="row" style="display: flex;">
+                <div class="col-12 col-sm-6 table-responsive">
+                    <table class="table table-bordered table-striped my-3 k_search text-center">
+                        <!-- First table content -->
+                        <thead>
+                            <tr class="text-center">
+                                <th colspan="2"></th>
+                                <th>Debit</th>
+                            </tr>
+                            <tr>
+                                <th>SL</th>
+                                <th>Date</th>
+                                <th>Debit Category</th>
+                                <th>Particular Details</th>
+                                <th>Cash</th>
+                                <th></th>
+                               
+                            </tr>
+        
+                        </thead>
+                        <tbody>
                             @php
-                             $debittotalcash += $d->cash
+                                $debittotalcash=0;
+                                
                             @endphp
-                            {{$d->cash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
-                        </td>
-                    </tr>
-                    @endforeach
-                    <tr class="text-center">
-                        <th>Total</th>
-                        <th colspan="3"></th>
-                        <th>{{$debittotalcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></th>
-                        
-                    </tr>
-                    <tr class="text-center">
-                        <th colspan="2">Debit Balance</th>
-                        <th colspan="3"></th>
-                        
-
-                    </tr>
-
-                </tbody>
-            </table>
-
+                            @foreach ($debit as $key => $d)        
+                            <tr>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $d->date }}</td>
+                                <td>{{ $d->DCategory->name }}</td>
+                                <td>{{ $d->particuler }}</td>
+                                <td>
+                                    @php
+                                     $debittotalcash += $d->cash
+                                    @endphp
+                                    {{$d->cash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                                </td>
+                            </tr>
+                            @endforeach
+                            <tr class="text-center">
+                                <th>Total</th>
+                                <th colspan="3"></th>
+                                <th>{{$debittotalcash}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></th>
+                                
+                            </tr>
+                            <tr class="text-center">
+                                <th colspan="2">Debit Balance</th>
+                                <th colspan="3"></th>
+                                
+        
+                            </tr>
+        
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="col-12 col-sm-6 table-responsive">
                 <table class="table table-bordered table-striped my-3 k_search text-center">
                     <!-- Second table content -->
 
@@ -176,6 +179,7 @@
                         
                     </tbody>
                 </table>
+            </div>
             </div>
 
         </div>

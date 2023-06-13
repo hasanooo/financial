@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-
+            <div class="table-responsive">
             <table class="table table-bordered table-striped my-3 k">
                 <thead>
                     <tr>
@@ -92,6 +92,7 @@
                 </tbody>
             </table>
 
+        </div>
             <div>
                 <p>Showing 1 to 2 of 2 entries</p>
             </div>
