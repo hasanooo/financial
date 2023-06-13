@@ -44,6 +44,9 @@ Credit Create
                                     </div>
                                     <input type="date" name="date" class="form-control" style="background-color:whitesmoke;" id="" value="">
                                 </div>
+                                @error('date')
+                                    <span class="text-danger">{{$message}}</span><br>
+                                @enderror
                                
                             </div>
 
@@ -63,6 +66,9 @@ Credit Create
                                   
 
                                 </div>
+                                @error('c_category_id')
+                                    <span class="text-danger">{{$message}}</span><br>
+                                @enderror
                             </div>
 
                            
@@ -91,6 +97,9 @@ Credit Create
                                 </div>
                                 <input type="number" name="cash" class="form-control" style="background-color:whitesmoke;" id="" value="">
                             </div>
+                            @error('cash')
+                                <span class="text-danger">{{$message}}</span><br>
+                            @enderror
                         
                         </div>
                     </div>

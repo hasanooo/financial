@@ -79,9 +79,8 @@ Add Purchases
                         <div class="col-md-12">
                             <div class="card-body">
                                 <div class="row alert-success">
-                                    <div class="form-group col-md-12 col-sm-12 mt-3">
-                                        <i class="fa fa-search"></i>
-                                        <label for="">Search Product:*</label>
+                                    <div class="form-group col-md-12  mt-3">
+                                    
                                         <select name="product_id" id="mySelect" class="form-control">
                                             <option value="">Enter Product name / SKU / Scan bar code </option>
                                             @foreach($product as $item)
