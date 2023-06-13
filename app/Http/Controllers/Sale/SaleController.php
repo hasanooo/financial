@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\SellingPayment;
 use App\Models\SellingProduct;
 use App\Models\SellInvoice;
+use App\Models\SellingReturn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 class SaleController extends Controller
@@ -153,4 +154,42 @@ class SaleController extends Controller
         $invoice=SellInvoice::where('id',$req->id)->first();
         return view('Admin.sale.saleview')->with('in_id',$invoice);
     }
+
+    function salereturn($id)
+    {
+        //    if (is_null($this->user) || !$this->user->can('sale.view')) {
+        //       abort('403', 'Unauthorized access');
+        //    }
+       $in = SellInvoice::where('id', $id)->first();
+       return view('Admin.Sale.sale_return', compact('in'));
+    }
+
+    protected function SaleReturnSubmit(Request $req, $id)
+    {
+
+
+        $p_price = $req->sale_id;
+        foreach ($p_price as $i => $item) {
+            if ($req->return_qty[$i]) {
+                $sale = SellingProduct::where('id', $item)->first();
+                $update_qty = array(
+                'qty' => $sale->qty - $req->return_qty[$i],
+                );
+                $updated_qty = SellingProduct::where('id', $item)->update($update_qty);
+                if ($updated_qty) {
+                $s_return = new SellingReturn();
+                $s_return->sell_invoice_id = $id;
+                $s_return->product_id = $req->product_id[$i];
+                $s_return->return_qty = $req->return_qty[$i];
+                $s_return->return_price = $req->return_price[$i];
+
+                if ($s_return) {
+                    $s_return->save();
+                }
+                }
+            }
+        }
+        return redirect()->route('sale.list');
+    }
+
 }

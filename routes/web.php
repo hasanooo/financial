@@ -64,14 +64,22 @@ Route::get('/salelist' ,[SaleController::class, 'salelist'])->name('sale.list');
 Route::get('/saleeditform/{id}' ,[SaleController::class, 'saleedit'])->name('sale.edit.form');
 Route::post('/saleeditformsubmit' ,[SaleController::class, 'saleeditformsubmit'])->name('sale.edit.form.submit');
 Route::get('/saleview/{id}' ,[SaleController::class, 'saleview'])->name('sale.view');
+Route::get('/sale/returnsale/{id}', [SaleController::class, 'salereturn'])->name('salereturn');
+Route::post('/sale/returnSub/{id}',[SaleController::class,'SaleReturnSubmit'])->name('sale.return');
+
+
 //Tax
 Route::get('/taxhome' ,[TaxController::class, 'taxhome'])->name('taxhome');
 
 // EMI Sale
 Route::get('/emi/index',[EMIController::class,'Index'])->name('emi.index');
+Route::get('/emi/collect/index',[EMIController::class,'CollectIndex'])->name('collect.index');
 Route::get('/emi/sale/index',[EMIController::class,'SaleIndex'])->name('emi.sale.index');
 Route::get('/emi/sale/select',[EMIController::class,'ProductSearch'])->name('sale.emi.select');
+Route::get('/emi/invoice/select',[EMIController::class,'InvoiceSelect'])->name('emi.invoice.select');
 Route::post('/emi/sale/submit',[EMIController::class,'SaleSub'])->name('sale.emi.sub');
+Route::post('/emi/collect/submit',[EMIController::class,'CollectSub'])->name('emi.collect.sub');
+Route::get('/report/print/{id}', [EMIController::class, 'PrintReport'])->name('print.report');
 
 
 Route::post('/taxformsubmit' ,[TaxController::class, 'formsubmit'])->name('tax.formsubmit');
@@ -154,3 +162,4 @@ Route::get('/return/add_to_cash',[PurchaseController::class,'AddToCash'])->name(
 Route::get('/return/product/{id}',[PurchaseController::class,'ReturnList'])->name('return.product');
 
 Route::get('/purchase/search',[PurchaseController::class,'purchase_search'])->name('purchase.search');
+

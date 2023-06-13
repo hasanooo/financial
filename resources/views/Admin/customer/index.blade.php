@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col-12">
-                <h3>Suppliers Info <span style="font-size: 12px;color:rgb(75, 95, 75)"> View Suppliers
+                <h3>Customers Info <span style="font-size: 12px;color:rgb(75, 95, 75)"> View Customers
                         Information</span></h3>
             </div>
         </div>
@@ -73,7 +73,7 @@
                                                     </div>
                                                     <input type="number" name="phone" class="form-control rounded-0 " value="{{old('contact_id')}}" placeholder="Contact ID." id="c_id">
                                                 </div>
-                                                @error('contact_id')
+                                                @error('phone')
                                                     <span class="text-danger">{{$message}}</span><br>
                                                 @enderror  
                                             </div>
@@ -91,7 +91,7 @@
                                                         value="" placeholder="City">
                                                       
                                                 </div>
-                                                @error('email')
+                                                @error('city')
                                                     <span class="text-danger">{{$message}}</span><br>
                                                 @enderror
                                             </div>
