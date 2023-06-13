@@ -54,7 +54,8 @@ class CashbookController extends Controller
 
     public function ThisDebitCategory()
     {
-        $category = DCategory::where('id',1)->first();
+        // $category = DCategory::where('id',1)->first();
+        $category = DCategory::select('id')->first();
         $cat = DCategory::all();
         $d_category = $category->DebitCash;
         $category_sum = $d_category->pluck('cash')->sum();
@@ -63,6 +64,12 @@ class CashbookController extends Controller
 
     public function ThisSelectDebit(Request $request)
     {
+        $request->validate([  
+            'cat'=>'required|numeric',
+        ], [
+            'cat.required' => 'You do not select any category!',
+        ]);
+
         $category = DCategory::where('id', $request->cat)->first();
         $cat = DCategory::all();
         $d_category = $category->DebitCash;
@@ -73,7 +80,9 @@ class CashbookController extends Controller
     // Credit Category view
     public function ThisCreditCategory()
     {
-        $category = CCategory::where('id',1)->first();
+        // $category = CCategory::where('id',1)->first();
+        $category = CCategory::select('id')->first();
+
         $cat = CCategory::all();
         $c_category = $category->credit;
         $category_sum = $c_category->pluck('cash')->sum();
@@ -82,6 +91,11 @@ class CashbookController extends Controller
 
     public function ThisSelectCredit(Request $request)
     {
+        $request->validate([  
+            'cat'=>'required|numeric',
+        ], [
+            'cat.required' => 'You do not select any category!',
+        ]);
         $category = CCategory::where('id', $request->cat)->first();
         $cat = CCategory::all();
         $c_category = $category->credit;
