@@ -36,6 +36,7 @@ Route::get('/dashboard' ,[AdminController::class,'dashboard'])->name('dashboard'
 Route::get('/' ,[ProfileController::class,'Login'])->name('login');
 Route::post('/' ,[ProfileController::class,'LoginSubmit'])->name('profile.loginsubmit');
 Route::post('/changepassword/{id}',[ProfileController::class,'ChangePassword'])->name('changepassword');
+Route::get('/logout', [ProfileController::class, 'logout'])->name('logout');
 //supplier
 Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier');
 Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
