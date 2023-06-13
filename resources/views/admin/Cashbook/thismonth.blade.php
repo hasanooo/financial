@@ -87,7 +87,8 @@
                 </div>
             </div>
 
-            <div style="display: flex;">
+            <div class="row" style="display: flex;">
+                <div class="col-12 col-sm-6">
             <table class="table table-bordered table-striped my-3 k_search text-center">
                 <!-- First table content -->
                 <thead>
@@ -134,7 +135,9 @@
 
                 </tbody>
             </table>
+                </div>
 
+                <div class="col-12 col-sm-6">
             <table class="table table-bordered table-striped my-3 k_search text-center">
                 <!-- Second table content -->
 
@@ -178,6 +181,7 @@
                     
                 </tbody>
             </table>
+                </div>
             </div>
 
         </div>

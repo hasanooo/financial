@@ -35,7 +35,7 @@ class SaleController extends Controller
         $b = rand(1, 1000);
         $sss = Str::random(4);
         $invoice->invoice="bengal" . $b . $sss;
-        $invoice->total_amount=$req->total_amount;
+        $invoice->total_amount=$req->amount;
         $invoice->customer_id=$req->customer;
         $invoice->shipping_details=$req->shdetails;
         $invoice->sellnote=$req->sellnote;
