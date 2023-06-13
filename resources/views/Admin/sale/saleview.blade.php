@@ -41,8 +41,7 @@
                                
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Return Quantity</th>
-                                <th scope="col">Unit Price</th>
-                                <th scope="col">Discount</th>
+                                <th scope="col">Price</th>
                                 
                                 <th scope="col">Subtotal</th>
                             </tr>
@@ -53,16 +52,16 @@
                                     <th scope="row">1</th>
                                     <td>{{ $sale->sale_product->name }}</td>
                                     
-                                    <td>{{ $sale->quantity }}</td>
+                                    <td>{{ $sale->qty }}</td>
 
                                     <td>
-                                        {{-- @if ($in_id->sale_invoice_sale_return != null)
+                                        @if ($in_id->sale_invoice_sale_return != null)
                                             @foreach ($in_id->sale_invoice_sale_return as $s)
-                                                @if ($sale->sale_productprice->id == $s->product_price_id)
+                                                @if ($sale->sale_product->id == $s->product_id)
                                                     {{ $s->return_qty }}
                                                 @endif
                                             @endforeach
-                                        @endif --}}
+                                        @endif 
                                     </td>
 
 
@@ -117,7 +116,6 @@
                                     
                                     
                                     <td>{{ $pit }} </td>
-                                    <td>{{ $sub_total }} </td>
                                 </tr>
                             @endforeach
                         </tbody>

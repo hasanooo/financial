@@ -64,6 +64,10 @@ Route::get('/salelist' ,[SaleController::class, 'salelist'])->name('sale.list');
 Route::get('/saleeditform/{id}' ,[SaleController::class, 'saleedit'])->name('sale.edit.form');
 Route::post('/saleeditformsubmit' ,[SaleController::class, 'saleeditformsubmit'])->name('sale.edit.form.submit');
 Route::get('/saleview/{id}' ,[SaleController::class, 'saleview'])->name('sale.view');
+Route::get('/sale/returnsale/{id}', [SaleController::class, 'salereturn'])->name('salereturn');
+Route::post('/sale/returnSub/{id}',[SaleController::class,'SaleReturnSubmit'])->name('sale.return');
+
+
 //Tax
 Route::get('/taxhome' ,[TaxController::class, 'taxhome'])->name('taxhome');
 
@@ -158,3 +162,4 @@ Route::get('/return/add_to_cash',[PurchaseController::class,'AddToCash'])->name(
 Route::get('/return/product/{id}',[PurchaseController::class,'ReturnList'])->name('return.product');
 
 Route::get('/purchase/search',[PurchaseController::class,'purchase_search'])->name('purchase.search');
+

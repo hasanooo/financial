@@ -75,38 +75,38 @@ class PurchaseController extends Controller
 
     function PurchaseAddSub(Request $req)
     {
-        // $req->validate(
-        //     [
-        //         'suplier_id' => 'required|numeric',
-        //         // 'reference_number' => 'required',
-        //         'pdate' => 'required|date',
-        //         // 'purchase_status' => 'required',
-        //         // 'location' => 'required',
-        //         'purchase_price' => 'required|numeric|min:0',
-        //         'product_price_id.*' => 'required|numeric',
-        //         'p_qty.*' => 'required|numeric|min:1',
-        //         'current_unit_cost.*' => 'required|numeric|min:0',
-        //         'increment_cost.*' => 'required|numeric|min:0',
-        //         'discount.*' => 'required|numeric|min:0',
-        //         'per_unit_cost.*' => 'required|numeric|min:0',
-        //         'total_amount_paid' => 'required|numeric|min:0',
-        //         'payment_method' => 'required',
-        //         // 'payment_note' => 'required',
-        //     ],
+        $req->validate(
+            [
+                'supplier_id' => 'required',
+              
+                'pdate' => 'required|date',
+                // 'purchase_status' => 'required',
+                // 'location' => 'required',
+                'purchase_price' => 'required|numeric|min:0',
+                'product_price_id.*' => 'required|numeric',
+                'p_qty.*' => 'required|numeric|min:1',
+                'current_unit_cost.*' => 'required|numeric|min:0',
+                'increment_cost.*' => 'required|numeric|min:0',
+                'discount.*' => 'required|numeric|min:0',
+                'per_unit_cost.*' => 'required|numeric|min:0',
+                'total_amount_paid' => 'required|numeric|min:0',
+                'payment_method' => 'required',
+                // 'payment_note' => 'required',
+            ],
 
-        //     [
-        //         'suplier_id.required' => 'Please select a Supplier name !',
-        //         'reference_number.required' => 'Please provide a reference number!',
-        //         'purchase_status.required' => 'Please provide a purchase status!',
-        //         'pdate.required' => 'Please Select date!',
-        //         'location.required' => 'Please provide a location!',
-        //         'purchase_price.required' => 'Please show the total purchase!',
-        //         'total_amount_paid.required' => 'Please make a payment!',
-        //         'payment_method.required' => 'Please provide a location!',
-        //         'payment_note.required' => 'Please write a note!',
-        //     ]
+            [
+                'supplier_id.required' => 'Please select a Supplier name !',
+                'reference_number.required' => 'Please provide a reference number!',
+                'purchase_status.required' => 'Please provide a purchase status!',
+                'pdate.required' => 'Please Select date!',
+                'location.required' => 'Please provide a location!',
+                'purchase_price.required' => 'Please show the total purchase!',
+                'total_amount_paid.required' => 'Please make a payment!',
+                'payment_method.required' => 'Please provide a location!',
+                'payment_note.required' => 'Please write a note!',
+            ]
 
-        // );
+        );
         $p_invoice = new PurchaseInvoice();
         $random_number = rand(1, 1000);
         $random_string = Str::random(4);
