@@ -14,7 +14,7 @@
             <div class="row mb-3">
                 <div class="col-12 d-flex justify-content-end">
                     <!-- Button trigger modal -->
-                    <a href="">
+                    <a href="{{route('credit.create')}}">
                         <button type="button" class="btn btn-primary">
                             <i class="fa-solid fa-plus"></i> Add
                         </button>

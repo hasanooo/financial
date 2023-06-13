@@ -21,7 +21,7 @@
                             @csrf
                         <div class="input-group mb-3">
                             <select name="cat" id="mySelect" class="form-select form-control">
-                                <option value="1" selected>Select Credit Category</option>
+                                <option value="" selected>Select Credit Category</option>
                                 @foreach ($cat as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                 @endforeach
@@ -29,6 +29,9 @@
                             <button type="submit" class="input-group-text btn btn-sm bg-success text-light" href=""><i class="fa fa-2x fa-eye text-light"></i></button>
                             {{-- <button type="submit">save</button> --}}
                           </div>
+                          @error('cat')
+                                <span class="text-danger">{{$message}}</span><br>
+                            @enderror
                         </form>
 
                     </div>
