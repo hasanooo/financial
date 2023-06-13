@@ -21,7 +21,7 @@
      <td>
        
             <input disabled type="text"value="  {{ $product->selling_price }}"
-                class="form-control">
+                class="form-control price">
         
 
 

@@ -334,8 +334,14 @@
 
             $(document).on('click', '.delete-double', function(e) {
                 e.preventDefault();
+                var current_row = $(this).closest('tr');
+                var price = current_row.find('.price').val();
+                var amount= $('.atat').val();
+                 var final=amount-price;
+                 $('.atat').val(final);
                 var productId = $(this).closest('tr').data('data-double-id');
                 $(this).closest('tr').remove();
+               
 
             });
 
