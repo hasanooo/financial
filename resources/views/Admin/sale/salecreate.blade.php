@@ -134,83 +134,46 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="container">
-                                            <table class="  table col-md-12">
-
-
-                                                <tbody>
-
-
-
-
-                                                    <tr>
-                                                        <td>
-
-                                                            <div class="col-md-3 col-sm-12">
-                                                                <div class="row" style="flex-direction: column">
-                                                                    <div class="col-md-3 d-flex align-items-center">
-                                                                        ShippingDetails</div>
-                                                                    <div class="  col-md-12">
-                                                                        <input style="width: 150%" type="text"
-                                                                            name="shdetails" class="form-control"
-                                                                            placeholder="Shipping Details">
-                                                                        @error('shdetails')
-                                                                            <span class="text-danger">{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="col-md-3">
-                                                            <div class="col-md-3 col-sm-12">
-                                                                <div class="row" style="flex-direction: column">
-                                                                    <div class="col-md-3 d-flex align-items-center">
-                                                                        ShippingCharges</div>
-                                                                    <div class="col-sm-12">
-                                                                        <input type="text" style="width: 300%"
-                                                                            id="spc" name="shcharge"
-                                                                            class="form-control jkkk"
-                                                                            placeholder="Shipping Charges">
-                                                                        @error('shcharge')
-                                                                            <span class="text-danger">{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="col-md-12 col-sm-12">
-                                                                <div class="row" style="flex-direction: column">
-                                                                    <div class="col-md-3 d-flex align-items-center">
-                                                                        Sell Note </div>
-                                                                    <div class="col-md-12">
-                                                                        <div class="form-floating">
-                                                                            <textarea class="form-control " name="sellnote" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                                                            <label for="floatingTextarea">Sell
-                                                                                Note</label>
-                                                                            @error('sellnote')
-                                                                                <span
-                                                                                    class="text-danger">{{ $message }}</span>
-                                                                            @enderror
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-                                                    </tr>
-                                                </tbody>
-
-
-                                            </table>
-
-
+                                      <div class="container">
+                                        <div class="table-responsive">
+                                          <table class="table">
+                                            <tbody>
+                                              <tr>
+                                                <td class="col-md-4 col-sm-12">
+                                                  <div class="form-group">
+                                                    <label for="shdetails">Shipping Details</label>
+                                                    <input type="text" id="shdetails" name="shdetails" class="form-control" placeholder="Shipping Details">
+                                                    @error('shdetails')
+                                                      <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                  </div>
+                                                </td>
+                                                <td class="col-md-4 col-sm-12">
+                                                  <div class="form-group">
+                                                    <label for="shcharge">Shipping Charges</label>
+                                                    <input type="text" id="spc" name="shcharge" class="form-control" placeholder="Shipping Charges">
+                                                    @error('shcharge')
+                                                      <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                  </div>
+                                                </td>
+                                                <td class="col-md-4 col-sm-12">
+                                                  <div class="form-group">
+                                                    <label for="sellnote">Sell Note</label>
+                                                    <textarea class="form-control" id="sellnote" name="sellnote" placeholder="Leave a comment here"></textarea>
+                                                    @error('sellnote')
+                                                      <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                  </div>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
                                         </div>
+                                      </div>
                                     </div>
-
-                                </div>
+                                  </div>
+                                  
                                 <!--Div Ends here-->
 
                             </div>
