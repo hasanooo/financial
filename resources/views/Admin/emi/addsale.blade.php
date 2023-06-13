@@ -193,7 +193,7 @@
                                         {{@csrf_field()}}
                                         <div class="row">
 
-                                            <div class="col-8 row">
+                                            <div class="col-12 col-sm-8 row">
                                            
                                                 <div class="col-md-6">
                                                     <label>Customer:</label>
@@ -259,7 +259,7 @@
                                                     </div>
                                             </div>
 
-                                            <div class="col-4 row">
+                                            <div class="col-12 col-sm-4 row">
 
                                                 <div class="col-12">
                                                     <div class="input-group">
