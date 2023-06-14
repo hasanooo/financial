@@ -31,13 +31,11 @@ General Settings
             <div class="card-body">
                 <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <!--First Row -->
+                    <!-- First Row -->
                     <div class="form-row mt-3">
-                            
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">Company Name:*</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -45,10 +43,9 @@ General Settings
                             </div>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">Contact Name:*</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -56,25 +53,22 @@ General Settings
                             </div>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">Email:*</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <input type="text" name="email" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->email }}">
                             </div>
                         </div>
-                        
                     </div>
 
+                    <!-- Second Row -->
                     <div class="form-row mt-3">
-                            
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">Phone:*</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -82,10 +76,9 @@ General Settings
                             </div>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">Address Line 1:*</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -93,24 +86,22 @@ General Settings
                             </div>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">Address Line 2:</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <input type="text" name="address_2" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->address_2 }}">
                             </div>
                         </div>
-                        
                     </div>
 
+                    <!-- Third Row -->
                     <div class="form-row mt-3">
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">City:*</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -118,10 +109,9 @@ General Settings
                             </div>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">State:*</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -129,64 +119,47 @@ General Settings
                             </div>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">Zip Code:</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <input type="text" name="zip" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $setting->zip }}">
                             </div>
                         </div>
-                        
                     </div>
 
-                    <div class="row">
-                        <div class="form-row mt-1 col-4">
-                            <label for="inputSkills" class="col-form-label">Current Image</label>
+                    <!-- Image Row -->
+                    <div class="row mt-3">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <label for="inputSkills" class="form-label">Current Image</label>
                             <div class="col-sm-10">
-                                <img style="height: 75px; width: auto; background: white" class="img"
-                                src="/SettingImage/{{ $setting->image }}" alt="">
+                                <img style="height: 75px; width: auto; background: white" class="img" src="/SettingImage/{{ $setting->image }}" alt="">
                             </div>
-                          </div>
-    
-                        
-                            <div class="col-8 mt-5">
-                                
-                                <div class="input-group">
-                        
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                    <input type="file" name="image" class="form-control" style="background-color:whitesmoke;" id="" value="">
-                                </div>
-                            </div>
-                            
-                        
-                    </div>
-
-                    
-
-
-
-                    <div class="row mt-1">
-                        <div class="col-12 d-flex justify-content-end">
-                            <input type="submit"  value="Save"
-                            class="btn btn-primary mt-4 pr-4 pl-4" />
                         </div>
-                    
+                        <div class="col-lg-8 col-md-6 col-sm-12 mt-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                <input type="file" name="image" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                            </div>
+                        </div>
                     </div>
 
-                    
+                    <!-- Save Button Row -->
+                    <div class="row mt-3">
+                        <div class="col-12 d-flex justify-content-end">
+                            <input type="submit" value="Save" class="btn btn-primary mt-4 pr-4 pl-4" />
+                        </div>
+                    </div>
                 </form>
-
-
-
             </div>
         </div>
     </div>
 </section>
+
 
 
 @endsection
