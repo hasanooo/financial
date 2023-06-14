@@ -92,7 +92,7 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $d->date }}</td>
-                                <td>{{ $d->DCategory->name ?? 'N/A' }}</td>
+                                <td>{{ $d->DCategory->name ?? 'Account Receivable' }}</td>
                                 <td>{{ $d->particuler }}</td>
                                 <td>
                                     @php

@@ -386,7 +386,7 @@ class PurchaseController extends Controller
                         // Success
                         $debit = new DebitCash();
                         $debit->date = date('Y-m-d');
-                        $debit->particuler = "To Product Sale";
+                        $debit->particuler = "To Product Return";
                         $debit->cash = $req->retutn_price[$i];
                         $debit->save();
                         
