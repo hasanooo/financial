@@ -36,7 +36,7 @@
                                 <input type="hidden" value="{{$item->purchase_return_purchase_invoice->id}}" id="return_id">
                                 {{$item->purchase_return_purchase_invoice->invoice}}
                             </td>
-                            <td>{{$item->purchase_return_purchase_invoice->ref}}</td>
+                            <td></td>
                             <td>{{$item->purchase_return_purchase_invoice->purchase_invoice_supplier->name}}</td>
                             <td>{{$item->return_qty}}</td>
                             <td>{{$item->return_price}}</td>

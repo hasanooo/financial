@@ -11,6 +11,10 @@ use App\Models\PurchaseInvoice;
 use App\Models\PurchasePayment;
 use App\Models\PurchaseReturn;
 use App\Models\User;
+use App\Models\CCategory;
+use App\Models\CreditCash;
+use App\Models\DebitCash;
+use App\Models\DCategory;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -50,9 +54,11 @@ class PurchaseController extends Controller
         // }
         $s = Supplier::all();
         $product = Product::all();
+        $credit_category=CCategory::all();
         return view('Admin.purchase.addPurchase')
             ->with('ss', $s)
-            ->with('product', $product);
+            ->with('product', $product)
+            ->with('category_credit',$credit_category);
     }
 
     public function PurchaseEdit(Request $req)
@@ -145,6 +151,15 @@ class PurchaseController extends Controller
             }
             if ($p_payment) {
                 $p_payment->save();
+
+                $credit_create=new CreditCash();
+                $credit_create->c_category_id=$req->category;
+                $credit_create->date=date('Y-m-d');
+                $credit_create->particuler="By Product Purchase";
+                $credit_create->cash = $req->total_amount_paid;
+                $credit_create->save();
+               
+
             }
         }
 
@@ -317,6 +332,10 @@ class PurchaseController extends Controller
                 $p_payment->payment_account = "none";
                 $p_payment->payment_note = 'none';
                 $p_payment->save();
+
+                $credit_create = CreditCash::where('id',$req->id)->first();
+                $credit_create->cash = $pay_due;
+                $credit_create->update();
             }
 
             $duetotal = $duetotal - $pay_due;
@@ -327,18 +346,14 @@ class PurchaseController extends Controller
                 break;
             }
 
-            // $p_payment = new PurchasePayment();
-            // $p_payment->purchase_invoice_id = $pay->id;
-            // $p_payment->amount_paid = $req->pay_amount;
-            // $p_payment->payment_method = 'cash';
-            // $p_payment->payment_account = "none";
-            // $p_payment->payment_note = 'none';
-            // $p_payment->save();
         }
 
         return back();
         //return $req->invoice_id;
     }
+
+   
+
     protected function purchase_modal_partial(Request $req)
     {
         $invoice = PurchaseInvoice::where('id', $req->invoice_id)->first();
@@ -369,6 +384,12 @@ class PurchaseController extends Controller
 
                     if ($p_return->save()) {
                         // Success
+                        $debit = new DebitCash();
+                        $debit->date = date('Y-m-d');
+                        $debit->particuler = "To Product Return";
+                        $debit->cash = $req->retutn_price[$i];
+                        $debit->save();
+                        
                     }
                 }
             }
@@ -382,8 +403,9 @@ class PurchaseController extends Controller
         // if (is_null($this->user) || !$this->user->can('purchase.view')) {
         //     abort('403', 'Unauthorized access');
         // }
+        $category = DCategory::all();
         $return = PurchaseReturn::where('purchase_invoice_id', $id)->get();
-        return view('Admin.purchase.purchase_return_list', compact('return'));
+        return view('Admin.purchase.purchase_return_list', compact('return','category'));
     }
     protected function AddToCash(Request $req)
     {
@@ -401,6 +423,7 @@ class PurchaseController extends Controller
             $return->amount_paid = - ($req->paid_amount);
             if ($return) {
                 $return->save();
+               
                 return "success";
             }
         }
@@ -425,7 +448,7 @@ class PurchaseController extends Controller
 
         $PurchasePayment = PurchasePayment::where('purchase_invoice_id', $purchase_invoice->id)->delete();
 
-
+    
         $purchase = Purchase::where('purchase_invoice_id', $purchase_invoice->id)->delete();
 
 
@@ -433,29 +456,5 @@ class PurchaseController extends Controller
 
         return back();
     }
-    // public function deletePurchase(Request $request)
-    // {
-    //     $purchaseId = $request->input('id');
-    //     $purchase = Purchase::find($purchaseId);
-    //     $purchase_cost = $purchase->purchase_qtn * $purchase->current_unit_cost;
-    //     if ($purchase) {
-    //         $purchase_invoice = PurchaseInvoice::where('id', $purchase->purchase_invoice_id)->first();
-    //         $product_price = ProductPrice::where('id', $purchase->product_price_id)->first();
-    //         $product_price->qty = $product_price->qty - $purchase->purchase_qtn;
-    //         if($product_price->qty<0)
-    //         {
-    //             $product_price->qty =0;
-    //         }
-    //         $purchase_invoice->payable_amount = $purchase_invoice->payable_amount - $purchase_cost;
-    //         $purchase->delete();
-    //         $purchase_invoice->save();
-    //         $product_price->save();
-    //         $purchase_return = PurchaseReturn::where('purchase_invoice_id', $purchase->purchase_invoice_id)
-    //             ->where('product_price_id', $purchase->purchase_invoice_id)->delete();
-
-    //         return response()->json(['success' => true]);
-    //     } else {
-    //         return response()->json(['success' => false]);
-    //     }
-    // }
+    
 }
