@@ -59,7 +59,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-striped my-3 k_search text-center">
                     <thead>
-                        <tr>
+                        <tr class="text-white" style="background-color:#0d5e8b;">
                             <th>SL</th>
                             <th>Date</th>
                             <th>Debit Category</th>
@@ -73,9 +73,9 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $d->date }}</td>
-                                <td>{{ $d->DCategory->name }}</td>
+                                <td>{{ $d->DCategory->name ?? 'N/A' }}</td>
                                 <td>{{ $d->particuler }}</td>
-                                <td>{{ $d->cash }}$</td>
+                                <td>{{ $d->cash }}</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" href="{{ route('edit.debitcash.view',$d->id) }}">Edit</a>
                                     <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$d->id}}">Delete</a>

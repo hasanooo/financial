@@ -137,21 +137,21 @@
                                 <!-- Add your Debit dropdown menu items here -->
                                 <li class="nav-item">
                                     <a href="{{route('debit.index')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-list nav-icon"></i>
                                         <p>Debit Index</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a href="{{route('debit.create')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-plus nav-icon"></i>
                                         <p>Debit Add</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a href="{{route('debit.category')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-list-alt nav-icon"></i>
                                         <p>Debit Category</p>
                                     </a>
                                 </li>
@@ -171,21 +171,21 @@
 
                                 <li class="nav-item">
                                     <a href="{{route('credit.index')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-list nav-icon"></i>
                                         <p>Credit Index</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a href="{{route('credit.create')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-plus nav-icon"></i>
                                         <p>Credit Add</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a href="{{route('credit.category')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-list-alt nav-icon"></i>
                                         <p>Credit Category</p>
                                     </a>
                                 </li>
@@ -233,7 +233,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('taxhome')}}" class="nav-link">
-                                <i class="far fa-list-alt nav-icon"></i>
+                                <i class="far fa-dollar nav-icon"></i>
                                 <p>Tax</p>
                             </a>
                         </li>

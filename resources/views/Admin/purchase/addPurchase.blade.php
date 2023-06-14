@@ -57,6 +57,22 @@ Add Purchases
 
                         </div>
 
+                        <div class="col-md-4 col-sm-12">
+                            <label for="" class="form-label">Expense Category:*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-list"></i></span>
+                                </div>
+                                <select id="" name="category" class="form-control rounded-0" style="background-color:whitesmoke;">
+                                    <option value="">Please Select</option>
+                                    @foreach($category_credit as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                        </div>
+
 
                         
 
@@ -268,9 +284,10 @@ Add Purchases
 
             let total_purchase = 0;
             $('.total_amount').each(function() {
-                total_purchase += parseFloat($(this).val());
+                total_purchase += Math.round($(this).val());
             });
-            $('#total_purchase').val(total_purchase.toFixed(2));
+
+            $('#total_purchase').val(total_purchase);
         });
 
         function updateDateTime() {

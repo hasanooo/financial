@@ -66,17 +66,19 @@
                     <table class="table table-bordered table-striped my-3 k_search text-center">
                         <!-- First table content -->
                         <thead>
-                            <tr class="text-center">
+                            <tr class="text-center" style="background-color:whitesmoke;">
                                 <th colspan="2"></th>
                                 <th>Debit</th>
+                                <th></th>
+                                <th></th>
                             </tr>
-                            <tr>
+                            <tr class="text-white" style="background-color:#0d5e8b;">
                                 <th>SL</th>
                                 <th>Date</th>
                                 <th>Debit Category</th>
                                 <th>Particular Details</th>
                                 <th>Cash</th>
-                                <th></th>
+                                
                                
                             </tr>
         
@@ -90,7 +92,7 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $d->date }}</td>
-                                <td>{{ $d->DCategory->name }}</td>
+                                <td>{{ $d->DCategory->name ?? 'N/A' }}</td>
                                 <td>{{ $d->particuler }}</td>
                                 <td>
                                     @php
@@ -119,11 +121,12 @@
                     <!-- Second table content -->
 
                     <thead>
-                        <tr  class="text-center">
+                        <tr  class="text-center" style="background-color:whitesmoke;">
                             <th colspan="2"></th>
                             <th>Credit</th>
+                            <th></th>
                         </tr>
-                        <tr>
+                        <tr class="text-white" style="background-color:#0d5e8b;">
                             <th>Date</th>
                             <th>Category</th>
                             <th>Particular Details</th>
