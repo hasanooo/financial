@@ -31,13 +31,11 @@ System Settings
             <div class="card-body">
                 <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <!--First Row -->
+                    <!-- First Row -->
                     <div class="form-row mt-3">
-                            
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">Date Format:*</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -47,13 +45,11 @@ System Settings
                                     <option value="">mm-dd-YYYY (06-04-2023)</option>
                                     <option value="">MM-dd-YYYY (JUN-04-2023)</option>
                                     <option value="">dd-MM-YYYY (04-JUN-2023)</option>
-                                    
-
                                 </select>
                             </div>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="timezone" class="form-label">Time Zone:*</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -69,8 +65,7 @@ System Settings
                             </div>
                         </div>
 
-
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="currencyCode" class="form-label">Currency Code:*</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -82,118 +77,98 @@ System Settings
                                     <option value="EUR">EUR </option>
                                     <option value="GBP">GBP </option>
                                     <option value="BDT">BDT </option>
-                                   
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Row -->
+                    <div class="form-row mt-3">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <label for="currencySymbol" class="form-label">Currency Symbol:*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                </div>
+                                <select name="currencySymbol" id="currencySymbol" class="form-control" style="background-color: whitesmoke;">
+                                    <option value="">Select Currency Symbol</option>
+                                    <option value="$">$ - United States Dollar</option>
+                                    <option value="€">€ - Euro</option>
+                                    <option value="£">£ - British Pound Sterling</option>
+                                    <option value="৳">৳ - Bangladeshi Taka</option>
+                                    <!-- Add more currency symbol options as needed -->
                                 </select>
                             </div>
                         </div>
 
-                        
-                    </div>
-
-                    <div class="form-row mt-3">
-                            
-                    <div class="col-4">
-                        <label for="currencySymbol" class="form-label">Currency Symbol:*</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            </div>
-                            <select name="currencySymbol" id="currencySymbol" class="form-control" style="background-color: whitesmoke;">
-                                <option value="">Select Currency Symbol</option>
-                                <option value="$">$ - United States Dollar</option>
-                                <option value="€">€ - Euro</option>
-                                <option value="£">£ - British Pound Sterling</option>
-                                <option value="৳">৳ - Bangladeshi Taka</option>
-                                <!-- Add more currency symbol options as needed -->
-                            </select>
-                        </div>
-                    </div>
-
-
-
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">Currency (Symbol/Code):*</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <select name="" id="" class="form-control" style="background-color: whitesmoke;">
-                                <option value="">Select Currency Type</option>
-                                <option value="">Currency Symbol</option>
-                                <option value="">Currency Code</option>
-                               
-                            </select>
+                                    <option value="">Select Currency Type</option>
+                                    <option value="">Currency Symbol</option>
+                                    <option value="">Currency Code</option>
+                                </select>
                             </div>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">Currency Position</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <select name="" class="form-control" style="background-color:whitesmoke;" id="">
-
                                     <option>Please Select</option>
                                     <option value="">Suffix</option>
-                                    <option Value="">Prefix</option>
+                                    <option value="">Prefix</option>
                                 </select>
                             </div>
                         </div>
-                        
                     </div>
 
+                    <!-- Third Row -->
                     <div class="form-row mt-3">
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">IS RTL?</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <select name="" class="form-control" style="background-color:whitesmoke;" id="">
-
                                     <option>Please Select</option>
                                     <option value="">Yes</option>
-                                    <option Value="">No</option>
+                                    <option value="">No</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <label for="" class="form-label">First Transaction Date:*</label>
                             <div class="input-group">
-                    
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <input type="date" name="" class="form-control" style="background-color:whitesmoke;" id="" value="">
                             </div>
                         </div>
-
-                        
                     </div>
 
-
+                    <!-- Save Button Row -->
                     <div class="row mt-3">
                         <div class="col-12 d-flex justify-content-end">
-                            <input type="submit"  value="Save"
-                            class="btn btn-primary mt-4 pr-4 pl-4" />
+                            <input type="submit" value="Save" class="btn btn-primary mt-4 pr-4 pl-4" />
                         </div>
-                    
                     </div>
-
-                    
                 </form>
-
-
-
             </div>
         </div>
     </div>
 </section>
+
 
 
 @endsection
