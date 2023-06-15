@@ -27,69 +27,54 @@ Credit Create
 
 <section class="content">
     <div class="row">
-        <div class="col-12">
+        <div class="col-lg-12">
             <div class="card-body">
                 <form action="{{route('credit.create.submit')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <!--First Row -->
                     <div class="form-row">
-                            
-
-                            <div class="col-6">
-                                <label for="" class="form-label">Date:*</label>
-                                <div class="input-group">
-                        
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                    <input type="date" name="date" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label for="" class="form-label">Date:*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                @error('date')
-                                    <span class="text-danger">{{$message}}</span><br>
-                                @enderror
-                               
+                                <input type="date" name="date" class="form-control" style="background-color:whitesmoke;" id="" value="">
                             </div>
-
-                            <div class="col-6">
-                                <label for="" class="form-label">Category:*</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
+                            @error('date')
+                                <span class="text-danger">{{$message}}</span><br>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label for="" class="form-label">Category:*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-list"></i></span>
-                                    </div>
-                                    <select id="" name="category" class="form-control rounded-0" style="background-color:whitesmoke;">
-                                        <option value="">Please Select</option>
-                                        @foreach($category_credit as $category)
-                                         <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
-                                        
-                                    </select>
-                                  
-
                                 </div>
-                                @error('c_category_id')
-                                    <span class="text-danger">{{$message}}</span><br>
-                                @enderror
+                                <select id="" name="category" class="form-control rounded-0" style="background-color:whitesmoke;">
+                                    <option value="">Please Select</option>
+                                    @foreach($category_credit as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-
-                           
-
-
-                        
+                            @error('c_category_id')
+                                <span class="text-danger">{{$message}}</span><br>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="form-row">
-
-                        <div class="col-6">
-                            <label for="" class="form-label">Prticular Details:*</label>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label for="" class="form-label">Particular Details:*</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                                 </div>
                                 <input type="text" name="particuler" class="form-control" style="background-color:whitesmoke;" id="" value="">
                             </div>
-                        
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
                             <label for="" class="form-label">Cash:*</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -100,27 +85,20 @@ Credit Create
                             @error('cash')
                                 <span class="text-danger">{{$message}}</span><br>
                             @enderror
-                        
                         </div>
                     </div>
 
                     <div class="row mt-3">
                         <div class="col-12 d-flex justify-content-end">
-                            <input type="submit"  value="Save"
-                            class="btn btn-primary mt-4 pr-4 pl-4" />
+                            <input type="submit" value="Save" class="btn btn-primary mt-4 pr-4 pl-4" />
                         </div>
-                    
                     </div>
-
-                    
                 </form>
-
-
-
             </div>
         </div>
     </div>
 </section>
+
 
 
 @endsection

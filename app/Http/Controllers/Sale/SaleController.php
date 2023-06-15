@@ -9,6 +9,8 @@ use App\Models\SellingPayment;
 use App\Models\SellingProduct;
 use App\Models\SellInvoice;
 use App\Models\SellingReturn;
+use App\Models\DCategory;
+use App\Models\DebitCash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 class SaleController extends Controller
@@ -17,7 +19,11 @@ class SaleController extends Controller
     {
         $products=Product::all();
         $customers=Customer::all();
-        return view('Admin.sale.salecreate')->with('product',$products)->with('customer',$customers);
+        $d_category = DCategory::all();
+        return view('Admin.sale.salecreate')
+        ->with('product',$products)
+        ->with('customer',$customers)
+        ->with('d_category',$d_category );
     }
     function saleformsubmit(Request $req)
     {
@@ -79,6 +85,13 @@ class SaleController extends Controller
          $payment->payment_note   = $req->paynote;
          $payment->sell_invoice_id = $invoice->id;
          $payment->save();
+
+         $debit = new DebitCash();
+         $debit->d_category_id = $req->d_category_id;
+         $debit->date = date('Y-m-d');
+         $debit->particuler = "To Product Sale";
+         $debit->cash = $req->amount;
+         $debit->save();
          return redirect()->back();
     }
     function productforpartial(Request $req)

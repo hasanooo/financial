@@ -9,6 +9,12 @@
             <span style="font-size:27px; font-weight:23px;">Purchase Product Return</span> <small style="color:gray;"> Manage Purchase product Return
                 List</small>
         </div>
+            <div class="col-md-12">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="{{route('purchase.index')}}">List Purchase</a></li>
+                    </ol>
+                </div>
             <div class="table-responsive">
                 <table id="return_table" class="table table-bordered table-striped my-3">
                     <thead>
@@ -36,7 +42,7 @@
                                 <input type="hidden" value="{{$item->purchase_return_purchase_invoice->id}}" id="return_id">
                                 {{$item->purchase_return_purchase_invoice->invoice}}
                             </td>
-                            <td>{{$item->purchase_return_purchase_invoice->ref}}</td>
+                            <td></td>
                             <td>{{$item->purchase_return_purchase_invoice->purchase_invoice_supplier->name}}</td>
                             <td>{{$item->return_qty}}</td>
                             <td>{{$item->return_price}}</td>

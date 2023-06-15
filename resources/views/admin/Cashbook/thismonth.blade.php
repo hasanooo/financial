@@ -113,7 +113,7 @@
                     <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $d->date }}</td>
-                        <td>{{ $d->DCategory->name }}</td>
+                        <td>{{ $d->DCategory->name ?? 'Account Receivable' }}</td>
                         <td>{{ $d->particuler }}</td>
                         <td>
                             {{ $d->cash }} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
