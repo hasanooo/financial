@@ -58,7 +58,7 @@ Add Purchases
                         </div>
 
                         <div class="col-md-4 col-sm-12">
-                            <label for="" class="form-label">Expense Category:*</label>
+                            <label for="" class="form-label">Credit Category:*</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-list"></i></span>
