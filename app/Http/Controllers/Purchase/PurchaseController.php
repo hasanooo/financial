@@ -69,11 +69,13 @@ class PurchaseController extends Controller
         $s = Supplier::where('id', $req->id)->first();
         $p = PurchaseInvoice::with('purchase_invoice_purchase_payment')->where('id', $req->id)->first();
         $product = Product::all();
+        $credit_category=CCategory::all();
 
         return view('Admin.purchase.editPurchase')
             ->with('ss', $s)
             ->with('purchaseInvoice', $p)
-            ->with('product', $product);
+            ->with('product', $product)
+            ->with('category_credit',$credit_category);
     }
 
 
@@ -166,90 +168,66 @@ class PurchaseController extends Controller
         return redirect(route('purchase.index'));
     }
 
-    // function PurchaseEditSub(Request $req)
-    // {
+    function PurchaseEditSub(Request $req)
+    {
 
-    //     $p_invoice = PurchaseInvoice::where('id', $req->id)->first();
-    //     $random_number = rand(1, 1000);
-    //     $random_string = Str::random(4);
-    //     $p_invoice->invoice = "bbpetcare" . $random_number . $random_string;
-    //     $p_invoice->supplier_id = $req->supplier_id;
-    //     $p_invoice->purchase_date = $req->pdate;
-    //     $p_invoice->payable_amount = $req->purchase_price;
-    //     if ($p_invoice) {
-    //         $p_invoice->save();
-    //         $product_id = $req->product_id;
+        $p_invoice = PurchaseInvoice::where('id', $req->id)->first();
+        $random_number = rand(1, 1000);
+        $random_string = Str::random(4);
+        $p_invoice->invoice = "bbpetcare" . $random_number . $random_string;
+        $p_invoice->supplier_id = $req->supplier_id;
+        $p_invoice->purchase_date = $req->pdate;
+        $p_invoice->payable_amount = $req->purchase_price;
+        if ($p_invoice) {
+            $p_invoice->save();
+            $product_id = $req->product_id;
 
-    //         foreach ($product_id as $i => $item) {
-    //             $add_or_edit = Purchase::where('product_id', $product_id[$i])
-    //                 ->where('purchase_invoice_id', $req->id)->first();
-    //             if ($add_or_edit) {
-    //                 $data = array(
-    //                     'product_price_id' => $product_price_id[$i],
-    //                     'purchase_invoice_id' => $p_invoice->id,
-    //                     'purchase_qtn' => $req->p_qty[$i],
+            foreach ($product_id as $i => $item) {
+                $add_or_edit = Purchase::where('product_id', $product_id[$i])
+                    ->where('purchase_invoice_id', $req->id)->first();
+                if ($add_or_edit) {
+                    $data = array(
+                        'product_id' => $product_id[$i],
+                        'purchase_invoice_id' => $p_invoice->id,
+                        'purchase_qtn' => $req->p_qty[$i],
 
-    //                 );
+                    );
 
-    //                 $purchase = Purchase::where('purchase_invoice_id', $p_invoice->id)->where('product_id', $product_id[$i])->update($data);
-
-
-    //                 if ($purchase) {
-    //                     $price = ProductPrice::where('id', $req->product_price_id[$i])->first();
-    //                     $previous_qty = $price->qty;
-    //                     $updated_qty = $req->p_qty[$i];
-    //                     $difference = $updated_qty - $previous_qty;
-    //                     $update_price = array(
-    //                         'price' => $req->per_unit_cost[$i],
-    //                         'qty' => $price->qty + $difference,
-    //                     );
-    //                     ProductPrice::where('id', $product_price_id[$i])->update($update_price);
-    //                 }
-    //             } else {
-    //                 $data = array(
-    //                     'product_price_id' => $product_price_id[$i],
-    //                     'purchase_invoice_id' => $p_invoice->id,
-    //                     'purchase_qtn' => $req->p_qty[$i],
-    //                     'prev_unit_cost' => $req->current_unit_cost[$i],
-    //                     'inc_unit_cost' => $req->increment_cost[$i],
-    //                     'purchase_discount' => $req->discount[$i],
-    //                     'current_unit_cost' => $req->per_unit_cost[$i],
-
-    //                 );
-
-    //                 $purchase = Purchase::create($data);
+                    $purchase = Purchase::where('purchase_invoice_id', $p_invoice->id)->where('product_id', $product_id[$i])->update($data);
 
 
-    //                 if ($purchase) {
-    //                     $price = ProductPrice::where('id', $req->product_price_id[$i])->first();
-    //                     $previous_qty = $price->qty;
-    //                     $updated_qty = $req->p_qty[$i];
-    //                     $difference = $updated_qty - $previous_qty;
-    //                     $update_price = array(
-    //                         'price' => $req->per_unit_cost[$i],
-    //                         'qty' => $price->qty + $difference,
-    //                     );
-    //                     ProductPrice::where('id', $product_price_id[$i])->update($update_price);
-    //                 }
-    //             }
-    //         }
+                    if ($purchase) {
+                        $product = Product::where('id', $req->product_id[$i])->first();
+                        $previous_qty = $product->qty;
+                        $updated_qty = $req->p_qty[$i];
+                        $difference = $updated_qty - $previous_qty;
+                        $new_qty = array(
+                    
+                            'stock' =>$product->stock + $difference,
+                        );
+                        Product::where('id', $product_id[$i])->update($new_qty);
+                    }
+                } 
+            }
 
-    //         $p_payment = PurchasePayment::where('purchase_invoice_id', $p_invoice->id)->first();
-    //         $p_payment->amount_paid = $req->total_amount_paid;
-    //         $p_payment->payment_method = $req->payment_method;
-    //         $p_payment->payment_account = "none";
-    //         if ($req->payment_note == null) {
-    //             $p_payment->payment_note = "no note taken";
-    //         } else {
-    //             $p_payment->payment_note = $req->payment_note;
-    //         }
-    //         if ($p_payment) {
-    //             $p_payment->save();
-    //         }
-    //     }
+            $p_payment = PurchasePayment::where('purchase_invoice_id', $p_invoice->id)->first();
+            $p_payment->amount_paid = $req->total_amount_paid;
+            $p_payment->payment_method = $req->payment_method;
+            $p_payment->payment_account = "none";
+            if ($req->payment_note == null) {
+                $p_payment->payment_note = "no note taken";
+            } else {
+                $p_payment->payment_note = $req->payment_note;
+            }
+            if ($p_payment) {
+                $p_payment->save();
 
-    //     return redirect(route('purchase.index'));
-    // }
+
+            }
+        }
+
+        return redirect(route('purchase.index'));
+    }
 
 
     // function purchaseSearch(Request $req)

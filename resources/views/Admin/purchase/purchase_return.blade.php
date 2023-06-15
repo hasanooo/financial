@@ -11,13 +11,20 @@
                 <div class="col-12">
                     <h3>Purchase Return</h3>
                 </div>
-                <div class="col-md-6">
+                
+                <div class="col-md-4">
                     <h6>Reference No: {{$invoice->ref}}</h6>
                     <h6>Date: {{$invoice->purchase_date}}</h6>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h6>Supplier: {{$invoice->purchase_invoice_supplier->name}}</h6>
                     <h6>Business Location: BD Pet Care</h6>
+                </div>
+                <div class="col-md-4">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="{{route('purchase.index')}}">List Purchase</a></li>
+                    </ol>
                 </div>
                 <div class="col-12 table-responsive">
                     <table class="table">
