@@ -73,7 +73,7 @@ class ProductController extends Controller
             $product->tax_id=$req->tax;
           }
           
-          $product->purchase_price=$req->price;
+          $product->purchase_price=$req->purchasePrice;
           $product->description=$req->des;
           if($req->status=="Please Select")
           {
@@ -84,7 +84,7 @@ class ProductController extends Controller
           }
           
           
-          $product->selling_price=$req->sellprice;
+          $product->selling_price=$req->sellingPrice;
           $image = $req->image;
         if ($image) {
             $image = time() . '.' . $image->getClientOriginalExtension();
