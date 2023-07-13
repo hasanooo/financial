@@ -57,7 +57,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped my-3 k_search text-center">
                         <thead>
-                            <tr>
+                            <tr class="text-white" style="background-color:#0d5e8b;">
                                 <th>SL</th>
                                 <th>Date</th>
                                 <th>Category</th>
@@ -91,9 +91,9 @@
                                         </button>
                                         <ul class="dropdown-menu text-left px-3" role="menu" aria-labelledby="menu1">
                                             <li role="presentation">
-                                                <a data-bs-toggle="modal" class="btn btn-sm" id="expense_delete">
-                                                    <i class="fa-solid fa-trash"></i>Delete
-                                                </a>
+                                            
+                                            <a data-toggle="modal" data-target="#deleteModal{{$item->id}}" class="btn  btn-sm">
+                                                <i class="fa-solid fa-trash"></i> Delete </a>
                                             </li>
                                             <li>
                                                 <a class="btn btn-sm" href="{{route('creditview.edit',$item->id)}}">
@@ -104,6 +104,27 @@
                                     </div>
                                 </td>
                             </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirmation Message</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body text-center d-flex flex-column" style="gap:2rem;">
+                                            <i class="fa-solid fa-trash text-danger" style="font-size:40px;"></i>
+                                            <h5 class="text-danger">Are you sure to remove this Credit info?</h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <a href="{{ route('delete.credit.cash',$item->id) }}" type="button" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @endforeach
                             <tr class="text-center">
                                 <th colspan="4">Total</th>

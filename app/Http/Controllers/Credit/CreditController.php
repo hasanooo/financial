@@ -93,5 +93,12 @@ class CreditController extends Controller
 
     }
 
+    public function DeleteCredit($id)
+    {
+        $creditID = CreditCash::find($id);
+        $creditID->delete();
+        return back();
+    }
+
     
 }

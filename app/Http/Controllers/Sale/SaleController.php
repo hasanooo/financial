@@ -9,6 +9,8 @@ use App\Models\SellingPayment;
 use App\Models\SellingProduct;
 use App\Models\SellInvoice;
 use App\Models\SellingReturn;
+use App\Models\DCategory;
+use App\Models\DebitCash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -16,9 +18,15 @@ class SaleController extends Controller
 {
     function saleform()
     {
-        $products = Product::all();
-        $customers = Customer::all();
-        return view('Admin.sale.salecreate')->with('product', $products)->with('customer', $customers);
+
+        $products=Product::all();
+        $customers=Customer::all();
+        $d_category = DCategory::all();
+        return view('Admin.sale.salecreate')
+        ->with('product',$products)
+        ->with('customer',$customers)
+        ->with('d_category',$d_category );
+
     }
     function saleformsubmit(Request $req)
     {
@@ -70,17 +78,26 @@ class SaleController extends Controller
 
             $sale->sell_invoice_id = $invoice->id;
             $sale->save();
-        }
 
-        $payment = new SellingPayment();
+         }
+   
+         $payment = new SellingPayment();
+   
+         $payment->payment_method = $req->paymethod;
+         $payment->amount_paid = $req->amount;
+         $payment->payment_account = $req->payacc;
+         $payment->payment_note   = $req->paynote;
+         $payment->sell_invoice_id = $invoice->id;
+         $payment->save();
 
-        $payment->payment_method = $req->paymethod;
-        $payment->amount_paid = $req->amount;
-        $payment->payment_account = $req->payacc;
-        $payment->payment_note   = $req->paynote;
-        $payment->sell_invoice_id = $invoice->id;
-        $payment->save();
-        return redirect()->back();
+         $debit = new DebitCash();
+         $debit->d_category_id = $req->d_category_id;
+         $debit->date = date('Y-m-d');
+         $debit->particuler = "To Product Sale";
+         $debit->cash = $req->amount;
+         $debit->save();
+         return redirect()->back();
+
     }
     function productforpartial(Request $req)
     {

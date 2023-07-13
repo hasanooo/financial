@@ -75,6 +75,22 @@
                                 @enderror
                             </div>
 
+                            <div class="col-md-4">
+                                <label for="" class="form-label">Debit Category:*</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-list"></i></span>
+                                    </div>
+                                    <select id="" name="d_category_id" class="form-control rounded-0" style="background-color:whitesmoke;">
+                                        <option value="">Please Select Debit Category</option>
+                                        @foreach ($d_category as $c)
+                                        <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                        @endforeach 
+                                    </select>
+                                </div>
+                                
+                            </div>
+
 
 
                         </div>
@@ -334,8 +350,14 @@
 
             $(document).on('click', '.delete-double', function(e) {
                 e.preventDefault();
+                var current_row = $(this).closest('tr');
+                var price = current_row.find('.price').val();
+                var amount= $('.atat').val();
+                 var final=amount-price;
+                 $('.atat').val(final);
                 var productId = $(this).closest('tr').data('data-double-id');
                 $(this).closest('tr').remove();
+               
 
             });
 

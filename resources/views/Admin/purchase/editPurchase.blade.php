@@ -36,27 +36,33 @@ Edit Purchases
                             <i class="fa fa-user"></i>
                             <label for="">Supplier:*</label>
                             <input type="hidden" id="id" value="{{$purchaseInvoice->id}}" name="id" />
-                            <select name="suplier_id" id="k" class="form-control">
+                            <select name="supplier_id" id="k" class="form-control">
 
-                                <option value="{{$purchaseInvoice->suplier_id}}">{{ $purchaseInvoice->suplier_id ? App\Models\Suplier::find($purchaseInvoice->suplier_id)->name : '' }}</option>
+                                <option value="{{$purchaseInvoice->supplier_id}}">{{ $purchaseInvoice->supplier_id ? App\Models\Supplier::find($purchaseInvoice->supplier_id)->name : '' }}</option>
 
                             </select>
                         </div>
 
-                        <div class="form-group col-md-4 col-sm-12">
-                            <label for="">Purchase Status*</label>
-                            <select name="purchase_status" id="" class="form-control">
-                                <option value="{{$purchaseInvoice->purchase_status}}">{{$purchaseInvoice->status}}</option>
-                                <option value="received">Received</option>
-                                <option value="pending">Pending</option>
-                            </select>
-                            </select>
-                        </div>
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="">Purchase Date: *</label>
                             <input type="datetime-local" name="pdate" id="" class="form-control" value="{{$purchaseInvoice->purchase_date}}">
                         </div>
-
+                        
+                        <div class="col-md-4 col-sm-12">
+                            <label for="" class="form-label">Credit Category:*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-list"></i></span>
+                                </div>
+                                <select id="" name="category" class="form-control rounded-0" style="background-color:whitesmoke;">
+                                    <option value="">Please Select</option>
+                                    @foreach($category_credit as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                        </div>
 
 
                     </div>
@@ -82,49 +88,38 @@ Edit Purchases
 
                                     <div class=" table-responsive my-3">
                                         <div class="card-body">
-                                            <table class="table table-bordered  table-head-fixed text-nowrap">
-                                                <thead>
-                                                    <tr class="text-center">
-                                                        <th>Image</th>
-                                                        <th>Product Name</th>
-                                                        <th>Category</th>
-                                                        <th>Brand</th>
-                                                        <th>Variation</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="body_content">
-
-                                                </tbody>
-                                            </table>
+                                            
                                             <table class="table table-bordered   text-nowrap ">
                                                 <thead>
-                                                    <tr class="text-center bg-green">
-                                                        <th>Product Name</th>
-                                                        <th>Quantity</th>
-                                                        <th>Current Unit Cost</th>
-                                                        <th>Increment(%)</th>
-                                                        <th>Discount(%)</th>
-                                                        <th>Per Unit Cost</th>
-                                                        <th>Total Amount</th>
-
+                                                    
+                                                    <tr class="text-center" style="background-color:#0d5e8b;">
+                                                        <th style="color:white;">Image</th>
+                                                        <th style="color:white;">Product Name</th>
+                                                        <th style="color:white;">Category</th>
+                                                        <th style="color:white;">Quantity</th>
+                                                        <th style="color:white;">Price</th>
+                                                        <th style="color:white;">Total Amount</th>
+                                                        <th style="color:white;">Action</th>
+                                                        <!-- <th>Lot No</th>
+                                                        <th>MFG Date</th> -->
                                                     </tr>
+
                                                 </thead>
                                                 <tbody id="child_body_content">
 
                                                     @foreach ($purchaseInvoice->purchase_invoice_purchase as $purchase)
                                                     <tr>
 
+                                                        <td><img style="width:50px;" src="/Product/Image/{{ $purchase->purchase_product->image}}" alt="none"></td>
                                                         <td>
 
-                                                            <input type="hidden" name="product_price_id[]" value="{{$purchase->purchase_product_price->id}}">
-                                                            <input type="text" class="form-control" readonly value="{{ $purchase->purchase_product_price->productprice_product->name }}">
+                                                            <input type="hidden" name="product_id[]" value="{{$purchase->purchase_product->id}}">
+                                                            <input type="text" class="form-control" readonly value="{{ $purchase->purchase_product->name }}">
                                                         </td>
+                                                        <td><input type="text" class="form-control" readonly value="{{ $purchase->purchase_product->category->name }}"></td>
                                                         <td><input type="number" class="form-control" value="{{ $purchase->purchase_qtn }}" name="p_qty[]" id="p_qty"></td>
-                                                        <td><input type="number" class="form-control" value="{{ $purchase->prev_unit_cost }}" name="current_unit_cost[]" id="current_unit_cost"></td>
-                                                        <td><input type="number" class="form-control" value="{{ $purchase->inc_unit_cost }}" name="increment_cost[]" id="increment_cost"></td>
-                                                        <td><input type="number" class="form-control" value="{{ $purchase->purchase_discount }}" name="discount[]" id="discount"></td>
-                                                        <td><input type="number" class="form-control" readonly value="{{ $purchase->current_unit_cost }}" name="per_unit_cost[]" id="per_unit_cost"></td>
-                                                        <td><input type="number" class="form-control line-total" readonly value="{{ $purchase->purchase_qtn * $purchase->prev_unit_cost }}" name="line_total[]" id="line_total"></td>
+                                                        <td><input type="number" class="form-control" value="{{ $purchase->purchase_product->purchase_price }}" name="purchase_price[]" id="price"></td>
+                                                        <td><input type="number" class="form-control total_amount" readonly value="{{ $purchase->purchase_qtn * $purchase->prev_unit_cost }}" name="line_total[]" id="total_amount"></td>
 
                                                         <td>
                                                             <button class="btn btn-sm btn-danger" id="delete-invoice-sale" data-id="{{ $purchase->id }}">
@@ -218,44 +213,45 @@ Edit Purchases
 </section>
 
 <script>
-    $(document).on('change', '#p_qty, #current_unit_cost, #increment_cost, #discount', function() {
+   
+    $(document).on('change', '#p_qty, #price', function() {
         let current_row = $(this).closest('tr');
         let qty = current_row.find('#p_qty').val();
-        let current_unit_cost = current_row.find('#current_unit_cost').val();
+        let price = current_row.find('#price').val();
 
-        // Calculation if there is any increment in unit cost
-        let increment_cost = current_row.find('#increment_cost').val();
-        let increment_amount = (parseFloat(current_unit_cost) * parseFloat(increment_cost)) / 100;
-
-        // Calculation if there is any discount
-        let discount_cost = current_row.find('#discount').val();
-        let discount_amount = (parseFloat(current_unit_cost) * parseFloat(discount_cost)) / 100;
-
-        // Calculation for line total and final unit cost
-        let final_unit_cost = (parseFloat(current_unit_cost) + increment_amount) - discount_amount;
-        current_row.find('#per_unit_cost').val(final_unit_cost);
-        let per_unit_cost = current_row.find('#per_unit_cost').val();
-        let final_line_total = parseInt(qty) * parseFloat(per_unit_cost);
-        current_row.find('#line_total').val(final_line_total);
+        let total_amount = qty * price;
+        current_row.find('#total_amount').val(total_amount);
         ChangeCalculation();
 
     });
+    $(document).on('change', '.p_qty, .price', function() {
+            let current_row = $(this).closest('tr');
+            let qty = current_row.find('.p_qty').val();
+            let price = current_row.find('.price').val();
+            let total_amount = qty * price;
+            current_row.find('.total_amount').val(total_amount);
+            ChangeCalculation();
+        });
 
+       
     function ChangeCalculation() {
         var sum = 0;
-        $(".line-total").each(function() {
+        $(".total_amount").each(function() {
             sum += +$(this).val();
         });
         $('#total_purchase').val(sum);
     }
 
     // Trigger the change event to calculate the initial values
-    $('#p_qty, #current_unit_cost, #increment_cost, #discount').trigger('change');
+    $('#p_qty, #price').trigger('change');
+
+    
+    
     $("table").on('click', '#delete-invoice-sale', function(e) {
         e.preventDefault()
         var saleId = $(this).data('id');
         var row = $(this).closest('tr'); // Find the closest parent <tr> element
-        var url = "{{ route('purchase.item.delete') }}";
+        var url = "";
         $.ajax({
             type: 'GET',
             url: url,
@@ -281,7 +277,7 @@ Edit Purchases
 
             $.ajax({
 
-                url: "{{route('addpurchasepartial')}}",
+                url: "{{route('admin.purchase_item')}}",
                 method: 'GET',
                 data: {
                     q: q
@@ -310,7 +306,7 @@ Edit Purchases
                             });
 
                         } else {
-                            $('#body_content').append(res);
+                            $('#child_body_content').append(res);
                         }
                     }
 

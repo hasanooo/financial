@@ -12,4 +12,8 @@ class CCategory extends Model
     {
         return $this->hasMany(CreditCash::class);
     }
+
+    
+
+
 }
