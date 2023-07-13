@@ -207,7 +207,7 @@
 
                                         <label for="">Amount:*</label>
                                         <input type="text" class="form-control atat" class="amountintotal"
-                                            id="adci" name="amount" placeholder="0.00" readonly>
+                                            id="adci" name="amount" placeholder="0.00">
                                         @error('amount')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
