@@ -164,3 +164,5 @@ Route::get('/return/product/{id}',[PurchaseController::class,'ReturnList'])->nam
 
 Route::get('/purchase/search',[PurchaseController::class,'purchase_search'])->name('purchase.search');
 
+//order track
+Route::get('/sale/track',[SaleController::class,'selltrack'])->name('sell.track');
