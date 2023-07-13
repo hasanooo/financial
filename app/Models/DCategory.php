@@ -12,4 +12,6 @@ class DCategory extends Model
     {
         return $this->hasMany(DebitCash::class);
     }
+
+   
 }

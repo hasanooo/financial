@@ -1,6 +1,6 @@
 @extends('Admin.layouts.dashboard')
 @section('titel')
-Add Purchases
+Add Aqusitions
 @endsection
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -11,12 +11,12 @@ Add Purchases
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Add Purchase</h1>
+                <h1>Add Aqusition</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('purchase.index')}}">List Purchase</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('purchase.index')}}">List Aqusition</a></li>
                 </ol>
             </div>
         </div>
@@ -49,12 +49,28 @@ Add Purchases
 
 
                         <div class="form-group col-md-4 col-sm-12">
-                            <label for="">Purchase Date: *</label>
+                            <label for="">Aqusition Date: *</label>
                             <input type="datetime-local" name="pdate" id="datetime" class="form-control" value="{{old('date')}}">
                             @error('pdate')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
 
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <label for="" class="form-label">Credit Category:*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-list"></i></span>
+                                </div>
+                                <select id="" name="category" class="form-control rounded-0" style="background-color:whitesmoke;">
+                                    <option value="">Please Select</option>
+                                    @foreach($category_credit as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
                         </div>
 
 
@@ -132,7 +148,7 @@ Add Purchases
 
                                         <div class="form-group col-md-3 col-sm-12">
 
-                                            <label for="">Total Purchase:*</label>
+                                            <label for="">Total Aqusition:*</label>
                                             <input type="text" class="form-control" id="total_purchase" name="purchase_price" placeholder="0.00">
                                             @error('purchase_price')
                                             <span class="text-danger">{{$message}}</span>
@@ -268,9 +284,10 @@ Add Purchases
 
             let total_purchase = 0;
             $('.total_amount').each(function() {
-                total_purchase += parseFloat($(this).val());
+                total_purchase += Math.round($(this).val());
             });
-            $('#total_purchase').val(total_purchase.toFixed(2));
+
+            $('#total_purchase').val(total_purchase);
         });
 
         function updateDateTime() {
