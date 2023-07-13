@@ -8,7 +8,7 @@
         <div class="row mt-3">
             <div class="col-12">
                 
-                <h3>Purchases <span style="font-size: 12px;color:rgb(75, 95, 75)"> List of all Purchases</span></h3>
+                <h3>Aqusitions <span style="font-size: 12px;color:rgb(75, 95, 75)"> List of all Aqusitions</span></h3>
             </div>
         </div>
         <div class="card bg-light p-3">
@@ -78,7 +78,7 @@
 
                             <div class="modal-body text-center d-flex flex-column" style="gap:2rem;">
                                 <i class="fa-solid fa-trash text-danger" style="font-size:40px;"></i>
-                                <h5 class="text-danger">Are you sure to remove this purchase info?</h5>
+                                <h5 class="text-danger">Are you sure to remove this Aqusition info?</h5>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -125,8 +125,8 @@
                     <tr class="text-white" style="background-color:#0d5e8b;">
                         <th>Invoice</th>
                         <th>Supplier</th>
-                        <th>Purchase Amount</th>
-                        <th>Purchase Paid</th>
+                        <th>Aqusition Amount</th>
+                        <th>Aqusition Paid</th>
                         <th>Return Amount</th>
                         <th>Due Payment</th>
                         <th>Status</th>
