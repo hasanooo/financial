@@ -118,6 +118,36 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            CRM
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('customer.index')}}" class="nav-link">
+                                <i class="fas fa-book nav-icon"></i>
+                                <p>Customers Index</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="fas fa-envelope nav-icon"></i>
+                                <p>Send Mail</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('customer.index')}}" class="nav-link">
+                                <i class="fas fa-money-bill-wave nav-icon"></i>
+                                <p>Leads</p>
+                            </a>
+                        </li>
+                    </ul>
+                  </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-balance-scale"></i>
                         <p>
                             Finance
