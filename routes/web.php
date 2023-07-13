@@ -8,8 +8,7 @@ use App\Http\Controllers\Cashbook\CashbookController;
 
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\EMI\EMIController;
-
-
+use App\Http\Controllers\OPEX\OpexController;
 use App\Http\Controllers\Purchase\PurchaseController;
 
 use App\Http\Controllers\Settings\SettingController;
@@ -167,3 +166,8 @@ Route::get('/purchase/search',[PurchaseController::class,'purchase_search'])->na
 
 //order track
 Route::get('/sale/track',[SaleController::class,'selltrack'])->name('sell.track');
+
+//OPEX routes
+Route::get('/opex/pending_index' ,[OpexController::class,'PendingIndex'])->name('opex.pending_index');
+Route::get('/opex/approved_index' ,[OpexController::class,'ApprovedIndex'])->name('opex.approved_index');
+Route::get('/opex/create' ,[OpexController::class,'Create'])->name('opex.create');
