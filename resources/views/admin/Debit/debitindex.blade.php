@@ -56,67 +56,58 @@
                 </div>
             </div>
 
-            <table class="table table-bordered table-striped my-3  k_search text-center">
-                <thead>
-                    <tr>
-                        <th>SL</th>
-                        <th>Date</th>
-                        <th>Debit Category</th>
-                        <th>Particular Details</th>
-                        <th>Cash</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($debit as $key => $d)
-                        
-                    
-                    <tr>
-                        <td>{{ $key+1 }}</td>
-                        <td>{{ $d->date }}</td>
-                        <td>{{ $d->DCategory->name }}</td>
-                        <td>{{ $d->particuler }}</td>
-                        <td>{{ $d->cash }}$</td>
-                        <td>
-                            {{-- <a href="javascript:void(0)" data-url="{{route('editcategory.view',$d->id)}}" id="id">
-                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModalEdit">
-                                    <i class="fa-solid fa-pen-to-square"></i> Edit
-                                </button>
-                            </a> --}}
-
-                            <a class="btn btn-info btn-sm" href="{{ route('edit.debitcash.view',$d->id) }}">Edit</a>
-                        
-                            <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$d->id}}">delete</a>
-                        </td>
-                    </tr>
-
-                     <!-- Modal -->
-                     <div class="modal fade" id="deleteModal{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmation Messege</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <!-- <span aria-hidden="true">&times;</span> -->
-                                </button>
-                                </div>
-                            <div class="modal-body">
-                                Are you sure want to delete this?
-                            </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <a href="{{ route('delete.debit.cash',$d->id) }}" type="button" class="btn btn-danger">Delete</a>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped my-3 k_search text-center">
+                    <thead>
+                        <tr class="text-white" style="background-color:#0d5e8b;">
+                            <th>SL</th>
+                            <th>Date</th>
+                            <th>Debit Category</th>
+                            <th>Particular Details</th>
+                            <th>Cash</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($debit as $key => $d)
+                            <tr>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $d->date }}</td>
+                                <td>{{ $d->DCategory->name ?? 'Account Receivable' }}</td>
+                                <td>{{ $d->particuler }}</td>
+                                <td>{{ $d->cash }}</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm" href="{{ route('edit.debitcash.view',$d->id) }}">Edit</a>
+                                    <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$d->id}}">Delete</a>
+                                </td>
+                            </tr>
+            
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModal{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirmation Message</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <a href="{{ route('delete.debit.cash',$d->id) }}" type="button" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    {{-- end modal --}}
-
-                       
+                            {{-- end modal --}}
                         @endforeach
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+            
         </div>
     </div>
 </div>

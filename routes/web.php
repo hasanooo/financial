@@ -36,6 +36,7 @@ Route::get('/dashboard' ,[AdminController::class,'dashboard'])->name('dashboard'
 Route::get('/' ,[ProfileController::class,'Login'])->name('login');
 Route::post('/' ,[ProfileController::class,'LoginSubmit'])->name('profile.loginsubmit');
 Route::post('/changepassword/{id}',[ProfileController::class,'ChangePassword'])->name('changepassword');
+Route::get('/logout', [ProfileController::class, 'logout'])->name('logout');
 //supplier
 Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier');
 Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
@@ -106,6 +107,7 @@ Route::post('/credit/category/Submit' ,[CreditController::class,'creditCategoryS
 Route::get('/credit/category/delete/{id}', [CreditController::class, 'creditCategoryDelete'])->name('creditcategory.delete');
 Route::get('/credit/edit/{id}', [CreditController::class, 'editCreditView'])->name('creditview.edit');
 Route::post('/credit/edit/submit/{id}' ,[CreditController::class,'editCreditSubmit'])->name('credit.edit');
+Route::get('/credit/delete/{id}',[CreditController::class,'DeleteCredit'])->name('delete.credit.cash');
 
 //Cashbook
 Route::get('/cashbook/index' ,[CashbookController::class,'cashbookIndex'])->name('cashbook.index');
@@ -163,3 +165,5 @@ Route::get('/return/product/{id}',[PurchaseController::class,'ReturnList'])->nam
 
 Route::get('/purchase/search',[PurchaseController::class,'purchase_search'])->name('purchase.search');
 
+//order track
+Route::get('/sale/track',[SaleController::class,'selltrack'])->name('sell.track');

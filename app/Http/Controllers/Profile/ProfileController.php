@@ -196,4 +196,9 @@ class ProfileController extends Controller
             return back()->with('msg', "The old password is wrong");
         }
     }
+    function logout()
+    {
+        Auth::guard('web')->logout();
+        return redirect()->route('login');
+    }
 }

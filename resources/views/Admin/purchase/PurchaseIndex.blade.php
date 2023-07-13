@@ -8,7 +8,7 @@
         <div class="row mt-3">
             <div class="col-12">
                 
-                <h3>Purchases <span style="font-size: 12px;color:rgb(75, 95, 75)"> List of all Purchases</span></h3>
+                <h3>Aqusitions <span style="font-size: 12px;color:rgb(75, 95, 75)"> List of all Aqusitions</span></h3>
             </div>
         </div>
         <div class="card bg-light p-3">
@@ -78,7 +78,7 @@
 
                             <div class="modal-body text-center d-flex flex-column" style="gap:2rem;">
                                 <i class="fa-solid fa-trash text-danger" style="font-size:40px;"></i>
-                                <h5 class="text-danger">Are you sure to remove this purchase info?</h5>
+                                <h5 class="text-danger">Are you sure to remove this Aqusition info?</h5>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -119,142 +119,143 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-bordered table-striped my-3 k_search">
-                <thead>
-                    <tr>
-
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped my-3 k_search">
+                    <thead>
+                    <tr class="text-white" style="background-color:#0d5e8b;">
                         <th>Invoice</th>
                         <th>Supplier</th>
-                        <th>Purchase Amount</th>
-                        <th>Purchase Paid</th>
+                        <th>Aqusition Amount</th>
+                        <th>Aqusition Paid</th>
                         <th>Return Amount</th>
                         <th>Due Payment</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-                </thead>
-                <tbody>
-           
-                    @php
-                        $totaldue = 0;
-                        $totalpurchase=0;
-                        $totalpaid=0;
-                        $totalreturn=0;
-                    @endphp
-
-                    @foreach ($purchase_invoice as $p)
-                    <tr class="text-center">
-                        <td>
-                            <input type="hidden" id="uid" value="{{$p->id}}">
-                            <input type="hidden" name="invoice_id" id="idu" value="{{$p->id}}">
-
-                            <button id="modal_view" class="btn btn-sm">{{$p->invoice}}</button>
-                        </td>
-                        <td>{{ $p->purchase_invoice_supplier->name}}</td>
-                        <td>{{$p->payable_amount}} </td>
-                        <td>{{ $p->purchase_invoice_purchase_payment->pluck('amount_paid')->sum() }}</td>
-                            @php
-                                $return = 0;
-                                
-                                $purchase = $p->payable_amount;
-                                $totalpurchase += $purchase;
-                                $paid = $p->purchase_invoice_purchase_payment->pluck('amount_paid')->sum();
-                                $totalpaid += $paid;
-                            @endphp
-                        @if ($p->purchase_invoice_purchase_return!=null)
-                            @php
-                                $return = $p->purchase_invoice_purchase_return->pluck('return_price')->sum();
-                                $totalreturn += $return;
-                            @endphp
-                        @endif
-                        <td>
-
-                            {{$return}}
-
-                        </td>
-                       
+                    </thead>
+                    <tbody>
+            
                         @php
-                            $due = ($purchase-$paid)-($return);
-                            $totaldue += $due;
+                            $totaldue = 0;
+                            $totalpurchase=0;
+                            $totalpaid=0;
+                            $totalreturn=0;
                         @endphp
-                        <td><span id="d_amount" class="{{$due<0?'text-danger':'text-primary'}}">{{$due}}</span></td>
-                        <td>
-                            @if ($p->payable_amount == $due)
-                            <span class="badge badge-danger"> Unpaid</span>
-                            @elseif($due <=0) <span class="badge badge-success"> Paid</span>
-                                @else
-                                <span class="badge badge-primary"> Partial</span>
-                                @endif
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="menu1"
-                                    data-toggle="dropdown">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                        <path
-                                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                    </svg></button>
-                                <ul class="dropdown-menu text-left px-6 " role="menu" aria-labelledby="menu1">
 
-                                    <li role="presentation"> <a data-bs-toggle="modal" class="btn btn-sm"
-                                            id="purchase_delete">
-                                            <i class="fa-solid fa-trash"></i> Delete </a></li>
+                        @foreach ($purchase_invoice as $p)
+                        <tr class="text-center">
+                            <td>
+                                <input type="hidden" id="uid" value="{{$p->id}}">
+                                <input type="hidden" name="invoice_id" id="idu" value="{{$p->id}}">
 
-                                    <li>
-                                        <a class="btn btn-sm" href="{{route('purchase.edit',$p->id)}}"> <i
-                                                class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                    </li>
-                                    <li>
-                                        @if ($due>0.00)
-                                        <a href="javascript:void(0)" class="btn btn-sm"
-                                            data-url="{{route('purchasedue.edit',$p->id)}}" id="make_payment"><i
-                                                class="fa-solid fa-pen-to-square"></i>Make
-                                            Payment</a>
-
-                                        @endif
-                                        <a href="{{route('purchase.return',$p->id)}}" class="btn btn-sm"><i
-                                                class="fa-solid fa-pen-to-square"></i> Return</a>
-                                    </li>
-                                   
-                                    @if ($p->purchase_invoice_purchase_return->count()>0)
-
-                                    <li>
-                                        <a class="btn btn-sm" href="{{route('return.product',$p->id)}}"> <i
-                                                class="fa-solid fa-pen-to-square"></i> Return product</a>
-                                    </li>
-                                    @endif
-
-
-                                </ul>
-                            </div>
-                        </td>
-
-                    </tr>
-                    @endforeach
-
-                    <tr class="text-center">
-                        <th>Total</th>
-                        <th colspan="1"></th>
-                        <th>{{$totalpurchase}}</th>
-                        <th>{{$totalpaid}}</th>
-                        <th>{{$totalreturn}}</th>
-                        <th colspan="" id="total_due_amount">{{$totaldue}}</th>
-                        <th colspan="2">
-                            @if($has_supplier_id)
-                            <button type="button" id="totalpay" class="btn btn-sm btn-success" data-bs-toggle="modal"
-                                data-bs-target="#exampleModaltotalpayment">
-                                <i class="fa-solid fa-eye"></i>
-                                Make Payment
-                            </button>
+                                <button id="modal_view" class="btn btn-sm">{{$p->invoice}}</button>
+                            </td>
+                            <td>{{ $p->purchase_invoice_supplier->name}}</td>
+                            <td>{{$p->payable_amount}} </td>
+                            <td>{{ $p->purchase_invoice_purchase_payment->pluck('amount_paid')->sum() }}</td>
+                                @php
+                                    $return = 0;
+                                    
+                                    $purchase = $p->payable_amount;
+                                    $totalpurchase += $purchase;
+                                    $paid = $p->purchase_invoice_purchase_payment->pluck('amount_paid')->sum();
+                                    $totalpaid += $paid;
+                                @endphp
+                            @if ($p->purchase_invoice_purchase_return!=null)
+                                @php
+                                    $return = $p->purchase_invoice_purchase_return->pluck('return_price')->sum();
+                                    $totalreturn += $return;
+                                @endphp
                             @endif
-                        </th>
-                    </tr>
+                            <td>
+
+                                {{$return}}
+
+                            </td>
+                        
+                            @php
+                                $due = ($purchase-$paid)-($return);
+                                $totaldue += $due;
+                            @endphp
+                            <td><span id="d_amount" class="{{$due<0?'text-danger':'text-primary'}}">{{$due}}</span></td>
+                            <td>
+                                @if ($p->payable_amount == $due)
+                                <span class="badge badge-danger"> Unpaid</span>
+                                @elseif($due <=0) <span class="badge badge-success"> Paid</span>
+                                    @else
+                                    <span class="badge badge-primary"> Partial</span>
+                                    @endif
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1"
+                                        data-toggle="dropdown">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                        </svg></button>
+                                    <ul class="dropdown-menu text-left px-6 " role="menu" aria-labelledby="menu1">
+
+                                        <li role="presentation"> <a data-bs-toggle="modal" class="btn btn-sm"
+                                                id="purchase_delete">
+                                                <i class="fa-solid fa-trash"></i> Delete </a></li>
+
+                                        <li>
+                                            <a class="btn btn-sm" href="{{route('purchase.edit',$p->id)}}"> <i
+                                                    class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                        </li>
+                                        <li>
+                                            @if ($due>0.00)
+                                            <a href="javascript:void(0)" class="btn btn-sm"
+                                                data-url="{{route('purchasedue.edit',$p->id)}}" id="make_payment"><i
+                                                    class="fa-solid fa-pen-to-square"></i>Make
+                                                Payment</a>
+
+                                            @endif
+                                            <a href="{{route('purchase.return',$p->id)}}" class="btn btn-sm"><i
+                                                    class="fa-solid fa-pen-to-square"></i> Return</a>
+                                        </li>
+                                    
+                                        @if ($p->purchase_invoice_purchase_return->count()>0)
+
+                                        <li>
+                                            <a class="btn btn-sm" href="{{route('return.product',$p->id)}}"> <i
+                                                    class="fa-solid fa-pen-to-square"></i> Return product</a>
+                                        </li>
+                                        @endif
+
+
+                                    </ul>
+                                </div>
+                            </td>
+
+                        </tr>
+                        @endforeach
+
+                        <tr class="text-center">
+                            <th>Total</th>
+                            <th colspan="1"></th>
+                            <th>{{$totalpurchase}}</th>
+                            <th>{{$totalpaid}}</th>
+                            <th>{{$totalreturn}}</th>
+                            <th colspan="" id="total_due_amount">{{$totaldue}}</th>
+                            <th colspan="2">
+                                @if($has_supplier_id)
+                                <button type="button" id="totalpay" class="btn btn-sm btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModaltotalpayment">
+                                    <i class="fa-solid fa-eye"></i>
+                                    Make Payment
+                                </button>
+                                @endif
+                            </th>
+                        </tr>
 
 
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
              <!--Total Payment modal -->
              <div class="modal fade" id="exampleModaltotalpayment" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">

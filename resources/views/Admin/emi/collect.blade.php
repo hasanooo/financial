@@ -49,7 +49,7 @@
                                 <form action="{{ route('emi.collect.sub') }}" method="POST">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-12 col-sm-6">
                                             <div class="form-group row">
                                                 <label class="control-label col-4"><b>Invoice</b></label>
                                                 <div class="col-md-8">
@@ -91,7 +91,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-12 col-sm-6">
                                             <div class="form-group row">
                                                 <label class="control-label col-md-4 pr-0"><b>Date</b></label>
                                                 <div class="col-md-8 ">

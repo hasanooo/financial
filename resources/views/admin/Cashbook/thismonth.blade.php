@@ -20,7 +20,7 @@
                             @csrf
                         <div class="input-group mb-3">
                             <select name="month" id="mySelect" class="form-select form-control">
-                                <option value="{{ date("Y-m-d") }}" selected>This Month</option>
+                                <option value="{{ date('Y-m-d') }}" selected>This Month</option>
                                 {{-- @foreach ( as ) --}}
                                 <option value="2023-01-01">January</option>
                                 <option value="2023-02-01">February</option>
@@ -87,7 +87,8 @@
                 </div>
             </div>
 
-            <div style="display: flex;">
+            <div class="row" style="display: flex;">
+                <div class="col-12 col-sm-6">
             <table class="table table-bordered table-striped my-3 k_search text-center">
                 <!-- First table content -->
                 <thead>
@@ -112,7 +113,7 @@
                     <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $d->date }}</td>
-                        <td>{{ $d->DCategory->name }}</td>
+                        <td>{{ $d->DCategory->name ?? 'Account Receivable' }}</td>
                         <td>{{ $d->particuler }}</td>
                         <td>
                             {{ $d->cash }} <i class="fa-solid fa-bangladeshi-taka-sign"></i>
@@ -134,7 +135,9 @@
 
                 </tbody>
             </table>
+                </div>
 
+                <div class="col-12 col-sm-6">
             <table class="table table-bordered table-striped my-3 k_search text-center">
                 <!-- Second table content -->
 
@@ -178,6 +181,7 @@
                     
                 </tbody>
             </table>
+                </div>
             </div>
 
         </div>

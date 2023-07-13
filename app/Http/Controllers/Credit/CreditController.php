@@ -26,6 +26,16 @@ class CreditController extends Controller
 
     protected function creditCreateSubmit(Request $req)
     {
+
+        $req->validate([  
+            'date'=>'required|date',
+            'cash'=>'required|numeric',
+            'c_category_id'=>'required|numeric',
+        ], 
+        [
+            'c_category_id.required'=>'category is required',
+        ]
+    );
         $credit_create=new CreditCash();
         $credit_create->date=$req->date;
         $credit_create->c_category_id=$req->category;
@@ -81,6 +91,13 @@ class CreditController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function DeleteCredit($id)
+    {
+        $creditID = CreditCash::find($id);
+        $creditID->delete();
+        return back();
     }
 
     

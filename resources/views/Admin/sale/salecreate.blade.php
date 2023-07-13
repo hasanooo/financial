@@ -75,6 +75,22 @@
                                 @enderror
                             </div>
 
+                            <div class="col-md-4">
+                                <label for="" class="form-label">Debit Category:*</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-list"></i></span>
+                                    </div>
+                                    <select id="" name="d_category_id" class="form-control rounded-0" style="background-color:whitesmoke;">
+                                        <option value="">Please Select Debit Category</option>
+                                        @foreach ($d_category as $c)
+                                        <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                        @endforeach 
+                                    </select>
+                                </div>
+                                
+                            </div>
+
 
 
                         </div>
@@ -191,7 +207,7 @@
 
                                         <label for="">Amount:*</label>
                                         <input type="text" class="form-control atat" class="amountintotal"
-                                            id="adci" name="amount" placeholder="0.00" readonly>
+                                            id="adci" name="amount" placeholder="0.00">
                                         @error('amount')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
