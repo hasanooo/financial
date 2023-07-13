@@ -244,7 +244,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
-                            Purchases
+                            Aqusition Product
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -252,13 +252,13 @@
                         <li class="nav-item">
                             <a href="{{route('purchase.index')}}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
-                                <p>Purchase List</p>
+                                <p>Aqusition List</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('purchase.add')}}" class="nav-link">
                                 <i class="far fa-plus nav-icon"></i>
-                                <p>Add Purchase</p>
+                                <p>Add Aqusition</p>
                             </a>
                         </li>
 
