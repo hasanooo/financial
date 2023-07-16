@@ -132,7 +132,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('customer.select') }}" class="nav-link">
                                 <i class="fas fa-envelope nav-icon"></i>
                                 <p>Send Mail</p>
                             </a>
@@ -380,14 +380,14 @@
                                 <!-- Add your Credit dropdown menu items here -->
 
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('opex.approved_index') }}" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Approved List</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('opex.pending_index') }}" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Pending List</p>
                                     </a>
