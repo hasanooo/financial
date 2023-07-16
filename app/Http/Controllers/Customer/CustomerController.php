@@ -58,4 +58,23 @@ class CustomerController extends Controller
         return redirect()->back();
         
     }
+
+    public function SelectCustomer()
+    {
+        $customers = Customer::all();
+        return view('admin.customer.send_mail',compact('customers'));
+    }
+
+    // public function SendEmail(Request $request)
+    // {
+    //     $selectedUserIds = $request->input('selected_users');
+    
+    //     $users = Customer::whereIn('id', $selectedUserIds)->get();
+    
+    //     foreach ($users as $user) {
+    //         Mail::to($user->email)->send(new SendMail);
+    //     }
+    
+    //     return 'Emails Sent Successfully to selected users';
+    // }
 }
