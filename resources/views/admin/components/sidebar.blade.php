@@ -132,7 +132,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('customer.select') }}" class="nav-link">
                                 <i class="fas fa-envelope nav-icon"></i>
                                 <p>Send Mail</p>
                             </a>
