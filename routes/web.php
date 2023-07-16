@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Roles\RolesController;
 use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Tax\TaxController;
+use App\Http\Controllers\Capex\CapexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -167,3 +168,12 @@ Route::get('/purchase/search',[PurchaseController::class,'purchase_search'])->na
 
 //order track
 Route::get('/sale/track',[SaleController::class,'selltrack'])->name('sell.track');
+
+//Capex
+
+Route::get('/Capex/Pendinglist',[CapexController::class,'capexPendingList'])->name('capex.pending');
+Route::get('/Capex/Approvedlist',[CapexController::class,'capexApprovedList'])->name('capex.approved');
+Route::get('/Capex/Addview',[CapexController::class,'capexAddView'])->name('capex.addview');
+
+
+Route::get('/product.stock/{id}', [ProductController::class, 'openStock'])->name('product.stock');
