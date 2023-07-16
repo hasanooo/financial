@@ -346,21 +346,21 @@
                             <ul class="nav nav-treeview">
                                 <!-- Add your Debit dropdown menu items here -->
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{route('capex.approved')}}" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Approved List</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href=" {{route('capex.pending')}}" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Pending List</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{route('capex.addview')}}" class="nav-link">
                                         <i class="fas fa-plus nav-icon"></i>
                                         <p>Add CAPEX</p>
                                     </a>
