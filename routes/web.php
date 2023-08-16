@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Balance\BalanceSheetController;
 use App\Http\Controllers\Contact\ContactController;
 use App\Http\Controllers\Debit\DebitController;
 use App\Http\Controllers\Credit\CreditController;
@@ -186,3 +187,9 @@ Route::get('/opex/create' ,[OpexController::class,'Create'])->name('opex.create'
 Route::post('/customer/sendmail',[CustomerController::class,'SendEmail'])->name('customer.sendmail');
 Route::get('/customer/select',[CustomerController::class,'SelectCustomer'])->name('customer.select');
 
+// Balance Sheet Controller
+Route::controller(BalanceSheetController::class)->group(function () {
+    Route::get('/asstets/index', 'AssetIndex')->name('assets.index');
+    Route::get('/asset/add', 'AssetAddPage')->name('asset.addpage');
+    Route::post('/asset/submit', 'AssetSubmit')->name('asset.submit');
+});

@@ -231,6 +231,44 @@
                     </ul>
                 </li>
 
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tags"></i>
+                        <p>
+                            Balance Sheet
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('assets.index')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Assets</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('sale.form')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Liabilities</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('sale.form')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Shareholders</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('sale.form')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Report</p>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
+
               
 
                 <li class="nav-item">
@@ -326,7 +364,9 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
+                
+
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-money-bill"></i>
                         <p>
@@ -402,7 +442,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -434,6 +474,38 @@
                         </li>
                     </ul>
                 </li>
+
+                {{-- LC --}}
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-e"></i>
+                        <p>
+                            LC
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('emi.sale.index')}}" class="nav-link">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>New LC</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('emi.index')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>LC List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('collect.index') }}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>LC collection</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
