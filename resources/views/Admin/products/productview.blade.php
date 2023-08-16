@@ -1,153 +1,108 @@
 @extends('Admin.layouts.dashboard')
+
 @section('content')
 
-<!-- Main content -->
-<div class="invoice p-3 mb-3">
-    <!-- title row -->
-    <div class="row">
-      <div class="col-12">
-        <h4>
-          <i class="fas fa-globe"></i> BengalSoftware, Inc.
-          <small class="float-right">{{ date("Y/m/d") }}</small>
-        </h4>
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- info row -->
-    <div class="row invoice-info">
-      <div class="col-sm-4 invoice-col">
-        From
-        <address>
-          <strong>Admin, BengalSoftware</strong><br>
-          Ka-1/1 Bashundhara Road,<br>
-          Dhaka 1229, Opposite to jamuna future Park pocket Gate,<br>
-          Phone: (804) 123-5432<br>
-          Email: info@bengalsoftware.com
-        </address>
-      </div>
-      <!-- /.col -->
-      {{-- <div class="col-sm-4 invoice-col">
-        To
-        <address>
-          <strong>{{ $name }}</strong><br>
-          {{ $address }}<br>
-          {{ $phone }}<br>
-          {{ $email }}
-        </address>
-      </div> --}}
-      <!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <b>Invoice #</b><br>
-        <br>
-        {{-- <b>Order ID:</b> 4F3S8J<br>
-        <b>Payment Due:</b> 2/22/2014<br>
-        <b>Account:</b> 968-34567 --}}
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
-
-    <!-- Table row -->
-    <div class="row">
-      <div class="col-12 table-responsive">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th>Serial</th>
-            <th>Product Name</th>
-            
-            <th>Quantity</th>
-            <th>Purchase Price</th>
-            <th>Description</th>
-            {{-- <th>Discount</th> --}}
-            {{-- <th>Subtotal</th> --}}
-          </tr>
-          </thead>
-          <tbody>
-            {{-- @foreach ($product as $key => $product) --}}
-            <tr>
-              <td>1</td>
-              <td>{{ $product->name }}</td>
-             
-              <td>{{ $product->stock }}</td>
-              <td>{{ $product->purchase_price }}</td>
-              <td>{{ $product->description }}</td>
-            {{-- <td>{{ $invoice->total_amount }}</td> --}}
-            </tr>
+<div class="section my-5">
+    <div class="container">
+       
+        <div class="row">
+            <!-- main-big image show -->
+            <div class="col-md-6 col-sm-12">
+                <div class="img-magnifier-container my-4" style="border:1px solid lightgray;">
+                    <img style="width:70%;height:450px;  object-fit:fill" src="{{asset('Product/Image/'.$product->image)}}" alt="...." class=" img-fluid mx-auto d-block" id="image">
+                    
+                </div>
               
-            {{-- @endforeach --}}
-            <tr>
-              <th>Discount: 0</th>
-              <th> </th>
-              <th>Total: {{ $product->purchase_price }}</th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!-- /.col -->
-    {{-- </div> --}}
-    <!-- /.row -->
+            </div>
 
-    {{-- <div class="row"> --}}
-      
-      <!-- /.col -->
-      <div class="col-6">
-        <p class="lead">Payment History</p>
-        {{-- <p class="lead">Amount Due 2/22/2014</p> --}}
+            <!-- right side content  -->
+            <div class="col-md-6 col-sm-12 mt-3">
+                <h5 class="text-primary">{{$product->name}}</h5>
+                <span class="text-info">Status: </span><span class="">{{$product->status}}</span>
+                <div>
 
-        <div class="table-responsive">
-          <table class="table">
+                    <p class="text-muted">{{$product->description}}</p>
+                    <p> <strong>Category:</strong> <span>{{$product->category->name}}</span></p>
+                    
+                </div>
+                <hr>
+                <div>
+                    <div class="d-flex justify-content-between mb-4 bg-light">
+                        <h3>Product Price</h3>
+                        <input type="hidden" value="{{$product->id}}" id="pro_id">
+                        <button id="mprice" class="btn btn-sm btn-primary">Manage price</button>
+                    </div>
 
-            <th style="width:50%">Payment Date</th>
-            <th style="width:50%">Payment Amount</th>
-            
-            {{-- @foreach ($payments as $payment)
-            <tr>
-              <td>{{ $payment->created_at }}</td>
-              <td>{{ $payment->amount_paid }}</td>
-            </tr>
-            @endforeach --}}
+                </div>
+               
+                
+                <div class="row">
+                    <div class="col-3">
+                        <label>Product Type: </label>
 
-            {{-- <tr>
-              <th>Tax (7.5%)</th>
-              <td>{{ ($invoice->total_amount *7.5) / 100}}</td>
-            </tr> --}}
-            {{-- <tr>
-              <th>Due:</th>
-              <td>{{($invoice->total_amount)- $totalpayment }}</td>
-            </tr> --}}
-          </table>
+                        <div class="">
+                            <i class="fa-solid fa-calendar-week"></i>
+                            <span>Single</span>
+                        </div>
+
+
+                    </div>
+                    <div class="col-3">
+                        <label>Price</label>
+                       
+                        <div class="">
+                            <i class="fa-solid fa-money-bill"></i>
+                            <span>{{$product->selling_price}}TK</span>
+                        </div>
+                   
+                    </div>
+
+                    <div class="col-3">
+                        <label>Tax</label>
+                        
+                        <div class="">
+                            <i class="fa-brands fa-shopify"></i>
+                            <span>%</span>
+                        </div>
+                       
+                    </div>
+                    <div class="col-3">
+                        <label>Margin</label>
+                        
+                        @php
+                          $margin=0;
+                          $margin= ($product->selling_price) - ($product->purchase_price)
+                          
+                        @endphp
+
+                        <div class="">
+                            <i class="fa-solid fa-thumbtack"></i>
+                            <span>{{$margin}} TK</span>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="row bg-light my-4 ">
+                    <div class="col-6">
+                        
+                        <div class="">
+                            <label for="">Final amount: <span>
+                            {{$product->selling_price}} TK</span></label>
+
+                                    
+
+                        </div>
+
+                    </div>
+
+                </div>
+              
+            </div>
+            <!-- right side content End  -->
         </div>
-      </div>
-      <!-- /.col -->
-
-      <!-- accepted payments column -->
-      <div class="col-6">
-        <p class="lead">Payment Methods:</p>
-        <h3>Cash</h3>
-        <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-          Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-          plugg
-          dopplr jibjab.
-        </p>
-      </div>
-
     </div>
-    <!-- /.row -->
+</div>
 
-    <!-- this row will not appear when printing -->
-    <div class="row no-print">
-      <div class="col-12">
-        <a href="javascript:window.print()" class="btn btn-success waves-effect waves-light"><i class="fa fa-print"></i></a>  
-      </div>
-    </div>
-  </div>
 
-  <script>
-    window.addEventListener("load",window.print());
-    // window.onafterprint = function() {
-    // history.back();
-    // };
-  </script>
 
 @endsection

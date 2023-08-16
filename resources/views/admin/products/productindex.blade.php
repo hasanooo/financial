@@ -63,7 +63,7 @@
                                 <th>Image</th>
                                 <th>Product</th>
                                 <th>Category</th>
-                                <th>price</th>
+                                <th>Purchase price</th>
                                 <th>Status</th>
                                 <td>Action</td>
                             </tr>
@@ -72,15 +72,22 @@
                             @foreach($product as $i=>$item)
                             <tr class="text-center">
                                 <td>
-                                    {{-- <input type="hidden" value="{{$item->id}}" id="uid"> --}}
+                                    <input type="hidden" value="{{$item->id}}" id="pid">
                                     {{$i+1}}
                                 </td>
                                 {{--src="{{$item->image==null?'Product/Image/defaultimage.png':'Product/Image/'.$item->image}}"--}}
                                 <td><img style="width:40px;" src="{{$item->image==null?'/Product/Image/defaultimage.png':'/Product/Image/'.$item->image}}"  alt=""></td>
                                 <td>{{$item -> name}}</td>
-                                <td>{{$item->product_category_id}}</td>
+                                <td>{{$item->category->name}}</td>
                                 <td>{{$item->purchase_price}}</td>
-                                <td>{{$item->status}}</td>
+                                <td>
+                                    @if('Active'==$item->status)
+                                        <span class="badge badge-success">{{$item->status}}</span>
+                                    @else
+                                        <span class="badge badge-danger">{{$item->status}}</span>
+                                    @endif
+                                </td>
+
                               
 
 
@@ -102,8 +109,10 @@
                                                     <i class="fa-solid fa-trash"></i> Delete
                                                 </button></li>
                                             <li>
-                                                <button class="btn" id="id">
+                                                <a href="{{ route('product.stock', $item->id) }}">
+                                                    <button class="btn" id="stock" >
                                                     <i class="fa-solid fa-store"></i> Open stock</button>
+                                                </a>
                                             </li>
 
 
@@ -130,17 +139,16 @@
 </div>
 {{--<script>
     $(document).ready(function() {
-        $(document).on('click', '#user_remove', function() {
+        $(document).on('click', '#stock', function() {
             var current_row = $(this).closest('tr');
-            let uid = current_row.find('#uid').val();
-            $('#exampleModal').modal('show');
-            $('#con-del').attr("href", "delete_product/" + uid);
+            let pid = current_row.find('#pid').val();
+            $('#exampleStockModal').modal('show');
         })
+        
 
     });
 
-
-    $(document).ready(function() {
+     $(document).ready(function() {
         $('body').on('click', '#id', function() {
             var current_row = $(this).closest('tr');
             var p_id = current_row.find('#uid').val();
