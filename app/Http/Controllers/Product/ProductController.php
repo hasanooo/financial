@@ -73,8 +73,8 @@ class ProductController extends Controller
             $product->tax_id=$req->tax;
           }
           
-          $product->purchase_price=$req->price;
-          $product->description=$req->des;
+          $product->purchase_price=$req->purchasePrice;
+          $product->description=$req->description;
           if($req->status=="Please Select")
           {
             $product->status=null;
@@ -84,7 +84,7 @@ class ProductController extends Controller
           }
           
           
-          $product->selling_price=$req->sellprice;
+          $product->selling_price=$req->sellingPrice;
           $image = $req->image;
         if ($image) {
             $image = time() . '.' . $image->getClientOriginalExtension();
@@ -102,6 +102,13 @@ class ProductController extends Controller
         return view('Admin.products.productindex')
         ->with('product',$product);
     }
+
+    protected function openStock($id)
+   {
+
+    $product = Product::find($id);
+      return view('Admin.products.stockmodal', compact('product'));
+   }
 
     public function ProductView($id)
     {

@@ -118,6 +118,36 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            CRM
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('customer.index')}}" class="nav-link">
+                                <i class="fas fa-book nav-icon"></i>
+                                <p>Customers Index</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('customer.select') }}" class="nav-link">
+                                <i class="fas fa-envelope nav-icon"></i>
+                                <p>Send Mail</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('customer.index')}}" class="nav-link">
+                                <i class="fas fa-money-bill-wave nav-icon"></i>
+                                <p>Leads</p>
+                            </a>
+                        </li>
+                    </ul>
+                  </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-balance-scale"></i>
                         <p>
                             Finance
@@ -198,6 +228,44 @@
                                     </a>
                                 </li>
                         </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tags"></i>
+                        <p>
+                            Balance Sheet
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('assets.index')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Assets</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('sale.form')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Liabilities</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('sale.form')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Shareholders</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('sale.form')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Report</p>
+                            </a>
+                        </li>
+                        
                     </ul>
                 </li>
 
@@ -295,6 +363,86 @@
                         
                     </ul>
                 </li>
+
+                
+
+                {{-- <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>
+                            Expenditure
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-wallet"></i>
+                                <p>
+                                    CAPEX
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <!-- Add your Debit dropdown menu items here -->
+                                <li class="nav-item">
+                                    <a href="{{route('capex.approved')}}" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Approved List</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href=" {{route('capex.pending')}}" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Pending List</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{route('capex.addview')}}" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Add CAPEX</p>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-credit-card"></i>
+                                <p>
+                                    OPEX
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <!-- Add your Credit dropdown menu items here -->
+
+                                <li class="nav-item">
+                                    <a href="{{ route('opex.approved_index') }}" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Approved List</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('opex.pending_index') }}" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Pending List</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Add OPEX</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li> --}}
                 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -317,8 +465,47 @@
                                 <p>EMI Sale Reoprts</p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Expenditure Reoprts</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
+
+                {{-- LC --}}
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-e"></i>
+                        <p>
+                            LC
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('emi.sale.index')}}" class="nav-link">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>New LC</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('emi.index')}}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>LC List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('collect.index') }}" class="nav-link">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>LC collection</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Balance\BalanceSheetController;
 use App\Http\Controllers\Contact\ContactController;
 use App\Http\Controllers\Debit\DebitController;
 use App\Http\Controllers\Credit\CreditController;
@@ -8,8 +9,7 @@ use App\Http\Controllers\Cashbook\CashbookController;
 
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\EMI\EMIController;
-
-
+use App\Http\Controllers\OPEX\OpexController;
 use App\Http\Controllers\Purchase\PurchaseController;
 
 use App\Http\Controllers\Settings\SettingController;
@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Roles\RolesController;
 use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Tax\TaxController;
+use App\Http\Controllers\Capex\CapexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -167,3 +168,28 @@ Route::get('/purchase/search',[PurchaseController::class,'purchase_search'])->na
 
 //order track
 Route::get('/sale/track',[SaleController::class,'selltrack'])->name('sell.track');
+
+
+//Capex
+
+Route::get('/Capex/Pendinglist',[CapexController::class,'capexPendingList'])->name('capex.pending');
+Route::get('/Capex/Approvedlist',[CapexController::class,'capexApprovedList'])->name('capex.approved');
+Route::get('/Capex/Addview',[CapexController::class,'capexAddView'])->name('capex.addview');
+
+
+Route::get('/product.stock/{id}', [ProductController::class, 'openStock'])->name('product.stock');
+//OPEX routes
+Route::get('/opex/pending_index' ,[OpexController::class,'PendingIndex'])->name('opex.pending_index');
+Route::get('/opex/approved_index' ,[OpexController::class,'ApprovedIndex'])->name('opex.approved_index');
+Route::get('/opex/create' ,[OpexController::class,'Create'])->name('opex.create');
+
+// Send Emails Controller
+Route::post('/customer/sendmail',[CustomerController::class,'SendEmail'])->name('customer.sendmail');
+Route::get('/customer/select',[CustomerController::class,'SelectCustomer'])->name('customer.select');
+
+// Balance Sheet Controller
+Route::controller(BalanceSheetController::class)->group(function () {
+    Route::get('/asstets/index', 'AssetIndex')->name('assets.index');
+    Route::get('/asset/add', 'AssetAddPage')->name('asset.addpage');
+    Route::post('/asset/submit', 'AssetSubmit')->name('asset.submit');
+});

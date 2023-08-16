@@ -76,7 +76,8 @@ Add new product
                             <label for="status">Status*</label>
                             <select name="status" id="status" class="form-control">
                                 <option>Please Select</option>
-                                <option value="pending">Pending</option>
+                                <option value="Active">Active</option>
+                                <option value="Pending">Pending</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
