@@ -29,7 +29,7 @@ Add new liability
     <div class="row">
         <div class="col-12">
             <div class="card-body">
-                <form action="{{ route('asset.submit') }}" method="POST">
+                <form action="{{ route('liability.submit') }}" method="POST">
                     @csrf
                     <!--First Row -->
                     <div class="form-row">
@@ -72,7 +72,7 @@ Add new liability
                     <div class="form-row">
 
                         <div class="col-6">
-                            <label for="" class="form-label">liability Name:*</label>
+                            <label for="" class="form-label">Liability Name:*</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
@@ -111,7 +111,7 @@ Add new liability
 
                     <div class="row mt-1">
                         <div class="col-12 d-flex justify-content-end">
-                            <input type="submit"  value="Save Asset"
+                            <input type="submit"  value="Save Liability"
                             class="btn btn-primary mt-4 pr-4 pl-4" />
                         </div>
                     
