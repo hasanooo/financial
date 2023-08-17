@@ -39,7 +39,7 @@ class PurchaseController extends Controller
         //     abort('403', 'Unauthorized access');
         // }
 
-        $purchase_invoice = $id == 0 ? PurchaseInvoice::paginate(10) : PurchaseInvoice::where('suplier_id', $id)->paginate(10);
+        $purchase_invoice = $id == 0 ? PurchaseInvoice::paginate(10) : PurchaseInvoice::where('supplier_id', $id)->paginate(10);
         $purchase_id = $id;
         $has_supplier_id = $id != 0; // Check if a supplier ID was passed
 

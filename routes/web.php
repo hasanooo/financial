@@ -147,6 +147,7 @@ Route::get('/role.delete/{id}', [RolesController::class, 'destroy'])->name('role
 
 //Purchase
 Route::get('/Purchase/Index',[PurchaseController::class,'PurchaseIndex'])->name('purchase.index');
+Route::get('/Purchase/list/{id}',[PurchaseController::class,'PurchaseIndex'])->name('purchase.list');
 Route::get('/Purchase/Add',[PurchaseController::class,'PurchaseAdd'])->name('purchase.add');
 Route::get('/Purchase/Edit/{id}',[PurchaseController::class,'PurchaseEdit'])->name('purchase.edit');
 Route::post('/Purchase/Add/Sub',[PurchaseController::class,'PurchaseAddSub'])->name('purchaseaddsub');
