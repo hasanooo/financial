@@ -1,130 +1,90 @@
 @extends('Admin.layouts.dashboard')
-@section('titel')
-Add new liability
-@endsection
+
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Add Asset</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="">Home</a></li>
-                    <li class="breadcrumb-item active">Add Asset</li>
-                </ol>
+<div class="section">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-12">
+                <span style="font-size:27px; font-weight:23px;">Liabilities list</span> <small style="color:gray;"> Manage liability
+                    list</small>
             </div>
         </div>
-    </div><!-- /.container-fluid -->
-</section>
+        <div class="card bg-light p-3">
+            
 
-<section class="content">
-    <div class="row">
-        <div class="col-12">
-            <div class="card-body">
-                <form action="{{ route('asset.submit') }}" method="POST">
-                    @csrf
-                    <!--First Row -->
-                    <div class="form-row">
-                            
+                <div class="col-12 d-flex justify-content-end">
+                    <a href="{{route('liability.addpage')}}"><button type="button" class="btn btn-success">
+                            <i class="fa-solid fa-plus"></i> Add Liability
+                        </button></a>
+                </div>
+          
 
-                            <div class="col-6">
-                                <label for="" class="form-label">Date:*</label>
-                                <div class="input-group">
-                        
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+            <div class=" table-responsive my-1">
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered  table-head-fixed text-nowrap k_search">
+                        <thead>
+                            <tr class="text-center">
+                                {{-- <th>Date</th> --}}
+                                <th>Serial</th>
+                                <th>Category</th>
+                                <th>Asset Name</th>
+                                <th>Details</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            @foreach ($liabilities as $key => $liability)
+                            <tr class="text-center">
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $liability->category }}</td>
+                                <td>{{ $liability->name }}</td>
+                                <td>{{ $liability->details }}</td>
+                                <td>{{ $liability->amount }}</td>
+                                <td>{{ $liability->date }}</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm" href="{{ route('liability.editpage',$liability->id) }}"><i class="fa-regular fa-edit"></i></a>
+                                    <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$liability->id}}"><i class="fa-regular fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+
+                            <div class="modal fade" id="deleteModal{{ $liability->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Confirmation Messege</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <!-- <span aria-hidden="true">&times;</span> -->
+                                      </button>
                                     </div>
-                                    <input type="date" name="date" class="form-control" style="background-color:whitesmoke;" id="" value="">
-                                </div>
-                                @error('date')
-                                    <span class="text-danger">{{$message}}</span><br>
-                                @enderror
-                               
-                            </div>
-
-                            <div class="col-6">
-                                <label for="" class="form-label">Asset Category:*</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-list"></i></span>
+                                    <div class="modal-body">
+                                    Are you sure want to delete this?
                                     </div>
-                                    <select id="" name="category" class="form-control rounded-0" style="background-color:whitesmoke;">
-                                        <option disabled selected value="">Select Asset Category</option>
-                                        <option value="current">Current Asset</option>
-                                        <option value="long">Long-Term Asset</option>
-                                    </select>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                      <a href="{{ route('liability.delete',$liability->id) }}" type="button" class="btn btn-danger">Delete</a>
+                                    </div>
+                                  </div>
                                 </div>
-                                @error('d_category_id')
-                                    <span class="text-danger">{{$message}}</span><br>
-                                @enderror
-                            </div>
-                        
-                    </div>
+                              </div>
 
-                    <div class="form-row">
-
-                        <div class="col-6">
-                            <label for="" class="form-label">Asset Name:*</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
-                                </div>
-                                <input type="text" name="name" class="form-control" style="background-color:whitesmoke;" id="" value="">
-                            </div>
-                        
-                        </div>
-                        <div class="col-6">
-                            <label for="" class="form-label">Amount:*</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
-                                </div>
-                                <input type="number" name="amount" class="form-control" style="background-color:whitesmoke;" id="" value="">
-                            </div>
-                            @error('cash')
-                                <span class="text-danger">{{$message}}</span><br>
-                            @enderror
-                        
-                        </div>
-                        <div class="col-12">
-                            <label for="" class="form-label">Details:</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
-                                </div>
-                                <input type="text" name="details" class="form-control" style="background-color:whitesmoke;" id="" value="">
-                            </div>
-                            @error('cash')
-                                <span class="text-danger">{{$message}}</span><br>
-                            @enderror
-                        
-                        </div>
-                    </div>
-
-                    <div class="row mt-1">
-                        <div class="col-12 d-flex justify-content-end">
-                            <input type="submit"  value="Save Asset"
-                            class="btn btn-primary mt-4 pr-4 pl-4" />
-                        </div>
-                    
-                    </div>
-
-                    
-                </form>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
 
 
+            <div class="pagination d-flex justify-content-end">
+                {{-- {{ $yy->links() }} --}}
             </div>
         </div>
     </div>
-</section>
+</div>
 
+<script>
+
+</script>
 @endsection
