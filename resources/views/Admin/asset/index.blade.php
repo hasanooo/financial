@@ -13,7 +13,7 @@
             
 
                 <div class="col-12 d-flex justify-content-end">
-                    <a href="{{route('asset.addpage')}}"><button type="button" class="btn btn-primary">
+                    <a href="{{route('asset.addpage')}}"><button type="button" class="btn btn-success">
                             <i class="fa-solid fa-plus"></i> Add Asset
                         </button></a>
                 </div>
@@ -21,10 +21,9 @@
 
             <div class=" table-responsive my-1">
                 <div class="card-body">
-                    <table class="table table-bordered  table-head-fixed text-nowrap k_search">
+                    <table id="example1" class="table table-bordered table-striped">
                         <thead>
-                            <tr class="text-center">
-                                {{-- <th>Date</th> --}}
+                            <tr>
                                 <th>Serial</th>
                                 <th>Category</th>
                                 <th>Asset Name</th>
@@ -34,7 +33,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody class="">
+                        <tbody>
                             @foreach ($assets as $key => $asset)
                             <tr class="text-center">
                                 <td>{{ $key+1 }}</td>
@@ -43,24 +42,45 @@
                                 <td>{{ $asset->details }}</td>
                                 <td>{{ $asset->amount }}</td>
                                 <td>{{ $asset->date }}</td>
-                                <td></td>
+                                <td>
+                                    <a class="btn btn-info btn-sm" href="{{ route('asset.editpage',$asset->id) }}"><i class="fa-regular fa-edit"></i></a>
+                                    <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$asset->id}}"><i class="fa-regular fa-trash-can"></i></a>
+                                </td>
                             </tr>
+
+                            <div class="modal fade" id="deleteModal{{ $asset->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Confirmation Messege</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <!-- <span aria-hidden="true">&times;</span> -->
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    Are you sure want to delete this?
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                      <a href="{{ route('asset.delete',$asset->id) }}" type="button" class="btn btn-danger">Delete</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
 
-
-
             <div class="pagination d-flex justify-content-end">
-                {{-- {{ $yy->links() }} --}}
+                
             </div>
         </div>
     </div>
 </div>
 
-<script>
+{{-- <script src="/admin/plugins/jquery/jquery.min.js"></script> --}}
 
-</script>
 @endsection

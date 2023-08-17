@@ -1,6 +1,6 @@
 @extends('Admin.layouts.dashboard')
 @section('titel')
-Add new liability
+Edit liability
 @endsection
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -13,12 +13,12 @@ Add new liability
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Add Liability</h1>
+                <h1>Edit Liability</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="">Home</a></li>
-                    <li class="breadcrumb-item active">Add Liability</li>
+                    <li class="breadcrumb-item active">Edit Liability</li>
                 </ol>
             </div>
         </div>
@@ -29,7 +29,7 @@ Add new liability
     <div class="row">
         <div class="col-12">
             <div class="card-body">
-                <form action="{{ route('liability.submit') }}" method="POST">
+                <form action="{{ route('liability.edit.submit',$liability->id) }}" method="POST">
                     @csrf
                     <!--First Row -->
                     <div class="form-row">
@@ -42,7 +42,7 @@ Add new liability
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
-                                    <input type="date" name="date" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                    <input type="date" name="date" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $liability->date }}">
                                 </div>
                                 @error('date')
                                     <span class="text-danger">{{$message}}</span><br>
@@ -56,10 +56,10 @@ Add new liability
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-list"></i></span>
                                     </div>
-                                    <select id="" name="category" class="form-control rounded-0" style="background-color:whitesmoke;">
+                                    <select id="" name="category" class="form-control rounded-0" value="{{ $liability->category }}" style="background-color:whitesmoke;">
                                         <option disabled selected value="">Select Liability Category</option>
-                                        <option value="current">Current Liability</option>
-                                        <option value="long">Long-Term Liability</option>
+                                        <option value="current" {{ $liability->category == "current" ? 'selected' : '' }}>Current Liability</option>
+                                        <option value="long" {{ $liability->category == "long" ? 'selected' : '' }}>Long-Term Liability</option>
                                     </select>
                                 </div>
                                 @error('d_category_id')
@@ -77,7 +77,7 @@ Add new liability
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                                 </div>
-                                <input type="text" name="name" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="name" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $liability->name }}">
                             </div>
                         
                         </div>
@@ -87,7 +87,7 @@ Add new liability
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                                 </div>
-                                <input type="number" name="amount" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="number" name="amount" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $liability->amount }}">
                             </div>
                             @error('cash')
                                 <span class="text-danger">{{$message}}</span><br>
@@ -100,7 +100,7 @@ Add new liability
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                                 </div>
-                                <input type="text" name="details" class="form-control" style="background-color:whitesmoke;" id="" value="">
+                                <input type="text" name="details" class="form-control" style="background-color:whitesmoke;" id="" value="{{ $liability->details }}">
                             </div>
                             @error('cash')
                                 <span class="text-danger">{{$message}}</span><br>
@@ -111,7 +111,7 @@ Add new liability
 
                     <div class="row mt-1">
                         <div class="col-12 d-flex justify-content-end">
-                            <input type="submit"  value="Save Liability"
+                            <input type="submit"  value="Update Liability"
                             class="btn btn-primary mt-4 pr-4 pl-4" />
                         </div>
                     
