@@ -138,81 +138,13 @@
 
             </div>
 
-           
-
-
-            <div class=" table-responsive my-3">
-                <div class="card-body">
-                    <table id="example2" class="table table-bordered  table-head-fixed text-nowrap k_search">
-                        <thead>
-                            <tr class="text-center">
-                                {{-- <th>Date</th> --}}
-                                <th>Invoice</th>
-                                <th>Customer name</th>
-                                <th>Total amount</th>
-                                {{-- <th>Total Discount</th> --}}
-                                <th>Total paid</th>
-                                <th>Return Amount</th>
-                                <th>Payment due</th>
-                                <th>Payment status</th>
-                                <th>Action</th>
-
-                            </tr>
-                        </thead>
-                        <tbody class="">
-                            @foreach ($invoice as $y)
-                            <tr class="text-center">
-
-                                <td>
-                                    <a href="javascript:void(0)" data-url="{{route('sale.view',$y->id)}}" id="p_id">
-                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ViewModal">
-                                            <i></i> {{ $y->invoice }}
-                                        </button>
-                                    </a>
-                                </td>
-                                <td>
-
-                                    {{ $y->invoice_customer->name }} </span>
-                                    {{-- @endif --}}
-                                </td>
-                                @php
-                                $t = $y->total_amount;
-                                @endphp
-                                <td>{{ $t }}</td>
-                                <td>
-                                    @php
-                                    $total_paid = 0;
-                                    foreach ($y->invoice_payment as $i) {
-                                    $total_paid = $total_paid + $i->amount_paid;
-                                    }
-                                    @endphp
-                                    {{ $total_paid }}
-                                </td>
-                                @php
-                                $return = 0;
-                                $total_paid = $y->invoice_payment->pluck('amount_paid')->sum();
-                                if ($y->sale_invoice_sale_return != null) {
-                                $return = $y->sale_invoice_sale_return->pluck('return_price')->sum();
-                                }
-                                $covertint=(int)$t;
-                                $paid =$covertint - $total_paid-$return ;
-
-
 
 
             <div class=" table-responsive">
 
-
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
                         <tr class="text-center">
-
-                                            {{-- @if ($y->sale_invoice_sale_return->count() > 0) --}}
-                                            <li role="presentation">
-                                                <a class="btn" role="menuitem" href="{{ route('salereturnlist', $y->id) }}"> <i class="fa-solid fa-pen-to-square"></i> Refund</a>
-                                            </li>
-                                            {{-- @endif --}}
-
 
                             <th>Invoice</th>
                             <th>Customer name</th>
@@ -264,10 +196,9 @@
                             $return = $y->sale_invoice_sale_return->pluck('return_price')->sum();
                             }
                             $covertint=(int)$t;
-                            $paid =$covertint - $total_paid ;
+                            $paid =$covertint - $total_paid -$return;
 
                             @endphp
-
                             <td>{{$return}}</td>
                             <td>{{ $paid }}</td>
                             <td>
@@ -357,24 +288,11 @@
                             <th id="sum-result">{{$total_invoiceamount}}</th>
                             <th id="purchase_paid">{{$total_paymentamount}}</th>
                             <th id="total_return">{{$total_returnamount}}</th>
-                            <th id="total_due_amount">{{$total_invoiceamount-$total_paymentamount}}</th>
+                            <th id="total_due_amount">{{$total_invoiceamount-$total_paymentamount-$total_returnamount}}</th>
                             <th colspan="2"></th>
                         </tr>
                     </tfoot>
                 </table>
-=======
-                            <tr>
-                                <td>Total: </td>
-                                <td></td>
-                                <td>{{$total_invoiceamount}}</td>
-                                <td>{{$total_paymentamount}}</td>
-                                <td>{{$total_returnamount}}</td>
-                                <td>{{$total_invoiceamount-$total_paymentamount-$total_returnamount}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
             </div>
 
 
