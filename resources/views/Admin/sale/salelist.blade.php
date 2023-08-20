@@ -194,7 +194,7 @@
                                 $return = $y->sale_invoice_sale_return->pluck('return_price')->sum();
                                 }
                                 $covertint=(int)$t;
-                                $paid =$covertint - $total_paid ;
+                                $paid =$covertint - $total_paid-$return ;
 
                                 @endphp
                                 <td>{{$return}}</td>
@@ -248,7 +248,7 @@
 
                                             {{-- @if ($y->sale_invoice_sale_return->count() > 0) --}}
                                             <li role="presentation">
-                                                <a class="btn" role="menuitem" href=""> <i class="fa-solid fa-pen-to-square"></i> Refund</a>
+                                                <a class="btn" role="menuitem" href="{{ route('salereturnlist', $y->id) }}"> <i class="fa-solid fa-pen-to-square"></i> Refund</a>
                                             </li>
                                             {{-- @endif --}}
 
@@ -277,12 +277,12 @@
                                 
                             @endphp
                             <tr>
-                                <td>Total </td>
+                                <td>Total: </td>
                                 <td></td>
                                 <td>{{$total_invoiceamount}}</td>
                                 <td>{{$total_paymentamount}}</td>
                                 <td>{{$total_returnamount}}</td>
-                                <td>{{$total_invoiceamount-$total_paymentamount}}</td>
+                                <td>{{$total_invoiceamount-$total_paymentamount-$total_returnamount}}</td>
                             </tr>
                         </tbody>
                     </table>
