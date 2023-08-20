@@ -19,6 +19,29 @@ class TaxController extends Controller
         $tax->name=$req->name;
         $tax->percentage=$req->percentage;
         $tax->save();
-        return redirect()->back();
+        $notification = array(
+            'message' => "Tax Added Successfully",
+            'alert-type' => 'success'
+         );
+         return redirect()->back()->with($notification);
+    }
+
+    function taxEditView($id)
+    {
+        $tax=Tax::find($id);
+        return response()->json($tax);
+    }
+
+    function taxUpdate(Request $req)
+    {
+        $tax=Tax::find($req->id);
+        $tax->name=$req->name;
+        $tax->percentage=$req->percentage;
+        $tax->save();
+        $notification = array(
+            'message' => "Tax Updated Successfully",
+            'alert-type' => 'success'
+         );
+         return redirect()->back()->with($notification);
     }
 }

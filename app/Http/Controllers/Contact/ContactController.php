@@ -30,6 +30,40 @@ class ContactController extends Controller
         $supplier->business_name =$req->business_name ;
         $supplier->landmark =$req->landmark ;
         $supplier->save();
-        return redirect()->back();
+        $notification = array(
+            'message' => 'Supplier Information Added Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    function supplierEditView($id)
+    {
+        $supplier=Supplier::find($id);
+        return view('Admin.Contact.SupplierUpdate',compact('supplier'));
+    }
+
+    function supplierUpdate(Request $req, $id)
+    {
+      
+        $supplier=Supplier::find($id);
+        $supplier->contact_id=$req->contact_id;
+        $supplier->name=$req->name;
+        $supplier->business_name=$req->name;
+        $supplier->city=$req->city;
+        $supplier->state=$req->state;
+        $supplier->country=$req->country;
+        $supplier->email =$req->email;
+        $supplier->mobile =$req->mobile ;
+        $supplier->mobile =$req->mobile ;
+        $supplier->second_contact =$req->second_contact ;
+        $supplier->business_name =$req->business_name ;
+        $supplier->landmark =$req->landmark ;
+        $supplier->update();
+        $notification = array(
+            'message' => 'Supplier Information Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }
