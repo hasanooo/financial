@@ -69,6 +69,8 @@ Route::post('/saleeditformsubmit' ,[SaleController::class, 'saleeditformsubmit']
 Route::get('/saleview/{id}' ,[SaleController::class, 'saleview'])->name('sale.view');
 Route::get('/sale/returnsale/{id}', [SaleController::class, 'salereturn'])->name('salereturn');
 Route::post('/sale/returnSub/{id}',[SaleController::class,'SaleReturnSubmit'])->name('sale.return');
+Route::get('/sale/returnsalelist/{id}', [SaleController::class, 'salereturnlist'])->name('salereturnlist');
+Route::get('/salereturn/add_to_cash',[SaleController::class,'AddCash'])->name('add_cash');
 
 
 //Tax
