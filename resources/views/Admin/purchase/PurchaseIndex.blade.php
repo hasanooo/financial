@@ -416,6 +416,18 @@
             });
 
         });
+        $('#pay_amount').on('input', function() {
+            var dueAmount = parseFloat($('#due').val());
+            var payAmount = parseFloat($(this).val());
+
+            if (payAmount > dueAmount) {
+                $('#alert_msg').text("Pay amount can't be greater than due.");
+                $('#payment_submit').prop('disabled', true);
+            } else {
+                $('#alert_msg').text("");
+                $('#payment_submit').prop('disabled', false);
+            }
+        });
     });
 </script>
 
