@@ -1,8 +1,4 @@
 @extends('Admin.layouts.dashboard')
-<link rel="stylesheet" href="{{ asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}/">
-<link rel="stylesheet" href="{{ asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-
 
 @section('content')
 
@@ -89,34 +85,14 @@
 
             <!-- invoice view modal -->
             @include('Admin.purchase.view_invoice_modal')
-            <div class="row">
 
-                <div class="col-12">
-                    <div class="right d-flex justify-content-end">
-                        <form class="d-flex">
-                            <label class="me-1 mt-1">Search:</label>
-                            <input class="form-control me-2 rounded-0" id="search" type="search">
-                            <div class="dropdown">
-                                <a class="btn btn-info text-light" href="#" role="button" data-bs-toggle="dropdown">Action</a>
-                                <ul class="dropdown-menu bg-info">
-                                    <li><a class="dropdown-item bg-info text-light" href="#"><i class="fa-regular fa-clipboard"></i> Copy </a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"><i class="fa-regular fa-clipboard"></i> Export to CSV</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-regular fa-clipboard"></i> Export to Excel</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-regular fa-clipboard"></i> Export to PDF</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-solid fa-print"></i> Print</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-regular fa-clipboard"></i> Column visibility</a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
                         <tr class="text-white" style="background-color:#0d5e8b;">
                             <th>Invoice</th>
                             <th>Supplier</th>
+                            <th>Date Time</th>
                             <th>Purchase Amount</th>
                             <th>Purchase Paid</th>
                             <th>Return Amount</th>
@@ -143,6 +119,7 @@
                                 <button id="modal_view" class="btn btn-sm">{{$p->invoice}}</button>
                             </td>
                             <td>{{ $p->purchase_invoice_supplier->name}}</td>
+                            <td>{{$p->created_at}}</td>
                             <td>{{$p->payable_amount}} </td>
                             <td>{{ $p->purchase_invoice_purchase_payment->pluck('amount_paid')->sum() }}</td>
                             @php
@@ -169,7 +146,7 @@
                             $due = ($purchase-$paid)-($return);
                             $totaldue += $due;
                             @endphp
-                            <td><span id="d_amount" class="{{$due<0?'text-danger':'text-primary'}}">{{$due}}</span></td>
+                            <td id="d_amount" class="{{$due<0?'text-danger':'text-primary'}}">{{$due}}</td>
                             <td>
                                 @if ($p->payable_amount == $due)
                                 <span class="badge badge-danger"> Unpaid</span>
@@ -216,13 +193,16 @@
                         </tr>
                         @endforeach
 
+                    </tbody>
+                    <tfoot>
                         <tr class="text-center">
                             <th>Total</th>
-                            <th colspan="1"></th>
-                            <th>{{$totalpurchase}}</th>
-                            <th>{{$totalpaid}}</th>
-                            <th>{{$totalreturn}}</th>
-                            <th colspan="" id="total_due_amount">{{$totaldue}}</th>
+                            <th colspan="2"></th>
+
+                            <th id="sum-result">{{$totalpurchase}}</th>
+                            <th id="purchase_paid">{{$totalpaid}}</th>
+                            <th id="total_return">{{$totalreturn}}</th>
+                            <th id="total_due_amount">{{$totaldue}}</th>
                             <th colspan="2">
                                 @if($has_supplier_id)
                                 <button type="button" id="totalpay" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModaltotalpayment">
@@ -232,11 +212,9 @@
                                 @endif
                             </th>
                         </tr>
-
-
-
-                    </tbody>
+                    </tfoot>
                 </table>
+
             </div>
             <!--Total Payment modal -->
             <div class="modal fade" id="exampleModaltotalpayment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -279,63 +257,77 @@
                     </div>
                 </div>
             </div> <!-- End -->
-            <div>
-                <p>Showing 1 to 2 of 2 entries</p>
-            </div>
-            <div class="pagination d-flex justify-content-end">
-                {{ $purchase_invoice->links() }}
-            </div>
+
         </div>
     </div>
 </div>
 
-<script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
 
-<script src="/admin/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="/admin/plugins/jszip/jszip.min.js"></script>
-<script src="/admin/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="/admin/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/admin/dist/js/adminlte.min.js"></script>
 <script>
     $(document).ready(function() {
-        $(function() {
+
+        var table = $('#example2').DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        });
+        var sumResultElement = $('#sum-result'); // Cache the sum display element
+        var sumResultDue = $('#total_due_amount');
+        var sumPurchasePaid = $('#purchase_paid');
+        var sumReturnAmount = $('#total_return');
+
+        function calculateSum() {
+            var columnSum = table.column(3, {
+                search: 'applied'
+            }).data().reduce(function(a, b) {
+                return parseFloat(a) + parseFloat(b);
+            }, 0);
+            sumResultElement.text(columnSum);
+        }
+        
+        //Return calculation 
+        function calculatePurchasePaid() {
+            var columnPurchasePaid = table.column(4, {
+                search: 'applied'
+            }).data().reduce(function(a, b) {
+                return parseFloat(a) + parseFloat(b);
+            }, 0);
            
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": true,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": true,
-                "responsive": true,
-            });
+            sumPurchasePaid.text(columnPurchasePaid);
+        }
+        function calculateReturn() {
+            var columnReturn = table.column(5, {
+                search: 'applied'
+            }).data().reduce(function(a, b) {
+                return parseFloat(a) + parseFloat(b);
+            }, 0);
+           
+            sumReturnAmount.text(columnReturn);
+        }
+        function calculateDue() {
+            var columnDue = table.column(6, {
+                search: 'applied'
+            }).data().reduce(function(a, b) {
+                return parseFloat(a) + parseFloat(b);
+            }, 0);
+           
+            sumResultDue.text(columnDue);
+        }
+        // Initial sum calculation
+        calculateSum();
+        calculatePurchasePaid();
+        calculateReturn();
+        calculateDue();
+        // Recalculate the sum every time the table is redrawn (due to search, pagination, etc.)
+        table.on('draw.dt', function() {
+            calculateSum();
+            calculateDue();
+            calculatePurchasePaid();
+            calculateReturn();
         });
-        $("#exampleModalpayment").on("hidden.bs.modal", function() {
-            $(this).find('form').trigger('reset');
-            $('#alert_msg').text("");
-        });
+        table.buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
 
-    });
-
-    $(document).ready(function() {
         $(document).on('click', '#purchase_delete', function() {
             var current_row = $(this).closest('tr');
             let uid = current_row.find('#uid').val();
