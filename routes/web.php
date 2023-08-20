@@ -207,4 +207,7 @@ Route::controller(BalanceSheetController::class)->group(function () {
     Route::get('/share/index', 'ShareIndex')->name('share.index');
     Route::get('/share/add', 'ShareAddPage')->name('share.addpage');
     Route::post('/share/submit', 'ShareSubmit')->name('share.submit');
+    Route::get('/share/editpage/{id}', 'ShareEditPage')->name('share.editpage');
+    Route::post('/share/edit/{id}', 'ShareEditSubmit')->name('share.edit.submit');
+    Route::get('/share/delete/{id}', 'ShareDelete')->name('share.delete');
 });

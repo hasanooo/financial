@@ -46,8 +46,8 @@
                                 <td>{{ $share->date }}</td>
                                 <td>{{ $share->terms }}</td>
                                 <td>
-                                    {{-- <a class="btn btn-info btn-sm" href="{{ route('liability.editpage',$liability->id) }}"><i class="fa-regular fa-edit"></i></a> --}}
-                                    {{-- <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$liability->id}}"><i class="fa-regular fa-trash-can"></i></a> --}}
+                                    <a class="btn btn-info btn-sm" href="{{ route('share.editpage',$share->id) }}"><i class="fa-regular fa-edit"></i></a>
+                                    <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{$share->id}}"><i class="fa-regular fa-trash-can"></i></a>
                                 </td>
                             </tr>
 
@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                      {{-- <a href="{{ route('liability.delete',$liability->id) }}" type="button" class="btn btn-danger">Delete</a> --}}
+                                      <a href="{{ route('share.delete',$share->id) }}" type="button" class="btn btn-danger">Delete</a>
                                     </div>
                                   </div>
                                 </div>

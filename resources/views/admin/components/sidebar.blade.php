@@ -248,19 +248,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('sale.form')}}" class="nav-link">
+                            <a href="{{route('liability.index')}}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Liabilities</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('sale.form')}}" class="nav-link">
+                            <a href="{{route('share.index')}}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Shareholders</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('sale.form')}}" class="nav-link">
+                            <a href="{{route('balance.sheet')}}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Report</p>
                             </a>
