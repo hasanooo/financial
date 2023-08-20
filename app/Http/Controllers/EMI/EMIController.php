@@ -106,7 +106,12 @@ class EMIController extends Controller
         // $c_history->amount=$request->amount_paid;
         // $c_history->save();
 
-        return redirect()->route('emi.index');
+        $notification = array(
+            'message' => "EMI Added successfully",
+            'alert-type' => 'success'
+         );
+
+        return redirect()->route('emi.index')->with($notification);
         
     }
     public function CollectIndex()
@@ -134,7 +139,15 @@ class EMIController extends Controller
         $payment->payment_account = "none";
         $payment->payment_note = 'none';
         $payment->save();
-        return redirect()->back();
+        $emi_due = EMI::findOrFail($req->emi_id);
+        $due = $emi_due->with_profit;
+        $emi_due->with_profit = $due - $req->amount;
+        $emi_due->update();
+        $notification = array(
+            'message' => "Payment Collected successfully",
+            'alert-type' => 'success'
+         );
+        return redirect()->back()->with($notification);
     }
 
     public function printReport($id){
