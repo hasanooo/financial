@@ -50,7 +50,7 @@ class SaleController extends Controller
         $invoice->sellnote = $req->sellnote;
         $invoice->shipping_charge = $req->shcharge;
         $invoice->status = $req->status;
-        $invoice->save();
+        
         foreach ($req->pname as $m => $mitem) {
             //echo $req->variname[$m];
 
@@ -63,8 +63,14 @@ class SaleController extends Controller
 
             $product = Product::where('id', $req->p_id[$m])->first();
             //return $ppp;
-
-            $qty = $product->qty - $sale->quantity;
+            if( $product->stock==null || $product->stock==0 || $sale->qty>$product->stock )
+            {
+                $alert="out of stock";
+                return back()->with('message',$alert);
+            }
+            else{
+                $invoice->save();
+                $qty = $product->qty - $sale->quantity;
             $product->stock = $qty;
             $product->save();
             // return $req->variname[$m];
@@ -78,6 +84,9 @@ class SaleController extends Controller
 
             $sale->sell_invoice_id = $invoice->id;
             $sale->save();
+            }
+
+            
 
          }
    
@@ -211,4 +220,27 @@ class SaleController extends Controller
     {
         return view('admin.sale.sale_track');
     }
+    public function  salereturnlist($id)
+   {
+     
+      $return = SellingReturn::where('sell_invoice_id', $id)->get();
+      return view('Admin.sale.refund', compact('return'));
+      //echo $return;
+
+   }
+   public function AddCash(Request $req)
+   {
+      
+      $return = new SellingPayment();
+      $return->sell_invoice_id = $req->return_id;
+      $return->payment_method = "cash";
+      $return->payment_account = "none";
+      $return->payment_note = "none";
+      $return->amount_paid = - ($req->paid_amount);
+      if ($return) {
+         $return->save();
+         return "success";
+      }
+      return "failed";
+   }
 }

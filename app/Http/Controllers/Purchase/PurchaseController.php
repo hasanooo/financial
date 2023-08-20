@@ -39,7 +39,7 @@ class PurchaseController extends Controller
         //     abort('403', 'Unauthorized access');
         // }
 
-        $purchase_invoice = $id == 0 ? PurchaseInvoice::paginate(10) : PurchaseInvoice::where('suplier_id', $id)->paginate(10);
+        $purchase_invoice = $id == 0 ? PurchaseInvoice::paginate(10) : PurchaseInvoice::where('supplier_id', $id)->paginate(10);
         $purchase_id = $id;
         $has_supplier_id = $id != 0; // Check if a supplier ID was passed
 
@@ -118,7 +118,7 @@ class PurchaseController extends Controller
         $p_invoice = new PurchaseInvoice();
         $random_number = rand(1, 1000);
         $random_string = Str::random(4);
-        $p_invoice->invoice = "bbpetcare" . $random_number . $random_string;
+        $p_invoice->invoice = "bengalsoftware" . $random_number . $random_string;
         $p_invoice->supplier_id = $req->supplier_id;
         $p_invoice->purchase_date = $req->pdate;
         $p_invoice->payable_amount = $req->purchase_price;
@@ -174,7 +174,7 @@ class PurchaseController extends Controller
         $p_invoice = PurchaseInvoice::where('id', $req->id)->first();
         $random_number = rand(1, 1000);
         $random_string = Str::random(4);
-        $p_invoice->invoice = "bbpetcare" . $random_number . $random_string;
+        $p_invoice->invoice = "bengalsoftware" . $random_number . $random_string;
         $p_invoice->supplier_id = $req->supplier_id;
         $p_invoice->purchase_date = $req->pdate;
         $p_invoice->payable_amount = $req->purchase_price;
@@ -348,12 +348,12 @@ class PurchaseController extends Controller
         $p_price = $req->purchase_id;
         foreach ($p_price as $i => $item) {
             if ($req->return_qty[$i]) {
-                $purchase = Purchase::where('id', $item)->first();
-                $update_qty = [
-                    'purchase_qtn' => $purchase->purchase_qtn - $req->return_qty[$i],
+                $product = Product::where('id',$req->product_id[$i])->first();
+                $updated_product = [
+                    'stock' => $product->stock - $req->return_qty[$i],
                 ];
-                $updated_qty = Purchase::where('id', $item)->update($update_qty);
-                if ($updated_qty) {
+                $updated = Product::where('id', $req->product_id[$i])->update($updated_product);
+                if ($updated) {
                     $p_return = new PurchaseReturn();
                     $p_return->purchase_invoice_id = $id;
                     $p_return->product_id = $req->product_id[$i];

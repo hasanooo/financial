@@ -21,28 +21,6 @@
                     </a>
                 </div>
 
-                <div class="col-12 mt-3">
-
-                    <div class="right d-flex justify-content-end">
-
-                        <form class="d-flex">
-                            <label class="me-1 mt-1">Search:</label>
-                            <input class="form-control me-2 rounded-0" name="search" type="search" id="search">
-                            <div class="dropdown">
-                                <a class="btn btn-info text-light" href="#" role="button" data-bs-toggle="dropdown">Action</a>
-                                <ul class="dropdown-menu bg-info">
-                                    <li><a class="dropdown-item bg-info text-light" href="#"><i class="fa-regular fa-clipboard"></i> Copy </a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"><i class="fa-regular fa-clipboard"></i> Export to CSV</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-regular fa-clipboard"></i> Export to Excel</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-regular fa-clipboard"></i> Export to PDF</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-solid fa-print"></i> Print</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-regular fa-clipboard"></i> Column visibility</a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center">
 
@@ -55,7 +33,7 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped my-3 k_search text-center">
+                    <table id="example1" class="table table-bordered table-striped my-3 k_search text-center">
                         <thead>
                             <tr class="text-white" style="background-color:#0d5e8b;">
                                 <th>SL</th>
@@ -126,12 +104,16 @@
                                 </div>
                             </div>
                             @endforeach
+                            
+                        </tbody>
+                        <tfoot>
                             <tr class="text-center">
-                                <th colspan="4">Total</th>
+                                <th>Total</th>
+                                <th colspan="3"></th>
                                 <th>{{$totalcash}}</th>
                                 <th></th>
                             </tr>
-                        </tbody>
+                        </tfoot>
                     </table>
                 </div>
             </div>

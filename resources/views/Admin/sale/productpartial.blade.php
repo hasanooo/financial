@@ -28,10 +28,11 @@
     </td>
 
     <td> 
+        {{-- <input disabled type="text" value="{{ $product->tax_id }}" class="form-control"> --}}
         @if ($product->product_tax==null)
         <input disabled type="text"value="0" class="form-control">
         @else
-        <input disabled type="text"value="{{ $product->product_price_tax->percentage }}" class="form-control">
+        <input disabled type="text" value="{{ $product->product_tax->percentage }}" class="form-control">
         @endif
         
 

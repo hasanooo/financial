@@ -20,6 +20,7 @@ use App\Http\Controllers\Roles\RolesController;
 use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Tax\TaxController;
 use App\Http\Controllers\Capex\CapexController;
+use App\Http\Controllers\Lc\LcController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,8 @@ Route::post('/saleeditformsubmit' ,[SaleController::class, 'saleeditformsubmit']
 Route::get('/saleview/{id}' ,[SaleController::class, 'saleview'])->name('sale.view');
 Route::get('/sale/returnsale/{id}', [SaleController::class, 'salereturn'])->name('salereturn');
 Route::post('/sale/returnSub/{id}',[SaleController::class,'SaleReturnSubmit'])->name('sale.return');
+Route::get('/sale/returnsalelist/{id}', [SaleController::class, 'salereturnlist'])->name('salereturnlist');
+Route::get('/salereturn/add_to_cash',[SaleController::class,'AddCash'])->name('add_cash');
 
 
 //Tax
@@ -147,6 +150,7 @@ Route::get('/role.delete/{id}', [RolesController::class, 'destroy'])->name('role
 
 //Purchase
 Route::get('/Purchase/Index',[PurchaseController::class,'PurchaseIndex'])->name('purchase.index');
+Route::get('/Purchase/list/{id}',[PurchaseController::class,'PurchaseIndex'])->name('purchase.list');
 Route::get('/Purchase/Add',[PurchaseController::class,'PurchaseAdd'])->name('purchase.add');
 Route::get('/Purchase/Edit/{id}',[PurchaseController::class,'PurchaseEdit'])->name('purchase.edit');
 Route::post('/Purchase/Add/Sub',[PurchaseController::class,'PurchaseAddSub'])->name('purchaseaddsub');
@@ -186,6 +190,12 @@ Route::get('/opex/create' ,[OpexController::class,'Create'])->name('opex.create'
 // Send Emails Controller
 Route::post('/customer/sendmail',[CustomerController::class,'SendEmail'])->name('customer.sendmail');
 Route::get('/customer/select',[CustomerController::class,'SelectCustomer'])->name('customer.select');
+Route::get('/lcform',[LcController::class,'lcform'])->name('lc.form');
+Route::get('/lclist',[LcController::class,'lclist'])->name('lc.list');
+Route::get('/lceditform/{id}',[LcController::class,'lceditform'])->name('lc.edit');
+Route::get('/lcdeleteform/{id}',[LcController::class,'lcdeleteform'])->name('lc.delete');
+Route::post('/lcformsubmit',[LcController::class,'lcformsubmit'])->name('lc.form.submit');
+Route::post('/lceditformsubmit',[LcController::class,'lceditformsubmit'])->name('lc.formedit.submit');
 
 // Balance Sheet Controller
 Route::controller(BalanceSheetController::class)->group(function () {
