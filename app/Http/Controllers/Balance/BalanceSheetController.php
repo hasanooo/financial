@@ -134,4 +134,31 @@ class BalanceSheetController extends Controller
         return view('Admin.asset.report',compact('asset','liability','share'));
     }
 
+    public function ShareIndex()
+    {
+        $shares = Share::all();
+        return view('Admin.share.index',compact('shares'));
+    }
+    public function ShareAddPage()
+    {
+        return view ('Admin.share.addpage');
+    }
+
+    public function ShareSubmit(Request $request){
+        $share = new Share();
+        $share->date = $request->date;
+        $share->category = $request->category;
+        $share->name = $request->name;
+        $share->phone = $request->phone;
+        $share->address = $request->address;
+        $share->amount = $request->amount;
+        $share->terms = $request->term;
+        $share->save();
+        $notification = array(
+            'message' => "Share Added successfully",
+            'alert-type' => 'success'
+         );
+        return redirect()->route('share.index')->with($notification);
+    }
+
 }

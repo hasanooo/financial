@@ -203,4 +203,11 @@ Route::controller(BalanceSheetController::class)->group(function () {
     Route::get('/liability/editpage/{id}', 'LiabilityEditPage')->name('liability.editpage');
     Route::post('/liability/edit/{id}', 'LiabilityEditSubmit')->name('liability.edit.submit');
     Route::get('/liability/delete/{id}', 'LiabilityDelete')->name('liability.delete');
+
+    Route::get('/share/index', 'ShareIndex')->name('share.index');
+    Route::get('/share/add', 'ShareAddPage')->name('share.addpage');
+    Route::post('/share/submit', 'ShareSubmit')->name('share.submit');
+    Route::get('/share/editpage/{id}', 'ShareEditPage')->name('share.editpage');
+    Route::post('/share/edit/{id}', 'ShareEditSubmit')->name('share.edit.submit');
+    Route::get('/share/delete/{id}', 'ShareDelete')->name('share.delete');
 });

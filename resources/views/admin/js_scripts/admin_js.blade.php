@@ -1,3 +1,4 @@
+
 <!-- jQuery -->
 <script src="{{asset("Admin/plugins/jquery/jquery.min.js")}}"></script>
 <!-- Bootstrap -->
@@ -8,15 +9,6 @@
 <script src="{{asset("Admin/dist/js/adminlte.js")}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset("Admin/dist/js/pages/visualization.js")}}"></script>
-
-<!-- Bootstrap 4 -->
-<script src="/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- overlayScrollbars -->
-<script src="/Admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
-<!-- AdminLTE App -->
-<script src="/Admin/dist/js/adminlte.min.js"></script>
 
 <!--Toastr JS-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
