@@ -20,6 +20,7 @@ use App\Http\Controllers\Roles\RolesController;
 use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Tax\TaxController;
 use App\Http\Controllers\Capex\CapexController;
+use App\Http\Controllers\Lc\LcController;
 
 /*
 |--------------------------------------------------------------------------
@@ -187,6 +188,12 @@ Route::get('/opex/create' ,[OpexController::class,'Create'])->name('opex.create'
 // Send Emails Controller
 Route::post('/customer/sendmail',[CustomerController::class,'SendEmail'])->name('customer.sendmail');
 Route::get('/customer/select',[CustomerController::class,'SelectCustomer'])->name('customer.select');
+Route::get('/lcform',[LcController::class,'lcform'])->name('lc.form');
+Route::get('/lclist',[LcController::class,'lclist'])->name('lc.list');
+Route::get('/lceditform/{id}',[LcController::class,'lceditform'])->name('lc.edit');
+Route::get('/lcdeleteform/{id}',[LcController::class,'lcdeleteform'])->name('lc.delete');
+Route::post('/lcformsubmit',[LcController::class,'lcformsubmit'])->name('lc.form.submit');
+Route::post('/lceditformsubmit',[LcController::class,'lceditformsubmit'])->name('lc.formedit.submit');
 
 // Balance Sheet Controller
 Route::controller(BalanceSheetController::class)->group(function () {
