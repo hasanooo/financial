@@ -148,6 +148,7 @@ Route::get('/role.delete/{id}', [RolesController::class, 'destroy'])->name('role
 
 //Purchase
 Route::get('/Purchase/Index',[PurchaseController::class,'PurchaseIndex'])->name('purchase.index');
+Route::get('/Purchase/list/{id}',[PurchaseController::class,'PurchaseIndex'])->name('purchase.list');
 Route::get('/Purchase/Add',[PurchaseController::class,'PurchaseAdd'])->name('purchase.add');
 Route::get('/Purchase/Edit/{id}',[PurchaseController::class,'PurchaseEdit'])->name('purchase.edit');
 Route::post('/Purchase/Add/Sub',[PurchaseController::class,'PurchaseAddSub'])->name('purchaseaddsub');
@@ -196,7 +197,25 @@ Route::post('/lceditformsubmit',[LcController::class,'lceditformsubmit'])->name(
 
 // Balance Sheet Controller
 Route::controller(BalanceSheetController::class)->group(function () {
-    Route::get('/asstets/index', 'AssetIndex')->name('assets.index');
+    Route::get('/assets/index', 'AssetIndex')->name('assets.index');
     Route::get('/asset/add', 'AssetAddPage')->name('asset.addpage');
     Route::post('/asset/submit', 'AssetSubmit')->name('asset.submit');
+    Route::get('/asset/editpage/{id}', 'AssetEditPage')->name('asset.editpage');
+    Route::get('/asset/delete/{id}', 'AssetDelete')->name('asset.delete');
+    Route::post('/asset/edit/{id}', 'AssetEditSubmit')->name('asset.edit.submit');
+    Route::get('/balance/sheet', 'BalanceSheet')->name('balance.sheet');
+
+    Route::get('/liability/index', 'LiabilityIndex')->name('liability.index');
+    Route::get('/liability/add', 'LiabilityAddPage')->name('liability.addpage');
+    Route::post('/liability/submit', 'LiabilitySubmit')->name('liability.submit');
+    Route::get('/liability/editpage/{id}', 'LiabilityEditPage')->name('liability.editpage');
+    Route::post('/liability/edit/{id}', 'LiabilityEditSubmit')->name('liability.edit.submit');
+    Route::get('/liability/delete/{id}', 'LiabilityDelete')->name('liability.delete');
+
+    Route::get('/share/index', 'ShareIndex')->name('share.index');
+    Route::get('/share/add', 'ShareAddPage')->name('share.addpage');
+    Route::post('/share/submit', 'ShareSubmit')->name('share.submit');
+    Route::get('/share/editpage/{id}', 'ShareEditPage')->name('share.editpage');
+    Route::post('/share/edit/{id}', 'ShareEditSubmit')->name('share.edit.submit');
+    Route::get('/share/delete/{id}', 'ShareDelete')->name('share.delete');
 });

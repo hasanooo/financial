@@ -137,47 +137,12 @@
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="left">
-                        <p class="d-inline">Show</p>
-                        <select class="form-select-sm rounded-0">
-                            <option selected>25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                            <option value="200">200</option>
-                            <option value="All">All</option>
-                        </select>
-                        <p class="d-inline">entries</p>
-                    </div>
-                </div>
-
-
-                <div class="col-6">
-                    <div class="right d-flex justify-content-end">
-                        <form class="d-flex">
-
-                            <input class="form-control me-2 rounded-0" id="search" type="search" placeholder="Search product..">
-                            <div class="dropdown">
-                                <a class="btn btn-info text-light" href="#" role="button" data-bs-toggle="dropdown">Action</a>
-                                <ul class="dropdown-menu bg-info">
-                                    <li><a class="dropdown-item bg-info text-light" href="#"><i class="fa-regular fa-clipboard"></i> Copy </a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"><i class="fa-regular fa-clipboard"></i> Export to CSV</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-regular fa-clipboard"></i> Export to Excel</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-regular fa-clipboard"></i> Export to PDF</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-solid fa-print"></i> Print</a></li>
-                                    <li><a class="dropdown-item bg-info text-light" href="#"> <i class="fa-regular fa-clipboard"></i> Column visibility</a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+           
 
 
             <div class=" table-responsive my-3">
                 <div class="card-body">
-                    <table class="table table-bordered  table-head-fixed text-nowrap k_search">
+                    <table id="example2" class="table table-bordered  table-head-fixed text-nowrap k_search">
                         <thead>
                             <tr class="text-center">
                                 {{-- <th>Date</th> --}}
@@ -326,15 +291,18 @@
 
 
 
-            <div class="pagination d-flex justify-content-end">
-                {{-- {{ $yy->links() }} --}}
-            </div>
         </div>
     </div>
 </div>
 
 <script>
     $(document).ready(function() {
+        var table = $('#example2').DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        });
         $('body').on('click', '#p_id', function() {
             var urlData = $(this).data('url');
             $.get(urlData, function(data) {
