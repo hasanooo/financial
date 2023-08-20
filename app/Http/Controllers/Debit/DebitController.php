@@ -89,14 +89,22 @@ class DebitController extends Controller
         $debit->particuler = $request->particuler;
         $debit->cash = $request->cash;
         $debit->save();
-        return redirect()->back();
+        $notification = array(
+            'message' => "Debit Added successfully",
+            'alert-type' => 'success'
+         );
+        return redirect()->back()->with($notification);
     }
 
     public function DeleteDebit($id)
     {
         $debitID = DebitCash::find($id);
         $debitID->delete();
-        return back();
+        $notification = array(
+            'message' => "Debit Deleted successfully",
+            'alert-type' => 'success'
+         );
+        return back()->with($notification);
     }
     public function DebitEditView($id)
     {
@@ -113,6 +121,10 @@ class DebitController extends Controller
         $debit->particuler = $request->particuler;
         $debit->cash = $request->cash;
         $debit->update();
-        return redirect()->back();
+        $notification = array(
+            'message' => "Debit Updated successfully",
+            'alert-type' => 'success'
+         );
+        return redirect()->back()->with($notification);
     }
 }

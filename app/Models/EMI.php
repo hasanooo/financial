@@ -10,7 +10,7 @@ class EMI extends Model
     use HasFactory;
     public function Selling()
     {
-        return $this->hasMany(SellingPayment::class);
+        return $this->hasMany(SellingPayment::class, 'e_m_i_id');
     }
     public function Customer()
     {
