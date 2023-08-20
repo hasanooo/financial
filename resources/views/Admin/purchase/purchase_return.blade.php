@@ -35,7 +35,6 @@
                                 <th>Unit Price</th>
                                 <th>Purchase Quantity</th>
                                 <th>Availabe Stock</th>
-                                <th>Return Quantity</th>
                                 <th>Return Subtotal</th>
                             </tr>
                         </thead>
@@ -57,8 +56,8 @@
                                 </td>--}}
                                 <td id="unit_price">{{$item->purchase_product->purchase_price}}</td>
                                 <td>{{$item->purchase_qtn}}</td>
-                                <td></td>
-                                <td id="stock">{{$item->purchase_product->stock}}</td>
+                                <td  id="stock">{{$item->purchase_product->stock}}</td>
+                               
                                 <td><input id="return_qty" name="return_qty[]" type="number" class="form-control"></td>
                                 <td><input type="number" id="retutn_price" name="retutn_price[]" class="form-control line-total" readonly></td>
                             </tr>

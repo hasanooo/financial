@@ -54,11 +54,11 @@ class PurchaseController extends Controller
         // }
         $s = Supplier::all();
         $product = Product::all();
-        $credit_category = CCategory::all();
+        $credit_category=CCategory::all();
         return view('Admin.purchase.addPurchase')
             ->with('ss', $s)
             ->with('product', $product)
-            ->with('category_credit', $credit_category);
+            ->with('category_credit',$credit_category);
     }
 
     public function PurchaseEdit(Request $req)
@@ -69,13 +69,13 @@ class PurchaseController extends Controller
         $s = Supplier::where('id', $req->id)->first();
         $p = PurchaseInvoice::with('purchase_invoice_purchase_payment')->where('id', $req->id)->first();
         $product = Product::all();
-        $credit_category = CCategory::all();
+        $credit_category=CCategory::all();
 
         return view('Admin.purchase.editPurchase')
             ->with('ss', $s)
             ->with('purchaseInvoice', $p)
             ->with('product', $product)
-            ->with('category_credit', $credit_category);
+            ->with('category_credit',$credit_category);
     }
 
 
@@ -86,7 +86,7 @@ class PurchaseController extends Controller
         $req->validate(
             [
                 'supplier_id' => 'required',
-
+              
                 'pdate' => 'required|date',
                 // 'purchase_status' => 'required',
                 // 'location' => 'required',
@@ -118,7 +118,7 @@ class PurchaseController extends Controller
         $p_invoice = new PurchaseInvoice();
         $random_number = rand(1, 1000);
         $random_string = Str::random(4);
-        $p_invoice->invoice = "bbpetcare" . $random_number . $random_string;
+        $p_invoice->invoice = "bengalsoftware" . $random_number . $random_string;
         $p_invoice->supplier_id = $req->supplier_id;
         $p_invoice->purchase_date = $req->pdate;
         $p_invoice->payable_amount = $req->purchase_price;
@@ -154,12 +154,14 @@ class PurchaseController extends Controller
             if ($p_payment) {
                 $p_payment->save();
 
-                $credit_create = new CreditCash();
-                $credit_create->c_category_id = $req->category;
-                $credit_create->date = date('Y-m-d');
-                $credit_create->particuler = "By Product Purchase";
+                $credit_create=new CreditCash();
+                $credit_create->c_category_id=$req->category;
+                $credit_create->date=date('Y-m-d');
+                $credit_create->particuler="By Product Purchase";
                 $credit_create->cash = $req->total_amount_paid;
                 $credit_create->save();
+               
+
             }
         }
 
@@ -172,7 +174,7 @@ class PurchaseController extends Controller
         $p_invoice = PurchaseInvoice::where('id', $req->id)->first();
         $random_number = rand(1, 1000);
         $random_string = Str::random(4);
-        $p_invoice->invoice = "bbpetcare" . $random_number . $random_string;
+        $p_invoice->invoice = "bengalsoftware" . $random_number . $random_string;
         $p_invoice->supplier_id = $req->supplier_id;
         $p_invoice->purchase_date = $req->pdate;
         $p_invoice->payable_amount = $req->purchase_price;
@@ -200,12 +202,12 @@ class PurchaseController extends Controller
                         $updated_qty = $req->p_qty[$i];
                         $difference = $updated_qty - $previous_qty;
                         $new_qty = array(
-
-                            'stock' => $product->stock + $difference,
+                    
+                            'stock' =>$product->stock + $difference,
                         );
                         Product::where('id', $product_id[$i])->update($new_qty);
                     }
-                }
+                } 
             }
 
             $p_payment = PurchasePayment::where('purchase_invoice_id', $p_invoice->id)->first();
@@ -219,6 +221,8 @@ class PurchaseController extends Controller
             }
             if ($p_payment) {
                 $p_payment->save();
+
+
             }
         }
 
@@ -231,15 +235,15 @@ class PurchaseController extends Controller
 
     //     $p = Product::where('id', $req->q)->first();
     //     $product = Product::where("id", $p->id)->get();
-
+    
     //         return view('Admin.purchase.partialpage', compact('product', 'p'));
     // }
-
+    
     public function purchase_item_partial(Request $req)
     {
         $p = Product::where('id', $req->q)->first();
         $product = Product::where("id", $p->id)->get();
-        return view('Admin.purchase.products_item_partial', compact('product', 'p'));
+        return view('Admin.purchase.products_item_partial', compact('product','p'));
     }
 
 
@@ -307,7 +311,7 @@ class PurchaseController extends Controller
                 $p_payment->payment_note = 'none';
                 $p_payment->save();
 
-                $credit_create = CreditCash::where('id', $req->id)->first();
+                $credit_create = CreditCash::where('id',$req->id)->first();
                 $credit_create->cash = $pay_due;
                 $credit_create->update();
             }
@@ -319,13 +323,14 @@ class PurchaseController extends Controller
             if ($duetotal <= 0) {
                 break;
             }
+
         }
 
         return back();
         //return $req->invoice_id;
     }
 
-
+   
 
     protected function purchase_modal_partial(Request $req)
     {
@@ -343,20 +348,27 @@ class PurchaseController extends Controller
         $p_price = $req->purchase_id;
         foreach ($p_price as $i => $item) {
             if ($req->return_qty[$i]) {
+                $product = Product::where('id',$req->product_id[$i])->first();
+                $updated_product = [
+                    'stock' => $product->stock - $req->return_qty[$i],
+                ];
+                $updated = Product::where('id', $req->product_id[$i])->update($updated_product);
+                if ($updated) {
+                    $p_return = new PurchaseReturn();
+                    $p_return->purchase_invoice_id = $id;
+                    $p_return->product_id = $req->product_id[$i];
+                    $p_return->return_qty = $req->return_qty[$i];
+                    $p_return->return_price = $req->retutn_price[$i];
 
-                $p_return = new PurchaseReturn();
-                $p_return->purchase_invoice_id = $id;
-                $p_return->product_id = $req->product_id[$i];
-                $p_return->return_qty = $req->return_qty[$i];
-                $p_return->return_price = $req->retutn_price[$i];
-
-                if ($p_return->save()) {
-                    // Success
-                    $debit = new DebitCash();
-                    $debit->date = date('Y-m-d');
-                    $debit->particuler = "To Product Return";
-                    $debit->cash = $req->retutn_price[$i];
-                    $debit->save();
+                    if ($p_return->save()) {
+                        // Success
+                        $debit = new DebitCash();
+                        $debit->date = date('Y-m-d');
+                        $debit->particuler = "To Product Return";
+                        $debit->cash = $req->retutn_price[$i];
+                        $debit->save();
+                        
+                    }
                 }
             }
         }
@@ -371,7 +383,7 @@ class PurchaseController extends Controller
         // }
         $category = DCategory::all();
         $return = PurchaseReturn::where('purchase_invoice_id', $id)->get();
-        return view('Admin.purchase.purchase_return_list', compact('return', 'category'));
+        return view('Admin.purchase.purchase_return_list', compact('return','category'));
     }
     protected function AddToCash(Request $req)
     {
@@ -389,7 +401,7 @@ class PurchaseController extends Controller
             $return->amount_paid = - ($req->paid_amount);
             if ($return) {
                 $return->save();
-
+               
                 return "success";
             }
         }
@@ -414,7 +426,7 @@ class PurchaseController extends Controller
 
         $PurchasePayment = PurchasePayment::where('purchase_invoice_id', $purchase_invoice->id)->delete();
 
-
+    
         $purchase = Purchase::where('purchase_invoice_id', $purchase_invoice->id)->delete();
 
 
@@ -422,4 +434,5 @@ class PurchaseController extends Controller
 
         return back();
     }
+    
 }
