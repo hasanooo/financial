@@ -27,7 +27,6 @@ class Product extends Model
 
     function product_tax()
     {
-        return $this->belongsTo(Tax::class);
+        return $this->belongsTo(Tax::class,'tax_id');
     }
 }
-
