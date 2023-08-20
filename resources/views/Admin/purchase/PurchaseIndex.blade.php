@@ -120,7 +120,7 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped my-3 k_search">
+                <table class="table table-bordered table-striped my-3 k_search" id="example1">
                     <thead>
                     <tr class="text-white" style="background-color:#0d5e8b;">
                         <th>Invoice</th>

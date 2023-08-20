@@ -186,117 +186,6 @@
                     </div>
 
 
-                    <!--Edit Modal -->
-                    {{-- <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-xl">
-                            <div class="modal-content rounded-0">
-                                <div class="modal-header">
-                                    <p class="modal-title" id="exampleModalLabel">Edit contact</p>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body ">
-                                    <form action="{{route('SupplierEditSub')}}" method="post"
-                    enctype="multipart/form-data" class="row g-3">
-                    {{@csrf_field()}}
-                    <input type="hidden" id="id" name="id" />
-                    <div class="row">
-                        <div class="col-3">
-                            <label for="" class="form-label">Contact type:*</label>
-                            <select name="type" id="" class="form-control rounded-0">
-                                <option value="">Suppliers</option>
-
-                            </select>
-                        </div>
-                        <div class="col-3">
-                            <label for="" class="form-label">Name:*</label>
-                            <input type="text" name="name" class="form-control rounded-0 supplier_name" id="name" value="{{old('name')}}" placeholder="Name">
-
-                        </div>
-
-                        <div class="col-3">
-                            <label for="" class="form-label">Business Name:</label>
-                            <input type="email" name="business_name" class="form-control rounded-0" id="bname" value="{{old('business_name')}}" placeholder="Business Name">
-
-                        </div>
-
-                        <div class="col-3">
-                            <label for="" class="form-label">Contact ID.:</label>
-                            <input type="contact" name="contact_id" class="form-control rounded-0" id="contact_id" value="{{old('contact_id')}}" placeholder="Contact ID.">
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="row mt-3">
-                        <div class="col-3">
-                            <label for="" class="form-label">Email:</label>
-                            <input type="text-area" name="email" class="form-control rounded-0" id="email" value="{{old('email')}}" placeholder="Email">
-
-                        </div>
-
-                        <div class="col-3">
-                            <label for="" class="form-label">Mobile:*</label>
-                            <input type="text-area" name="mobile" class="form-control rounded-0" id="mobile" value="{{old('mobile')}}" placeholder="Mobile Number">
-
-                        </div>
-
-                        <div class="col-3">
-                            <label for="" class="form-label">Alternate contact number:</label>
-                            <input type="text-area" name="second_contact" class="form-control rounded-0" id="second_contact" value="{{old('second_contact')}}" placeholder="Alternate contact number">
-
-                        </div>
-
-                        <div class="col-3">
-                            <label for="" class="form-label">Landline:</label>
-                            <input type="text-area" name="landline" class="form-control rounded-0" id="" placeholder="Landline">
-
-                        </div>
-
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col-3">
-                            <label for="" class="form-label">City:</label>
-                            <input type="text-area" name="city" class="form-control rounded-0" id="city" value="{{old('city')}}" placeholder="City">
-
-                        </div>
-
-                        <div class="col-3">
-                            <label for="" class="form-label">State:</label>
-                            <input type="text-area" name="state" class="form-control rounded-0" id="state" value="{{old('state')}}" placeholder="state">
-
-                        </div>
-
-                        <div class="col-3">
-                            <label for="" class="form-label">Country:</label>
-                            <input type="text-area" name="country" class="form-control rounded-0" id="country" value="{{old('country')}}" placeholder="Country">
-
-                        </div>
-
-                        <div class="col-3">
-                            <label for="" class="form-label">Landmark:</label>
-                            <input type="text-area" name="landmark" class="form-control rounded-0" id="landmark" value="{{old('landmark')}}" placeholder="Landmark">
-
-                        </div>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary rounded-0">Save</button>
-                        <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Close</button>
-                    </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div> --}}
-
-
     <!--Delete modal -->
     {{-- <div class="modal fade" id="exampleModaldelete" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -367,7 +256,7 @@
 
 
 <div class="table-responsive">
-    <table class="table table-bordered table-striped my-3 k">
+    <table class="table table-bordered table-striped my-3 k " id="example1">
         <thead>
             <tr>
                 <th>SL</th>
@@ -428,8 +317,8 @@
                     <a href="" class="btn btn-sm btn-warning">Purchase History</a>
                 </td>--}}
                 <td>
-                    <a href="javascript:void(0)" data-url="" id="id">
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+                    <a href="{{route('UpdateSupplierView', $item->id)}}" id="id">
+                        <button class="btn btn-primary btn-sm">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                     </a>

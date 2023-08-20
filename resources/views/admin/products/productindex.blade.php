@@ -45,95 +45,89 @@
             </div>
             <div class="row">
 
-
-                <div class="col-12 my-1">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control rounded-0" placeholder="Product name/SKU.." id="search">
-                        <span class="input-group-text rounded-0"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></span>
-
-                   </div>
-            </div>
-           
-            <div class="card  table-responsive my-3">
-                <div class="card-body">
-                    <table class="table table-bordered  table-head-fixed text-nowrap k_search">
-                        <thead>
-                            <tr class="text-center">
-                                <th>SL</th>
-                                <th>Image</th>
-                                <th>Product</th>
-                                <th>Category</th>
-                                <th>Purchase price</th>
-                                <th>Status</th>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($product as $i=>$item)
-                            <tr class="text-center">
-                                <td>
-                                    <input type="hidden" value="{{$item->id}}" id="pid">
-                                    {{$i+1}}
-                                </td>
-                                {{--src="{{$item->image==null?'Product/Image/defaultimage.png':'Product/Image/'.$item->image}}"--}}
-                                <td><img style="width:40px;" src="{{$item->image==null?'/Product/Image/defaultimage.png':'/Product/Image/'.$item->image}}"  alt=""></td>
-                                <td>{{$item -> name}}</td>
-                                <td>{{$item->category->name}}</td>
-                                <td>{{$item->purchase_price}}</td>
-                                <td>
-                                    @if('Active'==$item->status)
-                                        <span class="badge badge-success">{{$item->status}}</span>
-                                    @else
-                                        <span class="badge badge-danger">{{$item->status}}</span>
-                                    @endif
-                                </td>
-
-                              
-
+                <div class="card  table-responsive my-3">
+                    <div class="card-body">
+                        <table class="table table-bordered  table-head-fixed text-nowrap k_search" id="example1">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>SL</th>
+                                    <th>Image</th>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Purchase price</th>
+                                    <th>Status</th>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($product as $i=>$item)
+                                <tr class="text-center">
+                                    <td>
+                                        <input type="hidden" value="{{$item->id}}" id="pid">
+                                        {{$i+1}}
+                                    </td>
+                                    {{--src="{{$item->image==null?'Product/Image/defaultimage.png':'Product/Image/'.$item->image}}"--}}
+                                    <td><img style="width:40px;" src="{{$item->image==null?'/Product/Image/defaultimage.png':'/Product/Image/'.$item->image}}"  alt=""></td>
+                                    <td>{{$item -> name}}</td>
+                                    <td>{{$item->category->name}}</td>
+                                    <td>{{$item->purchase_price}}</td>
+                                    <td>
+                                        @if('Active'==$item->status)
+                                            <span class="badge badge-success">{{$item->status}}</span>
+                                        @else
+                                            <span class="badge badge-danger">{{$item->status}}</span>
+                                        @endif
+                                    </td>
 
                                 
 
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                            </svg></button>
-                                        <ul class="dropdown-menu text-left px-3 " role="menu" aria-labelledby="menu1">
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="" class="btn"><i class="fa-solid fa-pen-to-square"></i>
-                                                    Edit</a></li>
-                                            <li role="presentation"><a href="{{ route('product.view', $item->id) }}" class="btn">
-                                                    <i class="fa-solid fa-eye"></i>
-                                                    View</a></li>
-                                            <li role="presentation"><button type="button" id="user_remove" class="btn" data-bs-toggle="modal">
-                                                    <i class="fa-solid fa-trash"></i> Delete
-                                                </button></li>
-                                            <li>
-                                                <a href="{{ route('product.stock', $item->id) }}">
-                                                    <button class="btn" id="stock" >
-                                                    <i class="fa-solid fa-store"></i> Open stock</button>
-                                                </a>
-                                            </li>
+
+                                    
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                                </svg></button>
+                                            <ul class="dropdown-menu text-left px-3 " role="menu" aria-labelledby="menu1">
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('prodauct.edit.view',$item->id)}}" class="btn"><i class="fa-solid fa-pen-to-square"></i>
+                                                        Edit</a></li>
+                                                <li role="presentation"><a href="{{ route('product.view', $item->id) }}" class="btn">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                        View</a></li>
+                                                <li role="presentation"><button type="button" id="user_remove" class="btn" data-bs-toggle="modal">
+                                                        <i class="fa-solid fa-trash"></i> Delete
+                                                    </button></li>
+                                                <li>
+                                                    <a href="{{ route('product.stock', $item->id) }}">
+                                                        <button class="btn" id="stock" >
+                                                        <i class="fa-solid fa-store"></i> Open stock</button>
+                                                    </a>
+                                                </li>
 
 
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                          
-                        </tbody>
-                    </table>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            
+            
+            
+            
+                <div class="pagination d-flex justify-content-end">
+                
                 </div>
             </div>
-
+           
             
-            
-            
-            
-            <div class="pagination d-flex justify-content-end">
-            
-            </div>
         </div>
     </div>
 </div>
