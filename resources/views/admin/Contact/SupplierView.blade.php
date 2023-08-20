@@ -323,9 +323,9 @@
                         </button>
                     </a>
                     <a href="">
-                        <button class="btn btn-primary btn-sm">
+                        <a href="{{route('purchase.list',$item->id)}}" class="btn btn-primary btn-sm">
                             <i class="fa-sharp fa-solid fa-eye"></i>
-                        </button>
+                        </a>
                     </a>
                     <button class="btn btn-danger btn-sm" id="supplier_delete">
                         <i class="fa-solid fa-trash"></i>

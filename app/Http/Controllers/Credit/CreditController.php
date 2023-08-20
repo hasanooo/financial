@@ -30,10 +30,10 @@ class CreditController extends Controller
         $req->validate([  
             'date'=>'required|date',
             'cash'=>'required|numeric',
-            'c_category_id'=>'required|numeric',
+            'category'=>'required|numeric',
         ], 
         [
-            'c_category_id.required'=>'category is required',
+            'category.required'=>'category is required',
         ]
     );
         $credit_create=new CreditCash();
@@ -43,7 +43,12 @@ class CreditController extends Controller
         $credit_create->cash=$req->cash;
         $credit_create->save();
 
-        return redirect(route('credit.index'));
+        $notification = array(
+            'message' => "Credit Added successfully",
+            'alert-type' => 'success'
+         );
+
+        return redirect(route('credit.index'))->with($notification);
         
     }
 
@@ -89,7 +94,12 @@ class CreditController extends Controller
         $credit_create->cash=$req->cash;
         $credit_create->update();
 
-        return redirect()->back();
+        $notification = array(
+            'message' => "Credit Updated successfully",
+            'alert-type' => 'success'
+         );
+
+        return redirect()->back()->with($notification);
 
     }
 
@@ -97,7 +107,11 @@ class CreditController extends Controller
     {
         $creditID = CreditCash::find($id);
         $creditID->delete();
-        return back();
+        $notification = array(
+            'message' => "Credit Deleted successfully",
+            'alert-type' => 'warning'
+         );
+        return back()->with($notification);
     }
 
     

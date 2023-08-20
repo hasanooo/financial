@@ -11,7 +11,7 @@
                 <div class="col-12">
                     <h3>Purchase Return</h3>
                 </div>
-                
+
                 <div class="col-md-4">
                     <h6>Reference No: {{$invoice->ref}}</h6>
                     <h6>Date: {{$invoice->purchase_date}}</h6>
@@ -35,33 +35,32 @@
                                 <th>Unit Price</th>
                                 <th>Purchase Quantity</th>
                                 <th>Availabe Stock</th>
-                                <th>Return Quantity</th>
                                 <th>Return Subtotal</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($invoice->purchase_invoice_purchase as $i => $item)
-                                <tr class="text-center">
-                                    <td>
-                                        {{$i + 1}}
-                                        <input type="hidden" name="purchase_id[]" value="{{$item->id}}">
-                                        <input type="hidden" name="product_id[]" value="{{$item->purchase_product->id}}">
-                                    </td>
-                                    <td>{{$item->purchase_product->name}}</td>
-                                    {{--<td>
+                            <tr class="text-center">
+                                <td>
+                                    {{$i + 1}}
+                                    <input type="hidden" name="purchase_id[]" value="{{$item->id}}">
+                                    <input type="hidden" name="product_id[]" value="{{$item->purchase_product->id}}">
+                                </td>
+                                <td>{{$item->purchase_product->name}}</td>
+                                {{--<td>
                                         @if($item->purchase_product_price->variation_value_id !=0)
                                             {{$item->purchase_product_price->productprice_variation_value->value_name}}
-                                        @else
-                                            <span>Single</span>
-                                        @endif
-                                    </td>--}}
-                                    <td id="unit_price">{{$item->purchase_product->purchase_price}}</td>
-                                    <td>{{$item->purchase_qtn}}</td>
-                                    <td></td>
-                                    {{--<td id="stock">{{$item->purchase_product_price->qty}}</td>--}}
-                                    <td><input id="return_qty" name="return_qty[]" type="number" class="form-control"></td>
-                                    <td><input type="number" id="retutn_price" name="retutn_price[]" class="form-control line-total" readonly></td>
-                                </tr>
+                                @else
+                                <span>Single</span>
+                                @endif
+                                </td>--}}
+                                <td id="unit_price">{{$item->purchase_product->purchase_price}}</td>
+                                <td>{{$item->purchase_qtn}}</td>
+                                <td  id="stock">{{$item->purchase_product->stock}}</td>
+                               
+                                <td><input id="return_qty" name="return_qty[]" type="number" class="form-control"></td>
+                                <td><input type="number" id="retutn_price" name="retutn_price[]" class="form-control line-total" readonly></td>
+                            </tr>
                             @endforeach
 
                             <tr>
@@ -91,7 +90,7 @@
                 alert("Return quantity can not be greater than total stock");
                 //$('#return_btn').prop('disabled', true);
                 $(this).val(stock);
-                
+
             }
             let total = parseFloat(qty) * parseFloat(cost);
             current_row.find('#retutn_price').val(total);

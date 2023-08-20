@@ -312,7 +312,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
-                            Aqusition Product
+                            Purchase
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -320,13 +320,13 @@
                         <li class="nav-item">
                             <a href="{{route('purchase.index')}}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
-                                <p>Aqusition List</p>
+                                <p>Purchase List</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('purchase.add')}}" class="nav-link">
                                 <i class="far fa-plus nav-icon"></i>
-                                <p>Add Aqusition</p>
+                                <p>Add Purchase</p>
                             </a>
                         </li>
 
@@ -486,13 +486,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('emi.sale.index')}}" class="nav-link">
+                            <a href="{{route('lc.form')}}" class="nav-link">
                                 <i class="fas fa-plus nav-icon"></i>
                                 <p>New LC</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('emi.index')}}" class="nav-link">
+                            <a href="{{route('lc.list')}}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>LC List</p>
                             </a>

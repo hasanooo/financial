@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tax extends Model
+class Lc extends Model
 {
     use HasFactory;
-    function tax_product()
-    {
-        return $this->hasMany(Product::class);
-    }
 }
