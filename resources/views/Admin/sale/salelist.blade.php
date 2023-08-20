@@ -223,16 +223,16 @@
                                     {{ $total_paid }}
                                 </td>
                                 @php
-                                // $return = 0;
+                                $return = 0;
                                 $total_paid = $y->invoice_payment->pluck('amount_paid')->sum();
-                                // if ($y->sale_invoice_sale_return != null) {
-                                // $return = $y->sale_invoice_sale_return->pluck('return_price')->sum();
-                                // }
+                                if ($y->sale_invoice_sale_return != null) {
+                                $return = $y->sale_invoice_sale_return->pluck('return_price')->sum();
+                                }
                                 $covertint=(int)$t;
                                 $paid =$covertint - $total_paid ;
 
                                 @endphp
-                                <td>0</td>
+                                <td>{{$return}}</td>
                                 <td>{{ $paid }}</td>
                                 <td>
                                     @if ($paid == 0)
@@ -292,8 +292,33 @@
                                         </ul>
                                     </div>
                                 </td>
+                               
                             </tr>
                             @endforeach
+                            @php
+                            $total_returnamount=0;
+                            $total_invoiceamount=0;
+                            $total_paymentamount=0;
+                                foreach ($invoice as $i => $item) {
+                                    $total_invoiceamount=$total_invoiceamount+$item->total_amount;  
+                                    foreach ($item->invoice_payment as $key => $value) {
+                                    $total_paymentamount= $total_paymentamount+$value->amount_paid;
+                                    
+                                }
+                                foreach ($item->sale_invoice_sale_return as $key => $value) {
+                                    $total_returnamount= $total_returnamount+$value->return_price;
+                                }
+                                }
+                                
+                            @endphp
+                            <tr>
+                                <td>Total </td>
+                                <td></td>
+                                <td>{{$total_invoiceamount}}</td>
+                                <td>{{$total_paymentamount}}</td>
+                                <td>{{$total_returnamount}}</td>
+                                <td>{{$total_invoiceamount-$total_paymentamount}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
