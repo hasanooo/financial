@@ -14,11 +14,11 @@
                 @csrf
                 <div class="form-group">
                     <label for="category">Category:</label>
-                    <input type="text" class="form-control" id="category" name="category" required>
+                    <input type="text" class="form-control" placeholder="Import/Export" id="category" name="category" required>
                 </div>
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control" placeholder="Buyer/Seller" id="name" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="issue_date">Issue Date:</label>
