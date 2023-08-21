@@ -305,9 +305,10 @@
         });
         $('body').on('click', '#p_id', function() {
             var urlData = $(this).data('url');
+            alert(urlData);
             $.get(urlData, function(data) {
 
-                //alert(urlData);
+               
 
 
 

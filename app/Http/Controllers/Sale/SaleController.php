@@ -54,7 +54,7 @@ class SaleController extends Controller
         foreach ($req->pname as $m => $mitem) {
             //echo $req->variname[$m];
 
-            $qty = 0;
+          
 
             $sale = new SellingProduct();
 
@@ -70,7 +70,7 @@ class SaleController extends Controller
             }
             else{
                 $invoice->save();
-                $qty = $product->qty - $sale->quantity;
+                 $qty =  $product->stock - $sale->qty;
             $product->stock = $qty;
             $product->save();
             // return $req->variname[$m];
@@ -230,8 +230,10 @@ class SaleController extends Controller
    }
    public function AddCash(Request $req)
    {
-      
-      $return = new SellingPayment();
+    if ($req->paid_amount > $req->due) {
+        return "Your amount is greater than total amount";
+    }else{
+        $return = new SellingPayment();
       $return->sell_invoice_id = $req->return_id;
       $return->payment_method = "cash";
       $return->payment_account = "none";
@@ -243,4 +245,6 @@ class SaleController extends Controller
       }
       return "failed";
    }
+    }
+      
 }
