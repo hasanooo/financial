@@ -36,7 +36,13 @@ class CustomerController extends Controller
         $customer->opening_balance=$request->opening_balance;
         $customer->credit_limit=$request->credit_limit;
         $customer->save();
-        return redirect()->back();
+        
+        $notification = array(
+            'message' => "Customer added successfully",
+            'alert-type' => 'success'
+         );
+         return redirect()->back()->with($notification);
+        
     }
 
     public function UpdatePage($id)
@@ -55,7 +61,12 @@ class CustomerController extends Controller
         $customer->opening_balance=$request->opening_balance;
         $customer->credit_limit=$request->credit_limit;
         $customer->update();
-        return redirect()->back();
+        
+        $notification = array(
+            'message' => "Customer Updated Successfully",
+            'alert-type' => 'success'
+         );
+         return redirect()->back()->with($notification);
         
     }
 

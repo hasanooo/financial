@@ -20,6 +20,7 @@ use App\Http\Controllers\Roles\RolesController;
 use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Tax\TaxController;
 use App\Http\Controllers\Capex\CapexController;
+use App\Http\Controllers\Lc\LcController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,23 +42,27 @@ Route::get('/logout', [ProfileController::class, 'logout'])->name('logout');
 //supplier
 Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier');
 Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
-
+Route::get('/supplier/updateView/{id}' ,[ContactController::class,'supplierEditView'])->name('UpdateSupplierView');
+Route::post('/supplier/update/{id}' ,[ContactController::class,'supplierUpdate'])->name('supplier.update');
 // Customer
 Route::get('/customer/index', [CustomerController::class,'Index'])->name('customer.index');
 Route::get('/customer/edit/page/{id}', [CustomerController::class,'UpdatePage'])->name('customer.update.page');
 Route::post('/customer/edit/{id}', [CustomerController::class,'Update'])->name('customer.update');
-Route::post('/supplier/add' ,[CustomerController::class,'Add'])->name('customer.add');
+Route::post('/customer/add' ,[CustomerController::class,'Add'])->name('customer.add');
 //product
 
 Route::get('/product/Index' ,[ProductController::class,'productIndex'])->name('prodauct.index');
 Route::get('/product/category' ,[ProductController::class,'categoryform'])->name('product.category');
-Route::post('/product/category' ,[ProductController::class,'AddCategory'])->name('product.category.submit');
+Route::post('/product/category/submit' ,[ProductController::class,'AddCategory'])->name('product.category.submit');
 Route::get('/product/add' ,[ProductController::class,'productform'])->name('product.create');
 Route::post('/product/submit' ,[ProductController::class,'productformsubmit'])->name('product.submit');
 Route::get('/product/view/invoice/{id}' ,[ProductController::class, 'ProductView'])->name('product.view');
 Route::get('/product/view/reports' ,[ProductController::class, 'ProductReport'])->name('prodauct.purchase.reports');
 // Route::get('/product/edit/{id}' ,[ProductController::class, 'ProductEditform'])->name('product.edit.form');
-
+Route::get('/product/editview/{id}' ,[ProductController::class,'productEditView'])->name('prodauct.edit.view');
+Route::post('/product/update/{id}' ,[ProductController::class,'productUpdate'])->name('product.update');
+Route::get('/product/category/editview/{id}' ,[ProductController::class,'categoryUpdateView'])->name('product.category.editview');
+Route::post('/product/category/update' ,[ProductController::class,'UpdateCategory'])->name('product.category.update');
 //sale
 Route::get('/saleform' ,[SaleController::class, 'saleform'])->name('sale.form');
 Route::post('/salesubmit',[SaleController::class,'saleformsubmit'])->name('sale.submit');
@@ -68,10 +73,14 @@ Route::post('/saleeditformsubmit' ,[SaleController::class, 'saleeditformsubmit']
 Route::get('/saleview/{id}' ,[SaleController::class, 'saleview'])->name('sale.view');
 Route::get('/sale/returnsale/{id}', [SaleController::class, 'salereturn'])->name('salereturn');
 Route::post('/sale/returnSub/{id}',[SaleController::class,'SaleReturnSubmit'])->name('sale.return');
+Route::get('/sale/returnsalelist/{id}', [SaleController::class, 'salereturnlist'])->name('salereturnlist');
+Route::get('/salereturn/add_to_cash',[SaleController::class,'AddCash'])->name('add_cash');
 
 
 //Tax
 Route::get('/taxhome' ,[TaxController::class, 'taxhome'])->name('taxhome');
+Route::get('/tax/edit/view/{id}' ,[TaxController::class, 'taxEditView'])->name('tax.edit.view');
+Route::post('/tax/update' ,[TaxController::class, 'taxUpdate'])->name('tax.update');
 
 // EMI Sale
 Route::get('/emi/index',[EMIController::class,'Index'])->name('emi.index');
@@ -187,6 +196,12 @@ Route::get('/opex/create' ,[OpexController::class,'Create'])->name('opex.create'
 // Send Emails Controller
 Route::post('/customer/sendmail',[CustomerController::class,'SendEmail'])->name('customer.sendmail');
 Route::get('/customer/select',[CustomerController::class,'SelectCustomer'])->name('customer.select');
+Route::get('/lcform',[LcController::class,'lcform'])->name('lc.form');
+Route::get('/lclist',[LcController::class,'lclist'])->name('lc.list');
+Route::get('/lceditform/{id}',[LcController::class,'lceditform'])->name('lc.edit');
+Route::get('/lcdeleteform/{id}',[LcController::class,'lcdeleteform'])->name('lc.delete');
+Route::post('/lcformsubmit',[LcController::class,'lcformsubmit'])->name('lc.form.submit');
+Route::post('/lceditformsubmit',[LcController::class,'lceditformsubmit'])->name('lc.formedit.submit');
 
 // Balance Sheet Controller
 Route::controller(BalanceSheetController::class)->group(function () {

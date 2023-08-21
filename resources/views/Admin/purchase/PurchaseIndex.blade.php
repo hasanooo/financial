@@ -181,7 +181,7 @@
                                         @if ($p->purchase_invoice_purchase_return->count()>0)
 
                                         <li>
-                                            <a class="btn btn-sm" href="{{route('return.product',$p->id)}}"> <i class="fa-solid fa-pen-to-square"></i> Return product</a>
+                                            <a class="btn btn-sm" href="{{route('return.product',$p->id)}}"> <i class="fa-solid fa-pen-to-square"></i> Refund</a>
                                         </li>
                                         @endif
 
@@ -415,6 +415,18 @@
                 }
             });
 
+        });
+        $('#pay_amount').on('input', function() {
+            var dueAmount = parseFloat($('#due').val());
+            var payAmount = parseFloat($(this).val());
+
+            if (payAmount > dueAmount) {
+                $('#alert_msg').text("Pay amount can't be greater than due.");
+                $('#payment_submit').prop('disabled', true);
+            } else {
+                $('#alert_msg').text("");
+                $('#payment_submit').prop('disabled', false);
+            }
         });
     });
 </script>

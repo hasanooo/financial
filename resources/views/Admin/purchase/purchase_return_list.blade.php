@@ -25,7 +25,7 @@
                             <th>Supplier</th>
                             <th>Return Quantity</th>
                             <th>Return Amount</th>
-                            <th colspan="2">Retern payment</th>
+                            <th colspan="2">Return payment</th>
                         </tr class="text-center">
                     </thead>
                     <tbody>
