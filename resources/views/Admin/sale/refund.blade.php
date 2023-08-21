@@ -67,7 +67,7 @@ $(document).ready(function() {
     $(document).on('click', '#add_to_cash_btn', function() {
         let current_row = $(this).closest('tr');
         let return_id = $('#return_id').val();
-        let paid_abount = $('#paid_amount').val();
+        let paid_amount = $('#paid_amount').val();
         let due = $('#due').text();
         
        
@@ -76,10 +76,17 @@ $(document).ready(function() {
                 method: 'GET',
                 data: {
                     return_id: return_id,
-                    paid_amount: paid_abount,
+                    paid_amount: paid_amount,
+                    due:due,
                 },
                 success: function(res) {
-                    location.reload(true);
+                    if (res == "success") {
+                        location.reload(true);
+                    }
+                    else
+                    {
+                        alert(res);
+                    }
                 }
             });
         
