@@ -52,7 +52,7 @@
                         <td>{{$i+1}}</td>
                         <td>{{ $item->invoice }}</td>
                         <td>{{ $item->date }}</td>
-                        <td></td>
+                        <td>{{ $item->Customer->name }}</td>
                         <td>{{ $item->discount }}</td>
                         <td>{{ $item->total_price }}</td>
                         @php
