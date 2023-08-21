@@ -160,5 +160,39 @@ class BalanceSheetController extends Controller
          );
         return redirect()->route('share.index')->with($notification);
     }
+    public function ShareEditPage($id)
+    {
+        $share = Share::findOrFail($id);
+        return view('Admin.share.editpage',compact('share'));
+    }
+    public function ShareEditSubmit(Request $request, $id)
+    {
+
+        $share = Share::findOrFail($id);
+        $share->date = $request->date;
+        $share->category = $request->category;
+        $share->name = $request->name;
+        $share->phone = $request->phone;
+        $share->address = $request->address;
+        $share->amount = $request->amount;
+        $share->terms = $request->term;
+        $share->update();
+        $notification = array(
+            'message' => "Share Edited successfully",
+            'alert-type' => 'success'
+         );
+         return redirect()->route('share.index')->with($notification);
+    }
+
+    public function ShareDelete($id)
+    {
+        $share = Share::findOrFail($id);
+        $share->delete();
+        $notification = array(
+            'message' => "Share Deleted successfully",
+            'alert-type' => 'warning'
+         );
+        return back()->with($notification);
+    }
 
 }

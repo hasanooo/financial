@@ -42,23 +42,27 @@ Route::get('/logout', [ProfileController::class, 'logout'])->name('logout');
 //supplier
 Route::get('/supplier' ,[ContactController::class,'supplierform'])->name('formsupplier');
 Route::post('/supplier' ,[ContactController::class,'supplierformsumbit'])->name('formsupplier.submit');
-
+Route::get('/supplier/updateView/{id}' ,[ContactController::class,'supplierEditView'])->name('UpdateSupplierView');
+Route::post('/supplier/update/{id}' ,[ContactController::class,'supplierUpdate'])->name('supplier.update');
 // Customer
 Route::get('/customer/index', [CustomerController::class,'Index'])->name('customer.index');
 Route::get('/customer/edit/page/{id}', [CustomerController::class,'UpdatePage'])->name('customer.update.page');
 Route::post('/customer/edit/{id}', [CustomerController::class,'Update'])->name('customer.update');
-Route::post('/supplier/add' ,[CustomerController::class,'Add'])->name('customer.add');
+Route::post('/customer/add' ,[CustomerController::class,'Add'])->name('customer.add');
 //product
 
 Route::get('/product/Index' ,[ProductController::class,'productIndex'])->name('prodauct.index');
 Route::get('/product/category' ,[ProductController::class,'categoryform'])->name('product.category');
-Route::post('/product/category' ,[ProductController::class,'AddCategory'])->name('product.category.submit');
+Route::post('/product/category/submit' ,[ProductController::class,'AddCategory'])->name('product.category.submit');
 Route::get('/product/add' ,[ProductController::class,'productform'])->name('product.create');
 Route::post('/product/submit' ,[ProductController::class,'productformsubmit'])->name('product.submit');
 Route::get('/product/view/invoice/{id}' ,[ProductController::class, 'ProductView'])->name('product.view');
 Route::get('/product/view/reports' ,[ProductController::class, 'ProductReport'])->name('prodauct.purchase.reports');
 // Route::get('/product/edit/{id}' ,[ProductController::class, 'ProductEditform'])->name('product.edit.form');
-
+Route::get('/product/editview/{id}' ,[ProductController::class,'productEditView'])->name('prodauct.edit.view');
+Route::post('/product/update/{id}' ,[ProductController::class,'productUpdate'])->name('product.update');
+Route::get('/product/category/editview/{id}' ,[ProductController::class,'categoryUpdateView'])->name('product.category.editview');
+Route::post('/product/category/update' ,[ProductController::class,'UpdateCategory'])->name('product.category.update');
 //sale
 Route::get('/saleform' ,[SaleController::class, 'saleform'])->name('sale.form');
 Route::post('/salesubmit',[SaleController::class,'saleformsubmit'])->name('sale.submit');
@@ -75,6 +79,8 @@ Route::get('/salereturn/add_to_cash',[SaleController::class,'AddCash'])->name('a
 
 //Tax
 Route::get('/taxhome' ,[TaxController::class, 'taxhome'])->name('taxhome');
+Route::get('/tax/edit/view/{id}' ,[TaxController::class, 'taxEditView'])->name('tax.edit.view');
+Route::post('/tax/update' ,[TaxController::class, 'taxUpdate'])->name('tax.update');
 
 // EMI Sale
 Route::get('/emi/index',[EMIController::class,'Index'])->name('emi.index');

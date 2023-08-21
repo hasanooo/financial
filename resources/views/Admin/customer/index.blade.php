@@ -134,72 +134,67 @@
 
             </div>
 
-            <div class="row">
+            <div class="table-responsive table-responsive-sm table-responsive-md">
+                <table class="table table-bordered table-striped my-3 k" id="example1">
+                    <thead>
+                        <tr>
+                            <th>SL</th>
+                            {{-- <th>Image</th> --}}
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>City</th>
+                            <th>Address</th>
+                            <th>Opening Balace</th>
+                            <th>Credit Limit</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($customer as $i=>$item)
+                        <tr>
+                            {{csrf_field()}}
+                            <td>{{$i+1}}</td>
+                            {{-- <td></td> --}}
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>{{$item->phone}}</td>
+                            <td>{{$item->city}}</td>
+                            <td>{{$item->address}}</td>
+                            <td>{{$item->opening_balance}}</td>
+                            <td>{{$item->credit_limit}}</td>
+                            <td>
 
-                <div class="col-12">
-                    <input class="form-control me-2 rounded-0" name="search" type="search" id="in" placeholder="Name or Mobile No. or Id No.">
-                </div>
+
+                                <a href="{{ route('customer.update.page', $item->id) }}" data-url="" id="id">
+                                    <button class="btn btn-primary btn-sm">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                </a>
+                                <a href="">
+                                    <button class="btn btn-primary btn-sm">
+                                        <i class="fa-sharp fa-solid fa-eye"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-danger btn-sm" id="supplier_delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+
+                            </td>
+                        </tr>
+                        @endforeach
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination d-flex justify-content-end">
+
             </div>
         </div>
 
-        <div class="table-responsive table-responsive-sm table-responsive-md">
-            <table class="table table-bordered table-striped my-3 k">
-                <thead>
-                    <tr>
-                        <th>SL</th>
-                        {{-- <th>Image</th> --}}
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>City</th>
-                        <th>Address</th>
-                        <th>Opening Balace</th>
-                        <th>Credit Limit</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($customer as $i=>$item)
-                    <tr>
-                        {{csrf_field()}}
-                        <td>{{$i+1}}</td>
-                        {{-- <td></td> --}}
-                        <td>{{$item->name}}</td>
-                        <td>{{$item->email}}</td>
-                        <td>{{$item->phone}}</td>
-                        <td>{{$item->city}}</td>
-                        <td>{{$item->address}}</td>
-                        <td>{{$item->opening_balance}}</td>
-                        <td>{{$item->credit_limit}}</td>
-                        <td>
-
-
-                            <a href="{{ route('customer.update.page', $item->id) }}" data-url="" id="id">
-                                <button class="btn btn-primary btn-sm">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                            </a>
-                            <a href="">
-                                <button class="btn btn-primary btn-sm">
-                                    <i class="fa-sharp fa-solid fa-eye"></i>
-                                </button>
-                            </a>
-                            <button class="btn btn-danger btn-sm" id="supplier_delete">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-
-                        </td>
-                    </tr>
-                    @endforeach
-
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="pagination d-flex justify-content-end">
-
-        </div>
+       
     </div>
 </div>
 </div>

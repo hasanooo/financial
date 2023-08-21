@@ -17,6 +17,7 @@ class ProductController extends Controller
         return view('Admin.products.categories')
         ->with('category',$categories);
     }
+
     public function AddCategory(Request $request)
     {
 
@@ -47,9 +48,44 @@ class ProductController extends Controller
         $categories->name = $request->name;
 
         $categories->save();
-        return redirect()->back();
+        $notification = array(
+          'message' => "Product Category Added Successfully",
+          'alert-type' => 'success'
+       );
+       return redirect()->back()->with($notification);
         // ->with('message','Category name added successfully.');
     }
+
+    function categoryUpdateView($id)
+    {
+        $categories=ProductCategory::find($id);
+        return response()->json($categories);
+    }
+
+    public function UpdateCategory(Request $request)
+    {
+
+        $categories =ProductCategory::findOrFail($request->id);
+
+
+        $image = $request->image;
+        if ($image) {
+            $image = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('ProductImage/CategoryImage/', $image);
+            $categories->image = $image;
+        }
+
+        $categories->name = $request->name;
+
+        $categories->update();
+        $notification = array(
+          'message' => "Product Category updated Successfully",
+          'alert-type' => 'success'
+       );
+       return redirect()->back()->with($notification);
+        // ->with('message','Category name added successfully.');
+    }
+    
     function productform()
     {
         $productcategorys=ProductCategory::all();
@@ -93,8 +129,65 @@ class ProductController extends Controller
         }
         $product->save();
 
-        return redirect(route('prodauct.index'));
+        $notification = array(
+            'message' => 'Product Added Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
+
+    protected function productEditView($id)
+    {
+        $product=Product::find($id);
+        $productcategory=ProductCategory::all();
+        $tax=Tax::all();
+        return view('Admin.products.UpdateProduct',compact('product','productcategory','tax'));
+    }
+
+    function productUpdate(Request $req,$id)
+    {
+        $req->validate([
+            'category' => 'required|exists:product_categories,id',
+           
+         ]);
+          $product=Product::find($id);
+          $product->name=$req->name;
+          $product->product_category_id=$req->category;
+          if($req->tax=="Please Select")
+          {
+            $product->tax_id=null;
+          }
+          else{
+            $product->tax_id=$req->tax;
+          }
+          
+          $product->purchase_price=$req->purchasePrice;
+          $product->description=$req->description;
+          if($req->status=="Please Select")
+          {
+            $product->status=null;
+          }
+          else{
+            $product->status=$req->status;
+          }
+          
+          
+          $product->selling_price=$req->sellingPrice;
+          $image = $req->image;
+        if ($image) {
+            $image = time() . '.' . $image->getClientOriginalExtension();
+            $req->image->move('Product/Image/', $image);
+            $product->image = $image;
+        }
+        $product->update();
+
+        $notification = array(
+            'message' => 'Product Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
 
     protected function productIndex()
     {
