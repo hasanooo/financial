@@ -198,7 +198,7 @@
 
                                 <th>Total payable:</th>
                                 <td></td>
-                                {{-- <td style="text-align:end">{{ $pay }}</td> --}}
+                                <td style="text-align:end">{{ $pay }}</td>
                             </tr>
                             <tr>
                                 <th>Total Paid:</th>
@@ -209,22 +209,22 @@
                                 <td>Total Return</td>
                                 <td></td>
                                 <td style="text-align:end">
-                                    {{-- @if ($in_id->sale_invoice_sale_return != null)
+                                    @if ($in_id->sale_invoice_sale_return != null)
                                         {{ $in_id->sale_invoice_sale_return->pluck('return_price')->sum() }}
                                     @else
                                         0
-                                    @endif --}}
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total remaining:</th>
                                 <td></td>
                                 <td style="text-align:end">
-                                    {{-- @if ($in_id->sale_invoice_sale_return != null)
+                                    @if ($in_id->sale_invoice_sale_return != null)
                                         {{ $pay - $in_id->sale_invoice_sale_return->pluck('return_price')->sum() }}
                                     @else
                                         {{ $pay }}
-                                    @endif --}}
+                                    @endif
                                 </td>
                             </tr>
 
@@ -234,18 +234,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <strong>Sell note:</strong>
-                <br>
-                <p class="p-2" style="background-color: #e2e3e5;"> --</p>
-            </div>
-            <div class="col-6">
-                <strong>Staff note:</strong>
-                <br>
-                <p class="p-2" style="background-color: #e2e3e5;"> --</p>
-            </div>
-        </div>
+        
 
     </div>
     <div class="modal-footer">
