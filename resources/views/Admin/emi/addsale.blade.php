@@ -343,7 +343,7 @@
                                                             <span class="input-group-text col-12">EMI Quantity</span>
                                                         </div>
                                                         <input type="number" id="emi_quantity" name="emi_quantity" class="form-control rounded-1"
-                                                            value="0" min="0">   
+                                                            value="1" min="1">   
                                                     </div>
                                                     @error('emi_quantity')
                                                         <span class="text-danger">{{$message}}</span><br>
@@ -464,8 +464,9 @@
                                 // alert(due);
                                 var rate = parseFloat($('#emi_rate').val());
                                 var per = (due*rate)/100;
-                                var due_sum = due + per;
-                                var amount =(due_sum / qnt);
+                                var due_sum = Math.round(due + per);
+                                // var amount =(due_sum / qnt);
+                                var amount = Math.round(due_sum / qnt);
                                 $('#emi_amount').val(amount);
                                 $('#emi_total').val(due_sum);
 
