@@ -81,7 +81,7 @@
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-list"></i></span>
                                     </div>
-                                    <select id="" name="d_category_id" class="form-control rounded-0" style="background-color:whitesmoke;">
+                                    <select id="" required  name="d_category_id" class="form-control rounded-0" style="background-color:whitesmoke;">
                                         <option value="">Please Select Debit Category</option>
                                         @foreach ($d_category as $c)
                                         <option value="{{ $c->id }}">{{ $c->name }}</option>
