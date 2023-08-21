@@ -1,6 +1,6 @@
 @extends('Admin.layouts.dashboard')
 @section('titel')
-Add Aqusitions
+Add Purchase
 @endsection
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -11,7 +11,7 @@ Add Aqusitions
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Add Aqusition</h1>
+                <h1>Add Purchase</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -49,7 +49,7 @@ Add Aqusitions
 
 
                         <div class="form-group col-md-4 col-sm-12">
-                            <label for="">Aqusition Date: *</label>
+                            <label for="">Purchase Date: *</label>
                             <input type="datetime-local" name="pdate" id="datetime" class="form-control" value="{{old('date')}}">
                             @error('pdate')
                             <span class="text-danger">{{$message}}</span>
@@ -63,7 +63,7 @@ Add Aqusitions
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-list"></i></span>
                                 </div>
-                                <select id="" name="category" class="form-control rounded-0" style="background-color:whitesmoke;">
+                                <select id="" required name="category" class="form-control rounded-0" style="background-color:whitesmoke;">
                                     <option value="">Please Select</option>
                                     @foreach($category_credit as $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
@@ -148,7 +148,7 @@ Add Aqusitions
 
                                         <div class="form-group col-md-3 col-sm-12">
 
-                                            <label for="">Total Aqusition:*</label>
+                                            <label for="">Total Purchase:*</label>
                                             <input type="text" class="form-control" id="total_purchase" name="purchase_price" placeholder="0.00">
                                             @error('purchase_price')
                                             <span class="text-danger">{{$message}}</span>
