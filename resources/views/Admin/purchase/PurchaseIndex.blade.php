@@ -181,7 +181,7 @@
                                         @if ($p->purchase_invoice_purchase_return->count()>0)
 
                                         <li>
-                                            <a class="btn btn-sm" href="{{route('return.product',$p->id)}}"> <i class="fa-solid fa-pen-to-square"></i> Return product</a>
+                                            <a class="btn btn-sm" href="{{route('return.product',$p->id)}}"> <i class="fa-solid fa-pen-to-square"></i> Refund</a>
                                         </li>
                                         @endif
 

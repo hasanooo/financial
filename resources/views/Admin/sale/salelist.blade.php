@@ -248,11 +248,11 @@
                                         <li role="presentation"><a role="menuitem" href="{{ route('salereturn', $y->id) }}" class="btn"><i class="fa-solid fa-pen-to-square"></i>
                                                 Sale Return</a></li>
 
-                                        {{-- @if ($y->sale_invoice_sale_return->count() > 0) --}}
+                                        @if ($y->sale_invoice_sale_return->count() > 0)
                                         <li role="presentation">
-                                            <a class="btn" role="menuitem" href=""> <i class="fa-solid fa-pen-to-square"></i> Refund</a>
+                                            <a class="btn" role="menuitem" href="{{route('salereturnlist',$y->id)}}"> <i class="fa-solid fa-pen-to-square"></i> Refund</a>
                                         </li>
-                                        {{-- @endif --}}
+                                        @endif
 
 
 
@@ -370,9 +370,10 @@
 
         $('body').on('click', '#p_id', function() {
             var urlData = $(this).data('url');
+            
             $.get(urlData, function(data) {
 
-                //alert(urlData);
+               
 
 
 

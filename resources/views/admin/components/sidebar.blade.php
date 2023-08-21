@@ -330,12 +330,12 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="" class="nav-link">
                                 <i class="fas fa-exchange nav-icon"></i>
                                 <p>Purchase Return</p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
@@ -453,12 +453,12 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{route('prodauct.purchase.reports')}}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Purchase Reoprts</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="{{route('emi.index')}}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
@@ -466,12 +466,12 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Expenditure Reoprts</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
 
@@ -497,12 +497,12 @@
                                 <p>LC List</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{ route('collect.index') }}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>LC collection</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
 
@@ -537,7 +537,7 @@
                     </ul>
                 </li>
                 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-gear"></i>
                         <p>
@@ -560,7 +560,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
 
                 
